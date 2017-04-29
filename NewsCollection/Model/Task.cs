@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Winista.Text.HtmlParser;
+using Winista.Text.HtmlParser.Util;
 
 namespace NewsCollection.Model
 {
@@ -18,22 +20,39 @@ namespace NewsCollection.Model
         private String neturl;
 
         //提取过滤器
-        private List<NodeFilter> infoNodeFilter = new List<NodeFilter>();
+        private List<NodeFilter> infoNodeFilters = new List<NodeFilter>();
         //深度迭代过滤器
         private NodeFilter nextPagerFilter;
 
         private Boolean needNextPage;
+
+        //页面加载器
+        
+        private WebBrowser webLoader;
+        private Parser htmlParser;
+        
 
         public Task(String taskname, String taskdesc,String groupname)
         {
             this.taskname = taskname;
             this.taskdesc = taskdesc;
             this.groupname = groupname;
+            webLoader = new WebBrowser();
+            webLoader.DocumentCompleted += null;
+            htmlParser = new Parser();
         }
 
         public void addInfoNodeFilter(NodeFilter nodefilter)
         {
-            infoNodeFilter.Add(nodefilter);
+            infoNodeFilters.Add(nodefilter);
+        }
+
+        public void removeInfoNodeFilter(int index)
+        {
+            if(index >=0 && index < infoNodeFilters.Count())
+            {
+                infoNodeFilters.RemoveAt(index);
+            }
         }
 
 
@@ -49,11 +68,36 @@ namespace NewsCollection.Model
         /// </summary>
         public void execute()
         {
-            Parser htmlParser = new Parser();
+            webLoader.Url = new Uri(neturl);
+            webLoader.Refresh();
+        }
 
-            List<List<String>> table = new List<List<String>>();
-            //foreach(NodeFilter)
-
+        /// <summary>
+        /// 获取页面的源码
+        /// </summary>
+        private List<List<String>> getHtmlContent(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(e.ToString()))
+            {
+                List<List<String>> table = new List<List<String>>();
+                htmlParser.InputHTML = e.ToString();
+                foreach(NodeFilter filter in infoNodeFilters)
+                {
+                    NodeList nodes = htmlParser.Parse(filter); 
+                    if(nodes != null && nodes.Size() > 0)
+                    {
+                        List<String> cols = new List<string>();
+                        for(int i = nodes.Size() -1 ;i>= 0; i--)
+                        {
+                            cols.Add(nodes.ElementAt(i).FirstChild.GetText());
+                        }
+                        table.Add(cols);
+                    }
+                }
+                return table;
+            }
+            return null;
+            
         }
     }
 }

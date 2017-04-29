@@ -68,6 +68,7 @@
     <Compile Include="mainForm.Designer.cs">
       <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\ClassNodeFilter.cs" />
     <Compile Include="Model\Task.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

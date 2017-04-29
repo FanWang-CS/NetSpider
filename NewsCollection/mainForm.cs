@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Winista.Text.HtmlParser;
 
 namespace NewsCollection
 {
@@ -253,8 +254,15 @@ namespace NewsCollection
                         task.NetUrl = netUrl;
                         break;
                     case 2:
-                        task.NeedNextPage = neednextpageview.Checked;
-                        //TODO 添加过滤器
+                        
+                       
+                        break;
+                    case 3:  //选择采集方式
+                        
+                        break;
+                    case 4:
+                        //开始采集
+
                         break;
                 }
                 step++;
@@ -297,18 +305,35 @@ namespace NewsCollection
 
         private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
         {
+            String netUrl = neturlview.Text.ToString();
+            webview.Url = new Uri(netUrl);
+            webview.Refresh();
             if (webview.Document != null)
             {
                 HtmlElement elem = webview.Document.GetElementFromPoint(e.ClientMousePosition);
                 elem.ScrollIntoView(true);
 
-                //添加一行数据
+                //展示： 添加一行数据
                 int t = this.dataGridView1.Rows.Add();
                 this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
 
-                //获取节点的内容
+                //扒取： 获取节点特征
                 String className = elem.GetAttribute("class");
-               //获取内容
+                ClassNodeFilter filter = new ClassNodeFilter(className);
+                task.addInfoNodeFilter(filter);
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewColumn column = dataGridView1.Columns[e.ColumnIndex];
+                if (column is DataGridViewButtonColumn)
+                {
+                    task.removeInfoNodeFilter(e.RowIndex);
+                    this.dataGridView1.Rows.RemoveAt(e.RowIndex);//删除当前行
+                }
             }
         }
     }
