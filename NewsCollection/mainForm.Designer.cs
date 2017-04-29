@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.新建任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.getdata = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column = new System.Windows.Forms.DataGridViewButtonColumn();
             this.neednextpageview = new System.Windows.Forms.CheckBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -442,6 +443,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
@@ -453,6 +455,50 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(543, 107);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Column2
+            // 
+            this.Column2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Column2.HeaderText = "字段名";
+            this.Column2.Items.AddRange(new object[] {
+            "标题",
+            "内容",
+            "时间"});
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column2.Width = 150;
+            // 
+            // getdata
+            // 
+            this.getdata.HeaderText = "提取到的数据";
+            this.getdata.Name = "getdata";
+            this.getdata.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Column4.HeaderText = "提取数据类型";
+            this.Column4.Items.AddRange(new object[] {
+            "innerTEXT",
+            "innerHTML"});
+            this.Column4.Name = "Column4";
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column4.Width = 150;
+            // 
+            // Column
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column.HeaderText = "";
+            this.Column.Name = "Column";
+            this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column.UseColumnTextForButtonValue = true;
+            this.Column.Width = 50;
             // 
             // Column2
             // 
@@ -1499,6 +1545,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn getdata;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column;
+        private System.Windows.Forms.DataGridViewButtonColumn Column;
     }
 }

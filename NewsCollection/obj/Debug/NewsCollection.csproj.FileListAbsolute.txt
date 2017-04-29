@@ -8,6 +8,8 @@ F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.csproj.GenerateR
 F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.exe
 F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.pdb
 F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
+=======
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\NewsCollection.exe.config
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\NewsCollection.exe
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\NewsCollection.pdb
@@ -32,4 +34,8 @@ F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.Proper
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.csproj.GenerateResource.Cache
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.exe
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.pdb
+<<<<<<< HEAD
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.exportDataBase1.resources
+=======
+>>>>>>> d348175d63fd7449bbeafd978e69eaab87b8fa34
+>>>>>>> e07cf9fa898a355ca713d6db19a5d0563d4fac71
