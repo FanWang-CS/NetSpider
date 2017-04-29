@@ -1,11 +1,11 @@
-﻿using System;
+﻿using NewsCollection.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NewsCollection
@@ -197,6 +197,8 @@ namespace NewsCollection
 
         }
 
+
+        private Task task;
         //"上一步"按钮
         private void button7_Click(object sender, EventArgs e)
         {
@@ -221,6 +223,40 @@ namespace NewsCollection
             }
             else
             {
+                switch (step)
+                {
+                    case 0:
+                        String taskname = tasknameview.Text.ToString();
+                        String taskdesc = taskdescview.Text.ToString();
+                        String groupname = taskgroupview.Text.ToString();
+                        if (String.IsNullOrEmpty(taskname))
+                        {
+                            MessageBox.Show("任务名不能为空");
+                            return;
+                        }
+                        if (String.IsNullOrEmpty(groupname))
+                        {
+                            MessageBox.Show("请选择组名");
+                            return;
+                        }
+                        task = new Task(taskname, taskdesc, groupname);
+                        break;
+                    case 1:
+                        String netUrl = neturlview.Text.ToString();
+                        if (String.IsNullOrEmpty(netUrl))
+                        {
+                            MessageBox.Show("请输入网址");
+                            return;
+                        }
+                        webview.Url = new Uri(netUrl);
+                        webview.Refresh();
+                        task.NetUrl = netUrl;
+                        break;
+                    case 2:
+                        task.NeedNextPage = neednextpageview.Checked;
+                        //TODO 添加过滤器
+                        break;
+                }
                 step++;
                 tabControl2.SelectedIndex = step;
                 ImageHelper imageHelper = new ImageHelper();
@@ -251,6 +287,28 @@ namespace NewsCollection
             else
             {
                 statusStrip1.Items[2].Text = "";  //控件statusStrip1的内容设置为空
+            }
+        }
+
+        private void webview_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            webview.Document.Click += onWebViewNodeClicked;
+        }
+
+        private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
+        {
+            if (webview.Document != null)
+            {
+                HtmlElement elem = webview.Document.GetElementFromPoint(e.ClientMousePosition);
+                elem.ScrollIntoView(true);
+
+                //添加一行数据
+                int t = this.dataGridView1.Rows.Add();
+                this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
+
+                //获取节点的内容
+                String className = elem.GetAttribute("class");
+               //获取内容
             }
         }
     }
