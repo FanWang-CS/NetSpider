@@ -251,6 +251,7 @@ namespace NewsCollection
                         webview.Url = new Uri(netUrl);
                         webview.Refresh();
                         task.NetUrl = netUrl;
+                        webview.Visible = true;
                         break;
                     case 2:
                         task.NeedNextPage = neednextpageview.Checked;
@@ -263,20 +264,6 @@ namespace NewsCollection
                 pictureBox1.Image = imageHelper.getImage(step);
             }
         }
-        //获panel1中的内容
-        //private void getPanel(int step)
-        //{
-        //    switch (step)
-        //    {
-        //        case 1:
-        //            {
-        //                this.panel1.Controls.Clear();
-
-        //            }
-        //            break;
-        //    }
-        //}
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
 
         {

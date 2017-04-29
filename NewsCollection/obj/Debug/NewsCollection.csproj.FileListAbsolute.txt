@@ -20,3 +20,15 @@ D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.exe
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.pdb
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\MySql.Data.dll
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\Winista.HtmlParser.dll
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\bin\Debug\NewsCollection.exe.config
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\bin\Debug\NewsCollection.exe
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\bin\Debug\NewsCollection.pdb
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\bin\Debug\MySql.Data.dll
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\bin\Debug\Winista.HtmlParser.dll
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.csprojResolveAssemblyReference.cache
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.Form1.resources
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.mainForm.resources
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.Properties.Resources.resources
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.csproj.GenerateResource.Cache
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.exe
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.pdb
