@@ -43,7 +43,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.addRule = new System.Windows.Forms.Button();
             this.webview = new System.Windows.Forms.WebBrowser();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -295,7 +294,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.addRule);
             this.tabPage2.Controls.Add(this.webview);
             this.tabPage2.Controls.Add(this.tabControl2);
             this.tabPage2.Controls.Add(this.pictureBox1);
@@ -313,20 +311,14 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // addRule
-            // 
-            this.addRule.Location = new System.Drawing.Point(0, 0);
-            this.addRule.Name = "addRule";
-            this.addRule.Size = new System.Drawing.Size(75, 23);
-            this.addRule.TabIndex = 0;
-            // 
             // webview
             // 
             this.webview.Location = new System.Drawing.Point(33, 333);
             this.webview.MinimumSize = new System.Drawing.Size(20, 20);
             this.webview.Name = "webview";
-            this.webview.Size = new System.Drawing.Size(597, 328);
+            this.webview.Size = new System.Drawing.Size(627, 302);
             this.webview.TabIndex = 12;
+            this.webview.Visible = false;
             this.webview.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webview_DocumentCompleted);
             // 
             // tabControl2
@@ -506,6 +498,36 @@
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column.UseColumnTextForButtonValue = true;
+            this.Column.Width = 50;
+            // 
+            // Column2
+            // 
+            this.Column2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Column2.HeaderText = "字段名";
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column2.Width = 150;
+            // 
+            // getdata
+            // 
+            this.getdata.HeaderText = "提取到的数据";
+            this.getdata.Name = "getdata";
+            this.getdata.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Column4.HeaderText = "提取数据类型";
+            this.Column4.Name = "Column4";
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column4.Width = 150;
+            // 
+            // Column
+            // 
+            this.Column.HeaderText = "删除";
+            this.Column.Name = "Column";
             this.Column.Width = 50;
             // 
             // neednextpageview
@@ -1519,7 +1541,6 @@
         private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.ComboBox neturlview;
-        private System.Windows.Forms.Button addRule;
         private System.Windows.Forms.WebBrowser webview;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn getdata;
