@@ -1,0 +1,10 @@
+F:\C#\BS\NewsCollection\NewsCollection\bin\Debug\NewsCollection.exe.config
+F:\C#\BS\NewsCollection\NewsCollection\bin\Debug\NewsCollection.exe
+F:\C#\BS\NewsCollection\NewsCollection\bin\Debug\NewsCollection.pdb
+F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.Form1.resources
+F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.mainForm.resources
+F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.Properties.Resources.resources
+F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.csproj.GenerateResource.Cache
+F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.exe
+F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.pdb
+F:\C#\BS\NewsCollection\NewsCollection\obj\Debug\NewsCollection.csprojResolveAssemblyReference.cache
