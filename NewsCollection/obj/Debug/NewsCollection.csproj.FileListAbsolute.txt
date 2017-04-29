@@ -32,3 +32,4 @@ F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.Proper
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.csproj.GenerateResource.Cache
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.exe
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.pdb
+F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.exportDataBase1.resources
