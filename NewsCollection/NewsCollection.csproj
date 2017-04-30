@@ -54,41 +54,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\TaskController.cs" />
-    <Compile Include="exportDataBase1.cs">
+    <Compile Include="ExportDataBase1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="exportDataBase1.Designer.cs">
-      <DependentUpon>exportDataBase1.cs</DependentUpon>
+    <Compile Include="ExportDataBase1.Designer.cs">
+      <DependentUpon>ExportDataBase1.cs</DependentUpon>
     </Compile>
-    <Compile Include="exportDataBase2.cs">
+    <Compile Include="ExportDataBase2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="exportDataBase2.Designer.cs">
-      <DependentUpon>exportDataBase2.cs</DependentUpon>
+    <Compile Include="ExportDataBase2.Designer.cs">
+      <DependentUpon>ExportDataBase2.cs</DependentUpon>
     </Compile>
-    <Compile Include="exportDataBase3.cs">
+    <Compile Include="ExportDataBase3.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="exportDataBase3.Designer.cs">
-      <DependentUpon>exportDataBase3.cs</DependentUpon>
+    <Compile Include="ExportDataBase3.Designer.cs">
+      <DependentUpon>ExportDataBase3.cs</DependentUpon>
     </Compile>
-    <Compile Include="taskGroup.cs">
+    <Compile Include="Model\ClassInnerTextNodeFilter.cs" />
+    <Compile Include="Model\OrNodeFilter.cs" />
+    <Compile Include="TaskGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="taskGroup.Designer.cs">
-      <DependentUpon>taskGroup.cs</DependentUpon>
+    <Compile Include="TaskGroup.Designer.cs">
+      <DependentUpon>TaskGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="websiteForm.cs">
+    <Compile Include="WebsiteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="websiteForm.Designer.cs">
-      <DependentUpon>websiteForm.cs</DependentUpon>
+    <Compile Include="WebsiteForm.Designer.cs">
+      <DependentUpon>WebsiteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="websiteGroup.cs">
+    <Compile Include="WebsiteGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="websiteGroup.Designer.cs">
-      <DependentUpon>websiteGroup.cs</DependentUpon>
+    <Compile Include="WebsiteGroup.Designer.cs">
+      <DependentUpon>WebsiteGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataPanel.cs" />
     <Compile Include="Helper\ContolsCollection.cs" />
@@ -99,64 +101,62 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="loginForm.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="loginForm.Designer.cs">
-      <DependentUpon>loginForm.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="mainForm.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mainForm.Designer.cs">
-      <DependentUpon>mainForm.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\ClassInnerTextNodeFilter.cs" />
     <Compile Include="Model\ClassNodeFilter.cs" />
-    <Compile Include="Model\OrNodeFilter.cs" />
     <Compile Include="Model\Task.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="registerForm.cs">
+    <Compile Include="RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="registerForm.Designer.cs">
-      <DependentUpon>registerForm.cs</DependentUpon>
+    <Compile Include="RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="exportDataBase1.resx">
-      <DependentUpon>exportDataBase1.cs</DependentUpon>
+    <EmbeddedResource Include="ExportDataBase1.resx">
+      <DependentUpon>ExportDataBase1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="exportDataBase3.resx">
-      <DependentUpon>exportDataBase3.cs</DependentUpon>
+    <EmbeddedResource Include="ExportDataBase3.resx">
+      <DependentUpon>ExportDataBase3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="exportDataBase2.resx">
-      <DependentUpon>exportDataBase2.cs</DependentUpon>
+    <EmbeddedResource Include="ExportDataBase2.resx">
+      <DependentUpon>ExportDataBase2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="taskGroup.resx">
-      <DependentUpon>taskGroup.cs</DependentUpon>
+    <EmbeddedResource Include="TaskGroup.resx">
+      <DependentUpon>TaskGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="websiteForm.resx">
-      <DependentUpon>websiteForm.cs</DependentUpon>
+    <EmbeddedResource Include="WebsiteForm.resx">
+      <DependentUpon>WebsiteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="websiteGroup.resx">
-      <DependentUpon>websiteGroup.cs</DependentUpon>
+    <EmbeddedResource Include="WebsiteGroup.resx">
+      <DependentUpon>WebsiteGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="loginForm.resx">
-      <DependentUpon>loginForm.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="mainForm.resx">
-      <DependentUpon>mainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="registerForm.resx">
-      <DependentUpon>registerForm.cs</DependentUpon>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -176,7 +176,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Dao\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="lib\MySql.Data.dll" />
     <Content Include="lib\Winista.HtmlParser.dll" />

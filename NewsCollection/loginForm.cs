@@ -16,5 +16,12 @@ namespace NewsCollection
         {
             InitializeComponent();
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            RegisterForm register = new RegisterForm();
+            register.Show();
+        }
     }
 }

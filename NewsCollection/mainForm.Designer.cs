@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
@@ -261,7 +262,7 @@
             // 用户设置ToolStripMenuItem
             // 
             this.用户设置ToolStripMenuItem.Name = "用户设置ToolStripMenuItem";
-            this.用户设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.用户设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.用户设置ToolStripMenuItem.Text = "用户设置";
             // 
             // tabControl1
