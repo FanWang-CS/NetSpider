@@ -20,7 +20,7 @@ namespace NewsCollection.Model
 
         public bool Accept(INode node)
         {
-            if(node is ITag)
+            if (node is ITag)
             {
                 ITag tag = node as ITag;
                 String getClassName = tag.GetAttribute("class");
