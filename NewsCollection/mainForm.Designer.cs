@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.新建任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -265,7 +265,7 @@
             // 用户设置ToolStripMenuItem
             // 
             this.用户设置ToolStripMenuItem.Name = "用户设置ToolStripMenuItem";
-            this.用户设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.用户设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.用户设置ToolStripMenuItem.Text = "用户设置";
             // 
             // tabControl1
@@ -490,44 +490,14 @@
             // 
             // Column
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column.HeaderText = "";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column.HeaderText = "删除";
             this.Column.Name = "Column";
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column.UseColumnTextForButtonValue = true;
-            this.Column.Width = 50;
-            // 
-            // Column2
-            // 
-            this.Column2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.Column2.HeaderText = "字段名";
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column2.Width = 150;
-            // 
-            // getdata
-            // 
-            this.getdata.HeaderText = "提取到的数据";
-            this.getdata.Name = "getdata";
-            this.getdata.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.Column4.HeaderText = "提取数据类型";
-            this.Column4.Name = "Column4";
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column4.Width = 150;
-            // 
-            // Column
-            // 
-            this.Column.HeaderText = "删除";
-            this.Column.Name = "Column";
             this.Column.Width = 50;
             // 
             // neednextpageview
@@ -1362,7 +1332,7 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // mainForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1373,7 +1343,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "mainForm";
+            this.Name = "MainForm";
             this.Text = "计量资讯采集器";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.Resize += new System.EventHandler(this.mainForm_Resize);
