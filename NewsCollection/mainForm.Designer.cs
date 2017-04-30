@@ -1,6 +1,6 @@
 ﻿namespace NewsCollection
 {
-    partial class mainForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.新建任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +61,9 @@
             this.Column4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Column = new System.Windows.Forms.DataGridViewButtonColumn();
             this.neednextpageview = new System.Windows.Forms.CheckBox();
+            this.next_input2 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.next_input1 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -141,9 +144,6 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -426,9 +426,9 @@
             // 
             this.tabPage5.Controls.Add(this.dataGridView1);
             this.tabPage5.Controls.Add(this.neednextpageview);
-            this.tabPage5.Controls.Add(this.textBox5);
+            this.tabPage5.Controls.Add(this.next_input2);
             this.tabPage5.Controls.Add(this.label6);
-            this.tabPage5.Controls.Add(this.textBox4);
+            this.tabPage5.Controls.Add(this.next_input1);
             this.tabPage5.Controls.Add(this.label5);
             this.tabPage5.Location = new System.Drawing.Point(4, 5);
             this.tabPage5.Name = "tabPage5";
@@ -488,9 +488,9 @@
             // 
             // Column
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column.HeaderText = "删除";
             this.Column.Name = "Column";
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -508,6 +508,29 @@
             this.neednextpageview.Text = "需要翻页";
             this.neednextpageview.UseVisualStyleBackColor = true;
             this.neednextpageview.CheckedChanged += new System.EventHandler(this.neednextpageview_CheckedChanged);
+            // 
+            // next_input2
+            // 
+            this.next_input2.Location = new System.Drawing.Point(306, 9);
+            this.next_input2.Name = "next_input2";
+            this.next_input2.Size = new System.Drawing.Size(148, 26);
+            this.next_input2.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(241, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 20);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "规则2：";
+            // 
+            // next_input1
+            // 
+            this.next_input1.Location = new System.Drawing.Point(72, 9);
+            this.next_input1.Name = "next_input1";
+            this.next_input1.Size = new System.Drawing.Size(148, 26);
+            this.next_input1.TabIndex = 1;
             // 
             // label5
             // 
@@ -1286,30 +1309,7 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(241, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 20);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "规则2：";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(72, 9);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(148, 26);
-            this.textBox4.TabIndex = 1;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(306, 9);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(148, 26);
-            this.textBox5.TabIndex = 3;
-            // 
-            // mainForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1320,7 +1320,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "mainForm";
+            this.Name = "MainForm";
             this.Text = "计量资讯采集器";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.Resize += new System.EventHandler(this.mainForm_Resize);
@@ -1486,8 +1486,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn getdata;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column4;
         private System.Windows.Forms.DataGridViewButtonColumn Column;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox next_input2;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox next_input1;
     }
 }

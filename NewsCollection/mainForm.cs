@@ -11,10 +11,10 @@ using Winista.Text.HtmlParser;
 
 namespace NewsCollection
 {
-    public partial class mainForm : Form
+    public partial class MainForm : Form
     {
 
-        ComponentResourceManager resources = new ComponentResourceManager(typeof(mainForm));
+        ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
         int step = 0;
         public int Step
         {
@@ -28,7 +28,7 @@ namespace NewsCollection
             }
         }
 
-        public mainForm()
+        public MainForm()
         {
             InitializeComponent();
             //button7.Top = panel1.Bottom + 20;
@@ -306,7 +306,9 @@ namespace NewsCollection
                 {
                     //选择结点
                     task.NextPagerFilter = new ClassInnerTextNodeFilter(elem.TagName, elem.InnerText);
-                    Console.WriteLine("选择的规则：" + elem.TagName);
+                    next_input1.Text = "识别标签：" + elem.TagName;
+                    next_input2.Text = "识别文本：" + elem.InnerText;
+                    isSelectingNextPage = false;
                 }
                 else
                 {
@@ -406,13 +408,15 @@ namespace NewsCollection
         {
             if (neednextpageview.Checked)
             {
-                MessageBox.Show("请选择过滤规则");
+                MessageBox.Show("请点击选择下一页标识");
                 isSelectingNextPage = true;
             }
             else
             {
                 isSelectingNextPage = false;
                 task.NextPagerFilter = null;
+                next_input1.Text = "";
+                next_input2.Text = "";
             }
         }
     }
