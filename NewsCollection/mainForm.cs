@@ -246,7 +246,7 @@ namespace NewsCollection
                         String netUrl = neturlview.Text.ToString();
                         if (String.IsNullOrEmpty(netUrl))
                         {
-                            MessageBox.Show("请输入网址");
+                            MessageBox.Show("请选择网址");
                             return;
                         }
                         webview.Url = new Uri(netUrl);
@@ -254,16 +254,13 @@ namespace NewsCollection
                         task.NetUrl = netUrl;
                         webview.Visible = true;
                         break;
-                    case 2:
-                        
-                       
+                    case 2://规则
                         break;
                     case 3:  //选择采集方式
-                        
+                        task.execute(dataGridView2);
                         break;
                     case 4:
                         //开始采集
-
                         break;
                 }
                 step++;
@@ -285,29 +282,58 @@ namespace NewsCollection
             }
         }
 
+        private Boolean isBindDocumentClick = false;
         private void webview_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            webview.Document.Click += onWebViewNodeClicked;
+            if (!isBindDocumentClick)
+            {
+                webview.Document.Click += onWebViewNodeClicked;
+                isBindDocumentClick = true;
+            }
         }
 
         private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
         {
+           
             String netUrl = neturlview.Text.ToString();
             webview.Url = new Uri(netUrl);
             webview.Refresh();
             if (webview.Document != null)
             {
                 HtmlElement elem = webview.Document.GetElementFromPoint(e.ClientMousePosition);
-                elem.ScrollIntoView(true);
 
-                //展示： 添加一行数据
-                int t = this.dataGridView1.Rows.Add();
-                this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
+                if (isSelectingNextPage)
+                {
+                    //选择结点
+                    task.NextPagerFilter = new ClassInnerTextNodeFilter(elem.TagName, elem.InnerText);
+                    next_input1.Text = "识别标签：" + elem.TagName;
+                    next_input2.Text = "识别文本：" + elem.InnerText;
+                    isSelectingNextPage = false;
+                }
+                else
+                {
+                    while (String.IsNullOrEmpty(elem.GetAttribute("className")))
+                    {
+                        elem = elem.Parent;
+                        if (elem == null)
+                        {
+                            return;
+                        }
+                    }
+                    elem.ScrollIntoView(true);
+                    //展示： 添加一行数据
+                    int t = this.dataGridView1.Rows.Add();
+                    this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
 
-                //扒取： 获取节点特征
-                String className = elem.GetAttribute("class");
-                ClassNodeFilter filter = new ClassNodeFilter(className);
-                task.addInfoNodeFilter(filter);
+                    //扒取： 获取节点特征
+                    String className = elem.GetAttribute("className");
+                    ClassNodeFilter filter = new ClassNodeFilter(className);
+
+                    Console.WriteLine("节点属性" + className);
+
+                    task.addInfoNodeFilter(filter);
+                    task.addKeyWord("标题");
+                }
             }
         }
 
@@ -319,8 +345,78 @@ namespace NewsCollection
                 if (column is DataGridViewButtonColumn)
                 {
                     task.removeInfoNodeFilter(e.RowIndex);
+                    task.removeKeyWord(e.RowIndex);
                     this.dataGridView1.Rows.RemoveAt(e.RowIndex);//删除当前行
                 }
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (task != null)
+            {
+                task.TaskTyped = Task.TaskType.FirstType;
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (task != null)
+            {
+                task.TaskTyped = Task.TaskType.secondType;
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (task != null)
+            {
+                task.TaskTyped = Task.TaskType.ThirdType;
+            }
+        }
+
+        private Boolean isBind = false;
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            //判断要处理的DataGridViewComboBoxColumn名称，若符合条件，编辑控件被强制转换为ComboBox以处理，添加SelectedIndexChanged事件
+            if (this.dataGridView1.CurrentCell.OwningColumn.Name == "showtype")
+            {
+                if (!isBind)
+                {
+                    ((ComboBox)e.Control).SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
+                    isBind = true;
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// SelectedIndexChanged事件触发时需要进行的处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            task.changeKeyWord(this.dataGridView1.CurrentRow.Index, ((ComboBox)sender).Text);
+            //DataGridViewComboBoxCell combocell = (DataGridViewComboBoxCell)dataGridView1.Rows[e.RowIndex].Cells[1];
+            //String value = (String)combocell.Value;
+            //Console.WriteLine("change = " + value);
+        }
+
+        private Boolean isSelectingNextPage = false;
+        private void neednextpageview_CheckedChanged(object sender, EventArgs e)
+        {
+            if (neednextpageview.Checked)
+            {
+                MessageBox.Show("请点击选择下一页标识");
+                isSelectingNextPage = true;
+            }
+            else
+            {
+                isSelectingNextPage = false;
+                task.NextPagerFilter = null;
+                next_input1.Text = "";
+                next_input2.Text = "";
             }
         }
     }
