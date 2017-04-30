@@ -1,6 +1,6 @@
 ﻿namespace NewsCollection
 {
-    partial class registerForm
+    partial class RegisterForm
     {
         /// <summary>
         /// Required designer variable.

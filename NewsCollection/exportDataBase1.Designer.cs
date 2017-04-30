@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace NewsCollection
 {
-    partial class exportDataBase1
+    partial class ExportDataBase1
     {
         /// <summary>
         /// Required designer variable.

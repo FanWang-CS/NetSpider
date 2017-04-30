@@ -1,6 +1,6 @@
 ﻿namespace NewsCollection
 {
-    partial class websiteGroup
+    partial class WebsiteGroup
     {
         /// <summary>
         /// Required designer variable.

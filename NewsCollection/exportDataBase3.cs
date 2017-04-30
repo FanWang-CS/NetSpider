@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace NewsCollection
 {
-    public partial class exportDataBase3 : Form
+    public partial class ExportDataBase3 : Form
     {
-        public exportDataBase3()
+        public ExportDataBase3()
         {
             InitializeComponent();
         }

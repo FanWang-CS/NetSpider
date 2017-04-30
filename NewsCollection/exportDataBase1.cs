@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace NewsCollection
 {
-    public partial class exportDataBase1 : Form
+    public partial class ExportDataBase1 : Form
     {
         DataPanel dataPanel = new DataPanel();
         Panel settingPanel = new Panel();
-        public exportDataBase1()
+        public ExportDataBase1()
         {
            
             InitializeComponent();

@@ -11,10 +11,10 @@ using Winista.Text.HtmlParser;
 
 namespace NewsCollection
 {
-    public partial class mainForm : Form
+    public partial class MainForm : Form
     {
 
-        ComponentResourceManager resources = new ComponentResourceManager(typeof(mainForm));
+        ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
         int step = 0;
         public int Step
         {
@@ -28,7 +28,7 @@ namespace NewsCollection
             }
         }
 
-        public mainForm()
+        public MainForm()
         {
             InitializeComponent();
             //button7.Top = panel1.Bottom + 20;

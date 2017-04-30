@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace NewsCollection
 {
-    public partial class websiteGroup : Form
+    public partial class WebsiteGroup : Form
     {
-        public websiteGroup()
+        public WebsiteGroup()
         {
             InitializeComponent();
         }

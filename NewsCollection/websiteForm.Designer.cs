@@ -1,6 +1,6 @@
 ﻿namespace NewsCollection
 {
-    partial class websiteForm
+    partial class WebsiteForm
     {
         /// <summary>
         /// Required designer variable.

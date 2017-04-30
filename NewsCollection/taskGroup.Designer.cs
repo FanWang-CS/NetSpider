@@ -1,6 +1,6 @@
 ﻿namespace NewsCollection
 {
-    partial class taskGroup
+    partial class TaskGroup
     {
         /// <summary>
         /// Required designer variable.

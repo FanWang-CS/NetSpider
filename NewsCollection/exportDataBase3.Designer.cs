@@ -1,6 +1,6 @@
 ﻿namespace NewsCollection
 {
-    partial class exportDataBase3
+    partial class ExportDataBase3
     {
         /// <summary>
         /// Required designer variable.

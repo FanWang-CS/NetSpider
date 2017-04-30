@@ -20,7 +20,7 @@ namespace NewsCollection
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            exportDataBase3 exportDataBase3 = new exportDataBase3();
+            ExportDataBase3 exportDataBase3 = new ExportDataBase3();
             exportDataBase3.Show();
         }
 
