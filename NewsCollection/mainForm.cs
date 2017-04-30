@@ -249,10 +249,19 @@ namespace NewsCollection
                             MessageBox.Show("请选择网址");
                             return;
                         }
-                        webview.Url = new Uri(netUrl);
-                        webview.Refresh();
-                        task.NetUrl = netUrl;
-                        webview.Visible = true;
+                        try  //输入网址不合法，健壮性判断
+                        {
+                            webview.Url = new Uri(netUrl);
+                            webview.Refresh();
+                            task.NetUrl = netUrl;
+                            webview.Visible = true;
+                        }
+                        catch(Exception e1)
+                        {
+                            MessageBox.Show("输入网址不合法：" + netUrl);
+                            Console.WriteLine("输入网址不合法:" + netUrl);
+                            return;
+                        }
                         break;
                     case 2://规则
                         break;
