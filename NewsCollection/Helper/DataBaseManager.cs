@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NewsCollection.Dao
 {
@@ -47,6 +48,23 @@ namespace NewsCollection.Dao
             adapter.Fill(dataSet);
             DataTable dataTable = dataSet.Tables[0];
             return dataTable;
+        }
+
+        public Boolean changeDataWithoutReturn(String sql)
+        {
+            try
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
         }
 
         public void close()
