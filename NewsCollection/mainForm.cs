@@ -395,7 +395,6 @@ namespace NewsCollection
                     ((ComboBox)e.Control).SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
                     isBind = true;
                 }
-
             }
         }
 
@@ -427,6 +426,12 @@ namespace NewsCollection
                 next_input1.Text = "";
                 next_input2.Text = "";
             }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            ExportDataBase1 exportDataBase1 = new ExportDataBase1();
+            exportDataBase1.Show();
         }
     }
 }

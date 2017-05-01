@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
@@ -262,7 +261,7 @@
             // 用户设置ToolStripMenuItem
             // 
             this.用户设置ToolStripMenuItem.Name = "用户设置ToolStripMenuItem";
-            this.用户设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.用户设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.用户设置ToolStripMenuItem.Text = "用户设置";
             // 
             // tabControl1
@@ -326,7 +325,7 @@
             this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Controls.Add(this.tabPage8);
-            this.tabControl2.ItemSize = new System.Drawing.Size(0, 1);
+            this.tabControl2.ItemSize = new System.Drawing.Size(12, 6);
             this.tabControl2.Location = new System.Drawing.Point(33, 118);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -342,10 +341,10 @@
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.taskgroupview);
-            this.tabPage3.Location = new System.Drawing.Point(4, 5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 10);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(593, 200);
+            this.tabPage3.Size = new System.Drawing.Size(593, 195);
             this.tabPage3.TabIndex = 0;
             // 
             // taskdescview
@@ -545,10 +544,10 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.groupBox9);
-            this.tabPage6.Location = new System.Drawing.Point(4, 5);
+            this.tabPage6.Location = new System.Drawing.Point(4, 10);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(593, 200);
+            this.tabPage6.Size = new System.Drawing.Size(593, 195);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
@@ -642,9 +641,9 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.groupBox17);
-            this.tabPage7.Location = new System.Drawing.Point(4, 5);
+            this.tabPage7.Location = new System.Drawing.Point(4, 10);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(593, 200);
+            this.tabPage7.Size = new System.Drawing.Size(593, 195);
             this.tabPage7.TabIndex = 4;
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
@@ -673,9 +672,9 @@
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.groupBox13);
-            this.tabPage8.Location = new System.Drawing.Point(4, 5);
+            this.tabPage8.Location = new System.Drawing.Point(4, 10);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(593, 200);
+            this.tabPage8.Size = new System.Drawing.Size(593, 195);
             this.tabPage8.TabIndex = 5;
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
@@ -762,6 +761,7 @@
             this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // pictureBox1
             // 

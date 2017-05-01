@@ -97,6 +97,7 @@ namespace NewsCollection
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(459, 20);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.Enter += new System.EventHandler(this.comboBox1_Enter);
             // 
             // groupBox2
             // 
