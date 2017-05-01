@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\TaskController.cs" />
+    <Compile Include="Helper\DataBaseConfig.cs" />
+    <Compile Include="Helper\DatabaseHelper.cs" />
+    <Compile Include="Helper\DataBaseManager.cs" />
     <Compile Include="ExportDataBase1.cs">
       <SubType>Form</SubType>
     </Compile>
