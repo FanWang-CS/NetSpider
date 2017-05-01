@@ -44,7 +44,6 @@ namespace NewsCollection.Helper
             }
             catch
             {
-                MessageBox.Show("连接失败");
                 return false;
             }
             
