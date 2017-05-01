@@ -10,30 +10,47 @@ namespace NewsCollection.Helper
 {
     class DataPanel
     {
-        public Panel getPanel(String dateType)
+        public Panel panel1;
+
+        public Label serverNameLabel;
+        public Label portLabel;
+        public Label userNameLabel;
+        public Label passwordLabel;
+        public Label encodingLabel;
+        public Label identityLabel;
+        public Label tableOwnerLabel;
+
+        public TextBox serverNameTextBox;
+        public TextBox portTextBox;
+        public TextBox userNameTextBox;
+        public TextBox passwordTextBox;
+        public TextBox tableOwnerTextBox;
+        public ComboBox encodingComboBox;
+        public ComboBox identityComboBox;
+
+        public DataPanel()
         {
-            Console.WriteLine(dateType);
-            Panel panel1 = new Panel();
+            panel1 = new Panel();
             panel1.Width = 590;
             panel1.Height = 170;
             panel1.AutoScroll = true;
-            panel1.VerticalScroll.Value  = panel1.VerticalScroll.Maximum;
+            panel1.VerticalScroll.Value = panel1.VerticalScroll.Maximum;
 
-            Label serverNameLabel = new Label();
-            Label portLabel = new Label();
-            Label userNameLabel = new Label();
-            Label passwordLabel = new Label();
-            Label encodingLabel = new Label();
-            Label identityLabel = new Label();
-            Label tableOwnerLabel = new Label();
+             serverNameLabel = new Label();
+             portLabel = new Label();
+             userNameLabel = new Label();
+             passwordLabel = new Label();
+             encodingLabel = new Label();
+             identityLabel = new Label();
+             tableOwnerLabel = new Label();
 
-            TextBox serverNameTextBox = new TextBox();
-            TextBox portTextBox = new TextBox();
-            TextBox userNameTextBox = new TextBox();
-            TextBox passwordTextBox = new TextBox();
-            TextBox tableOwnerTextBox = new TextBox();
-            ComboBox encodingComboBox = new ComboBox();
-            ComboBox identityComboBox = new ComboBox();
+            serverNameTextBox = new TextBox();
+            portTextBox = new TextBox();
+            userNameTextBox = new TextBox();
+            passwordTextBox = new TextBox();
+            tableOwnerTextBox = new TextBox();
+             encodingComboBox = new ComboBox();
+             identityComboBox = new ComboBox();
 
             serverNameLabel.Text = "服务器名";
             portLabel.Text = "端口";
@@ -71,8 +88,11 @@ namespace NewsCollection.Helper
 
             identityComboBox.SelectedIndex = 0;
             encodingComboBox.SelectedIndex = 0;
+        }
 
-
+        public Panel getPanel(String dateType)
+        {
+            Console.WriteLine(dateType);
             switch (dateType)
             {
                 case "MySql":
