@@ -69,10 +69,15 @@ namespace NewsCollection.Dao
 
         public void close()
         {
-            mInstance = null;
-            connection.Dispose();
-            connection.Close();
-            connection = null;
+            if(mInstance != null){
+                mInstance = null;
+            }
+            if(connection != null)
+            {
+                connection.Dispose();
+                connection.Close();
+                connection = null;
+            }
         }
     }
 }
