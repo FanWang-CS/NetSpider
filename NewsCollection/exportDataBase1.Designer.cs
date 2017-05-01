@@ -162,6 +162,7 @@ namespace NewsCollection
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(476, 25);
             this.comboBox2.TabIndex = 1;
+            this.comboBox2.Text = "--请选择数据库--";
             // 
             // label3
             // 

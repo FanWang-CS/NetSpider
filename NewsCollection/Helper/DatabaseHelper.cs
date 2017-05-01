@@ -25,14 +25,13 @@ namespace NewsCollection.Helper
             return mInstance;
         }
 
-        public void init(String ip,String port,String uid,String psw,String database)
+        public void init(String ip,String port,String uid,String psw)
         {
             StringBuilder connStr = new StringBuilder();
             connStr.Append("Server=").Append(ip).Append(";")
                     .Append("Port=").Append(port).Append(";")
                     .Append("Uid=").Append(uid).Append(";")
-                    .Append("Pwd=").Append(psw).Append(";")
-                    .Append("Database=").Append(database);
+                    .Append("Pwd=").Append(psw);
             connection = new MySqlConnection(connStr.ToString());
         }
 
@@ -45,7 +44,6 @@ namespace NewsCollection.Helper
             }
             catch
             {
-                MessageBox.Show("连接失败");
                 return false;
             }
             
