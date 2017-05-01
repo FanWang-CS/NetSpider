@@ -258,6 +258,7 @@ namespace NewsCollection
                         }
                         catch(Exception e1)
                         {
+                            Console.WriteLine(e1.ToString());
                             MessageBox.Show("输入网址不合法：" + netUrl);
                             Console.WriteLine("输入网址不合法:" + netUrl);
                             return;

@@ -56,17 +56,24 @@ namespace NewsCollection.Helper
         public List<String> queryAllDatabaseName()
         {
             List<String> databases = new List<string>();
-            DataSet dataSet = new DataSet();
-            MySqlDataAdapter adapter = new MySqlDataAdapter("show databases;",connection);
-            adapter.Fill(dataSet);
-            DataTable table = dataSet.Tables[0];
-            int rowNum = table.Rows.Count;
-            for(int i = 0; i < rowNum; i++)
+            try
             {
-                String value = table.Rows[i][0] as String;
-                databases.Add(value);
+                DataSet dataSet = new DataSet();
+                MySqlDataAdapter adapter = new MySqlDataAdapter("show databases;", connection);
+                adapter.Fill(dataSet);
+                DataTable table = dataSet.Tables[0];
+                int rowNum = table.Rows.Count;
+                for (int i = 0; i < rowNum; i++)
+                {
+                    String value = table.Rows[i][0] as String;
+                    databases.Add(value);
+                }
+                return databases;
+            }catch(Exception e1)
+            {
+                Console.WriteLine(e1.ToString());
+                return databases;
             }
-            return databases;
         }
     }
 }

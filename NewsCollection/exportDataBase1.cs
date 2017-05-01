@@ -41,6 +41,19 @@ namespace NewsCollection
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            exportDataBase2 exportDataBase2 = new exportDataBase2();
+            exportDataBase2.Show();
+        }
+
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           //   
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
             String serverName = dataPanel.serverNameTextBox.Text.Trim();
             String port = dataPanel.portTextBox.Text.Trim();
             String uid = dataPanel.userNameTextBox.Text.Trim();
@@ -48,29 +61,16 @@ namespace NewsCollection
             if (String.IsNullOrEmpty(serverName) || String.IsNullOrEmpty(port)
                 || String.IsNullOrEmpty(uid) || String.IsNullOrEmpty(psw))
             {
-                MessageBox.Show("请将信息填写完整","提示");
+                MessageBox.Show("请将信息填写完整", "提示");
                 return;
             }
-            
-            DatabaseHelper.getInstance().init(serverName, port,uid,psw);
-            this.Hide();
-            exportDataBase2 exportDataBase2 = new exportDataBase2();
-            exportDataBase2.Show();
-        }
-
-        private void exportDataBase1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           //   
+            DatabaseHelper.getInstance().init(serverName, port, uid, psw);
+            List<String> databases = DatabaseHelper.getInstance().queryAllDatabaseName();
+            if(databases != null && databases.Count > 0)
+            {
+                database_comboBox.Items.AddRange(databases.ToArray());
+                database_comboBox.SelectedIndex = 0;
+            }
         }
     }
 }

@@ -37,8 +37,9 @@ namespace NewsCollection
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.database_comboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -46,7 +47,6 @@ namespace NewsCollection
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -98,13 +98,12 @@ namespace NewsCollection
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(459, 20);
             this.comboBox1.TabIndex = 0;
-            this.comboBox1.Enter += new System.EventHandler(this.comboBox1_Enter);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.comboBox3);
+            this.groupBox2.Controls.Add(this.database_comboBox);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.comboBox2);
@@ -116,29 +115,39 @@ namespace NewsCollection
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(514, 254);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 27);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "连接";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Location = new System.Drawing.Point(13, 319);
+            this.textBox1.Location = new System.Drawing.Point(13, 332);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(601, 92);
+            this.textBox1.Size = new System.Drawing.Size(601, 79);
             this.textBox1.TabIndex = 5;
             // 
-            // comboBox3
+            // database_comboBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(91, 255);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(524, 25);
-            this.comboBox3.TabIndex = 4;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            this.database_comboBox.FormattingEnabled = true;
+            this.database_comboBox.Location = new System.Drawing.Point(91, 288);
+            this.database_comboBox.Name = "database_comboBox";
+            this.database_comboBox.Size = new System.Drawing.Size(524, 25);
+            this.database_comboBox.TabIndex = 4;
+            this.database_comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 258);
+            this.label4.Location = new System.Drawing.Point(10, 288);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 17);
             this.label4.TabIndex = 3;
@@ -201,15 +210,6 @@ namespace NewsCollection
             this.button3.Text = "取消";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(514, 286);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 27);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "测试连接";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // ExportDataBase1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -226,7 +226,6 @@ namespace NewsCollection
             this.MinimizeBox = false;
             this.Name = "ExportDataBase1";
             this.Text = "导出到数据";
-            this.Load += new System.EventHandler(this.exportDataBase1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -248,7 +247,7 @@ namespace NewsCollection
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox database_comboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
