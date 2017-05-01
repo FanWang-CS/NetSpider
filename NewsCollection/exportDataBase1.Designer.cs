@@ -131,6 +131,7 @@ namespace NewsCollection
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(524, 25);
             this.comboBox3.TabIndex = 4;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -160,7 +161,6 @@ namespace NewsCollection
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(476, 25);
             this.comboBox2.TabIndex = 1;
-            this.comboBox2.Text = "--请选择数据库--";
             // 
             // label3
             // 

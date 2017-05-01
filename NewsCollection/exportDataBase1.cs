@@ -28,7 +28,7 @@ namespace NewsCollection
         }
 
         //当前选择的数据库
-        private String currentDataType = "";
+        private String currentDataType = "MySql";
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -66,6 +66,11 @@ namespace NewsCollection
         private void comboBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           //   
         }
     }
 }
