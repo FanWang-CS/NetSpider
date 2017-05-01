@@ -1,4 +1,5 @@
-﻿using NewsCollection.Model;
+﻿using NewsCollection.Helper;
+using NewsCollection.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -407,9 +408,6 @@ namespace NewsCollection
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             task.changeKeyWord(this.dataGridView1.CurrentRow.Index, ((ComboBox)sender).Text);
-            //DataGridViewComboBoxCell combocell = (DataGridViewComboBoxCell)dataGridView1.Rows[e.RowIndex].Cells[1];
-            //String value = (String)combocell.Value;
-            //Console.WriteLine("change = " + value);
         }
 
         private Boolean isSelectingNextPage = false;
@@ -429,10 +427,40 @@ namespace NewsCollection
             }
         }
 
+        //导出到数据库
         private void button14_Click(object sender, EventArgs e)
         {
+            //判断有无数据
+            if(dataGridView2.Rows.Count < 1)
+            {
+                MessageBox.Show("无数据可导出！","提示");
+                return;
+            }
+            
+            //获取关键字
+            DatabaseHelper.getInstance().KeyWord = task.getKeyWord();
+            //获取扒取得数据
+            DatabaseHelper.getInstance().Contents = outputDatas(dataGridView2);
+
             ExportDataBase1 exportDataBase1 = new ExportDataBase1();
             exportDataBase1.Show();
+        }
+
+        private List<List<String>> outputDatas(DataGridView dataGridView)
+        {
+            int rowNum = dataGridView.Rows.Count;
+            int colNum = dataGridView.Columns.Count;
+            List<List<String>> tables = new List<List<string>>();
+            for(int i = 0; i < rowNum; i++)
+            {
+                List<String> row = new List<string>();
+                for(int j = 0; j < colNum; j++)
+                {
+                    row.Add(dataGridView.Rows[i].Cells[j].Value as String);
+                }
+                tables.Add(row);
+            }
+             return tables;
         }
     }
 }

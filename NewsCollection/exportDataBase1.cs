@@ -41,6 +41,12 @@ namespace NewsCollection
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(selectedDatabase))
+            {
+                MessageBox.Show("请选择数据库");
+                return;
+            }
+            DatabaseHelper.getInstance().DataBaseName = selectedDatabase;
             this.Hide();
             exportDataBase2 exportDataBase2 = new exportDataBase2();
             exportDataBase2.Show();
