@@ -46,6 +46,7 @@ namespace NewsCollection
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -101,6 +102,7 @@ namespace NewsCollection
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Controls.Add(this.label4);
@@ -117,17 +119,17 @@ namespace NewsCollection
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Location = new System.Drawing.Point(13, 307);
+            this.textBox1.Location = new System.Drawing.Point(13, 319);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(601, 104);
+            this.textBox1.Size = new System.Drawing.Size(601, 92);
             this.textBox1.TabIndex = 5;
             // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(91, 275);
+            this.comboBox3.Location = new System.Drawing.Point(91, 255);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(524, 25);
             this.comboBox3.TabIndex = 4;
@@ -135,7 +137,7 @@ namespace NewsCollection
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 279);
+            this.label4.Location = new System.Drawing.Point(13, 258);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 17);
             this.label4.TabIndex = 3;
@@ -145,7 +147,7 @@ namespace NewsCollection
             // 
             this.groupBox3.Location = new System.Drawing.Point(13, 47);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(602, 222);
+            this.groupBox3.Size = new System.Drawing.Size(602, 201);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             // 
@@ -198,6 +200,15 @@ namespace NewsCollection
             this.button3.Text = "取消";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(514, 286);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 27);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "测试连接";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // ExportDataBase1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -241,5 +252,6 @@ namespace NewsCollection
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
