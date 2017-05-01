@@ -97,6 +97,7 @@ namespace NewsCollection
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(459, 20);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.Enter += new System.EventHandler(this.comboBox1_Enter);
             // 
             // groupBox2
             // 
@@ -197,7 +198,7 @@ namespace NewsCollection
             this.button3.Text = "取消";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // exportDataBase1
+            // ExportDataBase1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -211,7 +212,7 @@ namespace NewsCollection
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "exportDataBase1";
+            this.Name = "ExportDataBase1";
             this.Text = "导出到数据";
             this.Load += new System.EventHandler(this.exportDataBase1_Load);
             this.panel1.ResumeLayout(false);

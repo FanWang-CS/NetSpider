@@ -33,7 +33,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -41,6 +40,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -94,13 +94,6 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "确认密码";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(121, 85);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(241, 21);
-            this.textBox1.TabIndex = 5;
-            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(121, 115);
@@ -112,6 +105,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(121, 177);
             this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(241, 21);
             this.textBox3.TabIndex = 7;
             // 
@@ -119,6 +113,7 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(121, 209);
             this.textBox4.Name = "textBox4";
+            this.textBox4.PasswordChar = '*';
             this.textBox4.Size = new System.Drawing.Size(241, 21);
             this.textBox4.TabIndex = 8;
             // 
@@ -139,6 +134,7 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "重置";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label6
             // 
@@ -157,11 +153,24 @@
             this.textBox5.Size = new System.Drawing.Size(241, 21);
             this.textBox5.TabIndex = 12;
             // 
-            // registerForm
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "管理员",
+            "数据采集员",
+            "数据审核员"});
+            this.comboBox1.Location = new System.Drawing.Point(122, 85);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(240, 20);
+            this.comboBox1.TabIndex = 13;
+            // 
+            // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 362);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
@@ -169,13 +178,12 @@
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "registerForm";
+            this.Name = "RegisterForm";
             this.Text = "计量资讯采集";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -189,7 +197,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
@@ -197,5 +204,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

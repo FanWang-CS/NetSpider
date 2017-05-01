@@ -47,5 +47,10 @@ namespace NewsCollection
         {
 
         }
+
+        private void comboBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
