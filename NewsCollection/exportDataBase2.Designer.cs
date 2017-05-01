@@ -42,7 +42,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.tables_comboBox = new System.Windows.Forms.ComboBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.originfieldcolumns = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fieldcolumns = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,7 +101,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.originfieldcolumns,
             this.Column2,
             this.fieldcolumns,
             this.Column4,
@@ -158,7 +158,6 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "上一步";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -188,14 +187,12 @@
             this.tables_comboBox.TabIndex = 9;
             this.tables_comboBox.SelectedIndexChanged += new System.EventHandler(this.tables_comboBox_SelectedIndexChanged);
             // 
-            // Column1
+            // originfieldcolumns
             // 
-            this.Column1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.Column1.HeaderText = "源数据字段";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column1.Width = 120;
+            this.originfieldcolumns.HeaderText = "源数据字段";
+            this.originfieldcolumns.Name = "originfieldcolumns";
+            this.originfieldcolumns.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.originfieldcolumns.Width = 120;
             // 
             // Column2
             // 
@@ -245,7 +242,6 @@
             this.MinimizeBox = false;
             this.Name = "exportDataBase2";
             this.Text = "导出到数据库";
-            this.Load += new System.EventHandler(this.exportDataBase2_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -272,7 +268,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox tables_comboBox;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn originfieldcolumns;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewComboBoxColumn fieldcolumns;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;

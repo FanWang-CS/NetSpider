@@ -27,7 +27,7 @@ namespace NewsCollection
             for(int i = 0; i < len; i++)
             {
                 int rowNum = dataGridView1.Rows.Add();
-                dataGridView1.Rows[rowNum].Cells[0].Value = keyWord.ElementAt(i);
+                dataGridView1.Rows[rowNum].Cells["originfieldcolumns"].Value = keyWord.ElementAt(i);
             }
             
             // 列出所有的表名
@@ -44,16 +44,6 @@ namespace NewsCollection
             exportDataBase3.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void exportDataBase2_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private Dictionary<String, String> tableinfo;
         private void tables_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -68,11 +58,9 @@ namespace NewsCollection
         private Boolean isBind = false;
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            Console.WriteLine("发生修改");
             //判断要处理的DataGridViewComboBoxColumn名称，若符合条件，编辑控件被强制转换为ComboBox以处理，添加SelectedIndexChanged事件
             if (this.dataGridView1.CurrentCell.OwningColumn.Name == "fieldcolumns")
             {
-                Console.WriteLine("发生修改1");
                 if (!isBind)
                 {
                     ((ComboBox)e.Control).SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
@@ -91,7 +79,6 @@ namespace NewsCollection
             //task.changeKeyWord(this.dataGridView1.CurrentRow.Index, ((ComboBox)sender).Text);
             string value = "";
             tableinfo.TryGetValue(((ComboBox)sender).Text,out value);
-            Console.WriteLine("ComboBox_SelectedIndexChanged = " + value);
             dataGridView1.CurrentRow.Cells[3].Value = value;
         }
     }
