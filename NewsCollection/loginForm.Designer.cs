@@ -117,6 +117,7 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -126,6 +127,7 @@
             this.button1.TabIndex = 11;
             this.button1.Text = "登录";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // linkLabel1
             // 
@@ -166,6 +168,7 @@
             this.Controls.Add(this.label1);
             this.Name = "loginForm";
             this.Text = "计量资讯采集器";
+            this.Load += new System.EventHandler(this.loginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

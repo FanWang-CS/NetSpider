@@ -125,6 +125,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "注册";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -185,6 +186,7 @@
             this.Controls.Add(this.label1);
             this.Name = "RegisterForm";
             this.Text = "计量资讯采集";
+            this.Load += new System.EventHandler(this.RegisterForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
