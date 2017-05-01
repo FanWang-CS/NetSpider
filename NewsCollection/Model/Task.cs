@@ -90,6 +90,11 @@ namespace NewsCollection.Model
             }
         }
 
+        public List<string> getKeyWord()
+        {
+            return keyWords;
+        }
+
         public string TaskName { get => taskname; set => taskname = value; }
         public string GroupName { get => groupname; set => groupname = value; }
         public string TaskDesc { get => taskdesc; set => taskdesc = value; }

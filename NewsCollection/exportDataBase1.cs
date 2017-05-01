@@ -41,15 +41,15 @@ namespace NewsCollection
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(selectedDatabase))
+            {
+                MessageBox.Show("请选择数据库");
+                return;
+            }
+            DatabaseHelper.getInstance().DataBaseName = selectedDatabase;
             this.Hide();
             exportDataBase2 exportDataBase2 = new exportDataBase2();
             exportDataBase2.Show();
-        }
-
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           //   
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -71,6 +71,12 @@ namespace NewsCollection
                 database_comboBox.Items.AddRange(databases.ToArray());
                 database_comboBox.SelectedIndex = 0;
             }
+        }
+
+        private String selectedDatabase;//默认选择的数据库
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedDatabase = database_comboBox.SelectedItem as String;
         }
     }
 }
