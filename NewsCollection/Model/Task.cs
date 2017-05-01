@@ -105,15 +105,18 @@ namespace NewsCollection.Model
 
 
         private DataGridView showDataGridView;
+        private Button nextBtn;
         /// <summary>
         /// 执行任务
         /// </summary>
-        public void execute(DataGridView datagridview)
+        public void execute(DataGridView datagridview, Button button)
         {
+            showDataGridView = datagridview;
+            nextBtn = button;
+            nextBtn.Visible = false;
             orFilter = new OrNodeFilter(infoNodeFilters.ToArray());
             webLoader.Url = new Uri(neturl);
             webLoader.Refresh();
-            showDataGridView = datagridview;
             if (keyWords != null && keyWords.Count() > 0)
             {
                 int size = keyWords.Count();
@@ -164,6 +167,14 @@ namespace NewsCollection.Model
                         webLoader.Url = new Uri(newUrl);
                         webLoader.Refresh();
                     }
+                    else
+                    {
+                        nextBtn.Visible = true;
+                    }
+                }
+                else
+                {
+                    nextBtn.Visible = true;
                 }
             }
 

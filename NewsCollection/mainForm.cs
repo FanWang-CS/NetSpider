@@ -268,7 +268,8 @@ namespace NewsCollection
                     case 2://规则
                         break;
                     case 3:  //选择采集方式
-                        task.execute(dataGridView2);
+                        task.execute(dataGridView2, button8);
+                       
                         break;
                     case 4:
                         //开始采集
