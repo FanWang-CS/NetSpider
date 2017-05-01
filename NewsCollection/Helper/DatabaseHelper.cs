@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,8 +47,33 @@ namespace NewsCollection.Helper
             {
                 return false;
             }
-            
-            
+        }
+
+        /// <summary>
+        /// 获取所有远程数据库的名称
+        /// </summary>
+        /// <returns></returns>
+        public List<String> queryAllDatabaseName()
+        {
+            List<String> databases = new List<string>();
+            try
+            {
+                DataSet dataSet = new DataSet();
+                MySqlDataAdapter adapter = new MySqlDataAdapter("show databases;", connection);
+                adapter.Fill(dataSet);
+                DataTable table = dataSet.Tables[0];
+                int rowNum = table.Rows.Count;
+                for (int i = 0; i < rowNum; i++)
+                {
+                    String value = table.Rows[i][0] as String;
+                    databases.Add(value);
+                }
+                return databases;
+            }catch(Exception e1)
+            {
+                Console.WriteLine(e1.ToString());
+                return databases;
+            }
         }
     }
 }
