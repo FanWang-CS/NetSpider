@@ -33,5 +33,10 @@ namespace NewsCollection
         {
 
         }
+
+        private void exportDataBase2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
