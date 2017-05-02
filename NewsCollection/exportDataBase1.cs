@@ -31,7 +31,7 @@ namespace NewsCollection
         private void initConfig()
         {
             OuterConfigTable = DataBaseManager.getInstance().getAllConfig();
-            if(OuterConfigTable != null)
+            if(OuterConfigTable.Rows.Count>0)
             {
                 int rowNum = OuterConfigTable.Rows.Count;
                 OuterConfigNames = new List<string>();
@@ -124,7 +124,7 @@ namespace NewsCollection
                     MessageBox.Show("请填写数据库配置保存的名称", "提示");
                     return;
                 }
-               if (OuterConfigNames.Contains(configName))
+               if (OuterConfigNames!=null && OuterConfigNames.Contains(configName))
                 {
                     MessageBox.Show("该数据库配置名称已存在！", "提示");
                     return;
