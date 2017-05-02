@@ -32,7 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.showBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -79,14 +79,16 @@
             this.checkBox1.Text = "在导出过程中忽略错误，碰到错误不终止导出错误时";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // showBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(22, 108);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(647, 382);
-            this.textBox1.TabIndex = 2;
+            this.showBox.Enabled = false;
+            this.showBox.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.showBox.Location = new System.Drawing.Point(22, 108);
+            this.showBox.Multiline = true;
+            this.showBox.Name = "showBox";
+            this.showBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.showBox.Size = new System.Drawing.Size(647, 382);
+            this.showBox.TabIndex = 2;
             // 
             // button1
             // 
@@ -105,6 +107,7 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "导出";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -116,7 +119,7 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // exportDataBase3
+            // ExportDataBase3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,10 +127,10 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.showBox);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel1);
-            this.Name = "exportDataBase3";
+            this.Name = "ExportDataBase3";
             this.Text = "导出到数据库";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -142,7 +145,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox showBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;

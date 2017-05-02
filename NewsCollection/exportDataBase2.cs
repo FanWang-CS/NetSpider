@@ -39,9 +39,35 @@ namespace NewsCollection
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ExportDataBase3 exportDataBase3 = new ExportDataBase3();
-            exportDataBase3.Show();
+            if (loadFieldInfo())
+            {
+                this.Hide();
+                ExportDataBase3 exportDataBase3 = new ExportDataBase3();
+                exportDataBase3.Show();
+            }
+        }
+
+        private Boolean loadFieldInfo()
+        {
+            List<String> fields = new List<String>();
+            int rowNum = dataGridView1.Rows.Count;
+            for(int i = 0; i < rowNum; i++)
+            {
+                String field = dataGridView1.Rows[i].Cells["fieldcolumns"].Value as String;
+                if (String.IsNullOrEmpty(field))
+                {
+                    MessageBox.Show("对应字段不完整","提示");
+                    return false;
+                }
+                if (fields.Contains(field))
+                {
+                    MessageBox.Show("选择的目标数据字段不能相同！","提示");
+                    return false;
+                }
+                fields.Add(field);
+            }
+            DatabaseHelper.getInstance().KeyFiled = fields;
+            return true;
         }
 
         private Dictionary<String, String> tableinfo;

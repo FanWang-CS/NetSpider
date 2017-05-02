@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewsCollection.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,14 @@ namespace NewsCollection
 
         private void button3_Click(object sender, EventArgs e)
         {
+            DatabaseHelper.getInstance().close();
             this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DatabaseHelper.getInstance().outputData2DB(showBox);
+            DatabaseHelper.getInstance().close();
         }
     }
 }

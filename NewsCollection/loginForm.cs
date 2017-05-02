@@ -51,12 +51,12 @@ namespace NewsCollection
                 password = password + s[i].ToString("x");
             }
             DataTable dt = dataBaseManager.login(username, password);
-            if (dt == null)
+            if (dt.Rows.Count < 1)
             {
                 MessageBox.Show("用户名或密码错误，请检查输入内容","提示");
                 return;
             }
-            else if(!dt.Rows[0].IsNull("checkstatus"))
+            else
             {
                 int checkstatus = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
                 if (checkstatus == 1)
@@ -71,11 +71,6 @@ namespace NewsCollection
                     MessageBox.Show("用户状态为待审核，等待管理员审核！", "提示");
                     return;
                 }
-            }
-            else
-            {
-                MessageBox.Show("登录失败！", "提示");
-                return;
             }
         }
 

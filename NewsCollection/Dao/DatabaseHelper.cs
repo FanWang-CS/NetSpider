@@ -15,6 +15,7 @@ namespace NewsCollection.Helper
     class DatabaseHelper
     {
         private List<String> keyWord;  //关键字
+        private List<String> keyFiled;  //对应字段序列
         private List<List<String>> contents; //扒取到的内容
 
         private MySqlConnection connection;
@@ -22,9 +23,11 @@ namespace NewsCollection.Helper
         private String tableName; //需要操作的数据表
 
         public string DataBaseName { get => dataBaseName; set => dataBaseName = value; }
+
         public string TableName { get => tableName; set => tableName = value; }
         public List<string> KeyWord { get => keyWord; set => keyWord = value; }
         public List<List<string>> Contents { get => contents; set => contents = value; }
+        public List<string> KeyFiled { get => keyFiled; set => keyFiled = value; }
 
         private DatabaseHelper() { }
         private static DatabaseHelper mInstance;
@@ -145,6 +148,44 @@ namespace NewsCollection.Helper
                 Console.WriteLine(e1);
                 return map;
             }
+        }
+
+        /// <summary>
+        /// 将数据导出到数据库(防Sql注入 批量插入)
+        /// </summary>
+        public void outputData2DB(TextBox showBox)
+        {
+            //sql语句的拼装
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.Append("INSERT INTO " + tableName + "(");
+            int fieldNum = keyFiled.Count;
+            for(int i = 0; i < fieldNum - 1; i++)
+            {
+                sqlBuilder.Append(keyFiled.ElementAt(i) + ",");
+            }
+            sqlBuilder.Append(keyFiled.ElementAt(fieldNum - 1) + ") ")
+                      .Append("VALUES(");
+            for (int i = 0; i < fieldNum - 1; i++)
+            {
+                sqlBuilder.Append("@" + keyFiled.ElementAt(i) + ",");
+            }
+            sqlBuilder.Append("@" + keyFiled.ElementAt(fieldNum - 1) + ");");
+            //数据真正插入
+            connection.Open();
+            int row = contents.Count;
+            for(int i = 0; i < row; i++)
+            {
+                List<String> rowData = contents.ElementAt(i);
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "use " + dataBaseName + "; " + sqlBuilder.ToString();
+                for (int j=0;j < fieldNum; j++)
+                {
+                    command.Parameters.AddWithValue("@" + keyFiled.ElementAt(j), rowData.ElementAt(j));
+                }
+                command.ExecuteNonQuery();
+                showBox.AppendText("第 "+ i +" 条数据插入成功\n");
+            }
+            showBox.AppendText("\n所有数据插入完毕\n");
         }
 
         /// <summary>
