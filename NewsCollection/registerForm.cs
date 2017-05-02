@@ -82,7 +82,7 @@ namespace NewsCollection
                 // 将得到的字符串使用十六进制类型格式。格式后的字符是小写的字母，如果使用大写（X）则格式后的字符是大写字符   
                 pwd = pwd + s[i].ToString("x");
             }
-            String InsertSql = "INSERT INTO USER(username,usertype,email,`password`) VALUES('" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "')";
+            String InsertSql = "INSERT INTO USER(username,usertype,email,`password`,checkstatus) VALUES('" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "',0)";
             Boolean result = dataManager.changeDataWithoutReturn(InsertSql);
             if (result)
             {
@@ -93,7 +93,6 @@ namespace NewsCollection
                     loginForm loginForm = new loginForm(this);
                     loginForm.Show();
                     loginForm.form1.Close();
-
                 }
                 else
                 {
@@ -104,6 +103,7 @@ namespace NewsCollection
             {
                 MessageBox.Show("注册失败，请重新注册！");
             }
+            dataManager.close();
         }
 
         private void RegisterForm_Load(object sender, EventArgs e)

@@ -23,7 +23,8 @@ namespace NewsCollection.Dao
                     .Append("Port=").Append(DataBaseConfig.port).Append(";")
                     .Append("Uid=").Append(DataBaseConfig.uid).Append(";")
                     .Append("Pwd=").Append(DataBaseConfig.psw).Append(";")
-                    .Append("Database=").Append(DataBaseConfig.databaseName);
+                    .Append("Database=").Append(DataBaseConfig.databaseName).Append(";")
+                    .Append("Charset=").Append(DataBaseConfig.encoding);
             connection = new MySqlConnection(connStr.ToString());
         }
         private static DataBaseManager mInstance = null;
