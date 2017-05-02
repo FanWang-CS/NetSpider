@@ -46,7 +46,7 @@ namespace NewsCollection.Dao
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public DataTable getData(String sql)
+        private DataTable getData(String sql)
         {
             DataSet dataSet = new DataSet();
             MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
@@ -55,7 +55,7 @@ namespace NewsCollection.Dao
             return dataTable;
         }
 
-        public Boolean changeDataWithoutReturn(String sql)
+        private Boolean changeDataWithoutReturn(String sql)
         {
             try
             {
@@ -70,6 +70,46 @@ namespace NewsCollection.Dao
                 Console.WriteLine(e.ToString());
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <returns></returns>
+        public DataTable login(String username, String password)
+        {
+            String sql = "SELECT checkstatus FROM `user`  WHERE username='" + username + "' AND `password`='" + password + "'";
+            return getData(sql);
+        }
+
+        /// <summary>
+        /// 判断是否允许注册
+        /// </summary>
+        /// <param name="username"></param>
+        public Boolean canRegeist(String Username)
+        {
+            String sql = "SELECT COUNT(*) As number FROM USER WHERE username ='" + Username + "'";
+            DataTable dt = getData(sql);
+            int num = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
+            return num == 0;
+        }
+
+        /// <summary>
+        /// 判断邮箱是否可用
+        /// </summary>
+        /// <param name="username"></param>
+        public Boolean isAvailableofEmail(String Email)
+        {
+            String sql = "SELECT COUNT(*) As number FROM USER WHERE email ='" + Email + "'";
+            DataTable dt = getData(sql);
+            int num = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
+            return num == 0;
+        }
+
+        public Boolean regeistUser(String Username,String Usertype,String Email,String pwd)
+        {
+            String InsertSql = "INSERT INTO USER(username,usertype,email,`password`,checkstatus) VALUES('" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "',0)";
+            return changeDataWithoutReturn(InsertSql);
         }
 
         /// <summary>

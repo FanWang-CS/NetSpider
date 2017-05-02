@@ -57,18 +57,12 @@ namespace NewsCollection
                 MessageBox.Show("邮箱的输入错误", "提示");
                 return;
             }
-            String sql1 = "SELECT COUNT(*) As number FROM USER WHERE username ='" + Username + "'";
-            DataTable dt1= dataManager.getData(sql1);
-            int num1=Convert.ToInt32(dt1.Rows[0].ItemArray[0]);
-            if (num1 != 0)
+            if (!dataManager.canRegeist(Username))
             {
                 MessageBox.Show("该用户已经注册过，请重新输入", "提示");
                 return;
             }
-            String sql2 = "SELECT COUNT(*) As number FROM USER WHERE email ='" + Email + "'";
-            DataTable dt2 = dataManager.getData(sql1);
-            int num2 = Convert.ToInt32(dt2.Rows[0].ItemArray[0]);
-            if (num2 != 0)
+            if (!dataManager.isAvailableofEmail(Email))
             {
                 MessageBox.Show("该邮箱已经注册过，请选择其他的邮箱", "提示");
                 return;
@@ -82,8 +76,7 @@ namespace NewsCollection
                 // 将得到的字符串使用十六进制类型格式。格式后的字符是小写的字母，如果使用大写（X）则格式后的字符是大写字符   
                 pwd = pwd + s[i].ToString("x");
             }
-            String InsertSql = "INSERT INTO USER(username,usertype,email,`password`,checkstatus) VALUES('" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "',0)";
-            Boolean result = dataManager.changeDataWithoutReturn(InsertSql);
+            Boolean result = dataManager.regeistUser(Username, Usertype, Email, pwd);
             if (result)
             {
                 DialogResult dr = MessageBox.Show("注册成功，马上去登陆吧！", "提示", MessageBoxButtons.OKCancel);

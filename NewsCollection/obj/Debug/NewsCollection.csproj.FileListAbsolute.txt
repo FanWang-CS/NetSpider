@@ -17,3 +17,4 @@ D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.RegisterForm
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.csproj.GenerateResource.Cache
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.exe
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.pdb
+D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.csprojResolveAssemblyReference.cache

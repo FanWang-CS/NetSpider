@@ -50,8 +50,7 @@ namespace NewsCollection
                 // 将得到的字符串使用十六进制类型格式。格式后的字符是小写的字母，如果使用大写（X）则格式后的字符是大写字符   
                 password = password + s[i].ToString("x");
             }
-            String sql = "SELECT checkstatus FROM `user`  WHERE username='"+username+ "' AND `password`='" + password+"'";
-            DataTable dt = dataBaseManager.getData(sql);
+            DataTable dt = dataBaseManager.login(username, password);
             if (dt == null)
             {
                 MessageBox.Show("用户名或密码错误，请检查输入内容","提示");
@@ -63,6 +62,7 @@ namespace NewsCollection
                 if (checkstatus == 1)
                 {
                     this.Hide();
+                    dataBaseManager.CurrentUserName = username; //绑定当前用户，保证全局可获取
                     MainForm mainForm = new MainForm();
                     mainForm.Show();
                 }
