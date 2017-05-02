@@ -3,7 +3,6 @@ D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\NewsCollection.exe
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\NewsCollection.pdb
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\MySql.Data.dll
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\bin\Debug\Winista.HtmlParser.dll
-D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.csprojResolveAssemblyReference.cache
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.ExportDataBase1.resources
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.ExportDataBase3.resources
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.Form1.resources

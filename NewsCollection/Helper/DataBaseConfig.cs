@@ -21,5 +21,7 @@ namespace NewsCollection.Dao
         public static String psw = "123456";
         //使用的数据库名
         public static String databaseName = "testdb";
+        //编码格式
+        public static String encoding = "utf8";
     }
 }
