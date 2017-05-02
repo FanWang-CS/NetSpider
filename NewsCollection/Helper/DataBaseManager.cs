@@ -36,6 +36,10 @@ namespace NewsCollection.Dao
             return mInstance;
         }
 
+        //绑定当前的用户名
+        private String currentUserName;
+        public string CurrentUserName { get => currentUserName; set => currentUserName = value; }
+
         /// <summary>
         /// 查询数据
         /// </summary>
@@ -64,6 +68,44 @@ namespace NewsCollection.Dao
             {
                 Console.WriteLine(e.ToString());
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// 获取某用户的所有数据库配置信息
+        /// </summary>
+        public DataTable getAllConfig()
+        {
+            String sql = "select configname,ip, port,dbname from OuterConfig where username = " + currentUserName;
+            MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            return dataSet.Tables[0];
+        }
+
+        /// <summary>
+        /// 保存配置
+        /// </summary>
+        /// <param name="configname"></param>
+        /// <param name="username"></param>
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
+        /// <param name="dbname"></param>
+        public void saveConfig(String configname,String ip,String port,String dbname)
+        {
+            String sql = "insert into OuterConfig(configname, username ,ip,port,dbname) " +
+                "values('" + configname + "'," + "'" + currentUserName + "'," + "'" + ip + "'," +
+                "'" + port + "'," + "'" + dbname + "')";
+            try
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
             }
         }
 

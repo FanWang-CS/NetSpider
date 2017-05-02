@@ -35,10 +35,9 @@ namespace NewsCollection
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.outconfig_comboBox = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.database_comboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -47,9 +46,13 @@ namespace NewsCollection
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.saveconfig_checkbox = new System.Windows.Forms.CheckBox();
+            this.saveconfig_textbox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -84,25 +87,26 @@ namespace NewsCollection
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.outconfig_comboBox);
             this.groupBox1.Location = new System.Drawing.Point(33, 64);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(621, 61);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // comboBox1
+            // outconfig_comboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(34, 21);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(459, 20);
-            this.comboBox1.TabIndex = 0;
+            this.outconfig_comboBox.FormattingEnabled = true;
+            this.outconfig_comboBox.Location = new System.Drawing.Point(34, 21);
+            this.outconfig_comboBox.Name = "outconfig_comboBox";
+            this.outconfig_comboBox.Size = new System.Drawing.Size(459, 20);
+            this.outconfig_comboBox.TabIndex = 0;
+            this.outconfig_comboBox.SelectedIndexChanged += new System.EventHandler(this.outconfig_comboBox_SelectedIndexChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.database_comboBox);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.groupBox3);
@@ -124,16 +128,6 @@ namespace NewsCollection
             this.button4.Text = "连接";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Location = new System.Drawing.Point(13, 332);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(601, 79);
-            this.textBox1.TabIndex = 5;
             // 
             // database_comboBox
             // 
@@ -172,6 +166,7 @@ namespace NewsCollection
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(476, 25);
             this.comboBox2.TabIndex = 1;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -210,6 +205,35 @@ namespace NewsCollection
             this.button3.Text = "取消";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.saveconfig_textbox);
+            this.groupBox4.Controls.Add(this.saveconfig_checkbox);
+            this.groupBox4.Location = new System.Drawing.Point(13, 332);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(601, 64);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            // 
+            // saveconfig_checkbox
+            // 
+            this.saveconfig_checkbox.AutoSize = true;
+            this.saveconfig_checkbox.Location = new System.Drawing.Point(23, 27);
+            this.saveconfig_checkbox.Name = "saveconfig_checkbox";
+            this.saveconfig_checkbox.Size = new System.Drawing.Size(75, 21);
+            this.saveconfig_checkbox.TabIndex = 0;
+            this.saveconfig_checkbox.Text = "保存配置";
+            this.saveconfig_checkbox.UseVisualStyleBackColor = true;
+            this.saveconfig_checkbox.CheckedChanged += new System.EventHandler(this.saveconfig_checkbox_CheckedChanged);
+            // 
+            // saveconfig_textbox
+            // 
+            this.saveconfig_textbox.Enabled = false;
+            this.saveconfig_textbox.Location = new System.Drawing.Point(126, 26);
+            this.saveconfig_textbox.Name = "saveconfig_textbox";
+            this.saveconfig_textbox.Size = new System.Drawing.Size(433, 23);
+            this.saveconfig_textbox.TabIndex = 1;
+            // 
             // ExportDataBase1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -231,6 +255,8 @@ namespace NewsCollection
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -245,13 +271,15 @@ namespace NewsCollection
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox outconfig_comboBox;
         private System.Windows.Forms.ComboBox database_comboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox saveconfig_textbox;
+        private System.Windows.Forms.CheckBox saveconfig_checkbox;
     }
 }

@@ -15,7 +15,7 @@ namespace NewsCollection.Model
     //任务列表
     class Task
     {
-
+        // 任务展示枚举
         public enum TaskType
         {
             FirstType, secondType, ThirdType
