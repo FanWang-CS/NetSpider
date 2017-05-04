@@ -270,7 +270,6 @@ namespace NewsCollection
                         break;
                     case 3:  //选择采集方式
                         task.execute(dataGridView2, button8);
-                       
                         break;
                     case 4:
                         //开始采集
@@ -303,6 +302,12 @@ namespace NewsCollection
                 webview.Document.Click += onWebViewNodeClicked;
                 isBindDocumentClick = true;
             }
+        }
+
+        private void webview_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            //WebBrowser自动确定弹窗
+            WebBrowserHelper.InjectAlertBlocker(webview);
         }
 
         private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
