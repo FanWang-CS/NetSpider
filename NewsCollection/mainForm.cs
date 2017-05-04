@@ -497,7 +497,8 @@ namespace NewsCollection
         //获取contextMenuStrip是点击什么控件触发的
         private void taskGroup_Opening(object sender, CancelEventArgs e)
         {
-           // _CurtainControl = taskGroup.SourceControl;
+            __CurtainNodeText = treeView1.SelectedNode.Text;
+            // _CurtainControl = taskGroup.SourceControl;
         }
 
         private void websiteRightClick_Opening(object sender, CancelEventArgs e)
@@ -508,22 +509,26 @@ namespace NewsCollection
 
         private void taskBlank_Opening(object sender, CancelEventArgs e)
         {
+            __CurtainNodeText = treeView1.SelectedNode.Text;
             //_CurtainControl = taskGroup.SourceControl;
         }
 
         private void websiteBlank_Opening(object sender, CancelEventArgs e)
         {
+            __CurtainNodeText = treeView1.SelectedNode.Text;
             //_CurtainControl = taskGroup.SourceControl;
         }
 
         private void websiteGroup_Opening(object sender, CancelEventArgs e)
         {
+            __CurtainNodeText = treeView1.SelectedNode.Text;
             //_CurtainControl = taskGroup.SourceControl;
         }
 
         private void taskRightClick_Opening(object sender, CancelEventArgs e)
         {
-           // _CurtainControl = taskGroup.SourceControl;
+            __CurtainNodeText = treeView1.SelectedNode.Text;
+            // _CurtainControl = taskGroup.SourceControl;
         }
     }
 }
