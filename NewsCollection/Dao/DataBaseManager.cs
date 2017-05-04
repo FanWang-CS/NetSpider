@@ -46,7 +46,7 @@ namespace NewsCollection.Dao
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        private DataTable getData(String sql)
+        internal DataTable getData(String sql)
         {
             DataSet dataSet = new DataSet();
             MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
@@ -54,8 +54,8 @@ namespace NewsCollection.Dao
             DataTable dataTable = dataSet.Tables[0];
             return dataTable;
         }
-
-        private Boolean changeDataWithoutReturn(String sql)
+        //更新数据：插入和更新（更新有待考证）
+        internal Boolean changeDataWithoutReturn(String sql)
         {
             try
             {
@@ -106,9 +106,9 @@ namespace NewsCollection.Dao
             return num == 0;
         }
 
-        public Boolean regeistUser(String Username,String Usertype,String Email,String pwd)
+        public Boolean regeistUser(String Username, String Usertype, String Email, String pwd)
         {
-            String InsertSql = "INSERT INTO USER(username,usertype,email,`password`,checkstatus) VALUES('" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "',0)";
+            String InsertSql = "INSERT INTO USER(id,username,usertype,email,`password`,checkstatus) VALUES(REPLACE(UUID(),'-',''),'" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "',0)";
             return changeDataWithoutReturn(InsertSql);
         }
 
@@ -132,7 +132,7 @@ namespace NewsCollection.Dao
         /// <param name="ip"></param>
         /// <param name="port"></param>
         /// <param name="dbname"></param>
-        public void saveConfig(String configname,String ip,String port,String dbname)
+        public void saveConfig(String configname, String ip, String port, String dbname)
         {
             String sql = "insert into OuterConfig(configname, username ,ip,port,dbname) " +
                 "values('" + configname + "'," + "'" + currentUserName + "'," + "'" + ip + "'," +
@@ -148,6 +148,26 @@ namespace NewsCollection.Dao
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+        //获取当前编辑的网站
+        public DataTable getCurtainWebsite(String websiteName)
+        {
+            String sql = "SELECT * FROM website WHERE title = '" + websiteName + "'";
+            DataTable dt = getData(sql);
+            return dt;
+        }
+        //更新网站信息，返回更新是否成功的信息
+        public Boolean updateCurtainWebsite(String websiteId,String [] websiteInfo)
+        {
+            String sql = "UPDATE website SET title = '"+ websiteInfo [0]+ "', url = '" + websiteInfo[1] + "', note = '" + websiteInfo[2] + "' " +
+                         "WHERE id = '"+ websiteId + "'";
+            return changeDataWithoutReturn(sql);
+        }
+        //新增网站记录
+        public Boolean insertWebsite(String[] websiteInfo)
+        {
+            String sql = "INSERT INTO website(id,title,url,note) VALUES(REPLACE(UUID(),'-',''),'"+ websiteInfo[0]+ "','" + websiteInfo[1] + "','" + websiteInfo[2] + "')";
+            return changeDataWithoutReturn(sql);
         }
 
         public void close()

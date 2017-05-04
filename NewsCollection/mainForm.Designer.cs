@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.新建任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,10 +110,10 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.websiteRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.编辑网站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.复制网站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.新增网站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除网站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editWebsite = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyWebsite = new System.Windows.Forms.ToolStripMenuItem();
+            this.creatWebsite = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteWebsite = new System.Windows.Forms.ToolStripMenuItem();
             this.taskGroup = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.新建任务ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.新建任务组ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -321,7 +321,7 @@
             this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Controls.Add(this.tabPage8);
-            this.tabControl2.ItemSize = new System.Drawing.Size(0, 1);
+            this.tabControl2.ItemSize = new System.Drawing.Size(11, 6);
             this.tabControl2.Location = new System.Drawing.Point(33, 118);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -337,10 +337,10 @@
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.taskgroupview);
-            this.tabPage3.Location = new System.Drawing.Point(4, 5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 10);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(593, 200);
+            this.tabPage3.Size = new System.Drawing.Size(593, 195);
             this.tabPage3.TabIndex = 0;
             // 
             // taskdescview
@@ -484,9 +484,9 @@
             // 
             // Column
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column.HeaderText = "删除";
             this.Column.Name = "Column";
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -637,9 +637,9 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.groupBox17);
-            this.tabPage7.Location = new System.Drawing.Point(4, 5);
+            this.tabPage7.Location = new System.Drawing.Point(4, 10);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(593, 200);
+            this.tabPage7.Size = new System.Drawing.Size(593, 195);
             this.tabPage7.TabIndex = 4;
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
@@ -668,9 +668,9 @@
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.groupBox13);
-            this.tabPage8.Location = new System.Drawing.Point(4, 5);
+            this.tabPage8.Location = new System.Drawing.Point(4, 10);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(593, 200);
+            this.tabPage8.Size = new System.Drawing.Size(593, 195);
             this.tabPage8.TabIndex = 5;
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
@@ -1067,37 +1067,40 @@
             // websiteRightClick
             // 
             this.websiteRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.编辑网站ToolStripMenuItem,
-            this.复制网站ToolStripMenuItem,
-            this.新增网站ToolStripMenuItem,
-            this.删除网站ToolStripMenuItem});
+            this.editWebsite,
+            this.copyWebsite,
+            this.creatWebsite,
+            this.deleteWebsite});
             this.websiteRightClick.Name = "contextMenuStrip1";
             this.websiteRightClick.Size = new System.Drawing.Size(125, 92);
             this.websiteRightClick.Text = "网站右键";
+            this.websiteRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.websiteRightClick_Opening);
             // 
-            // 编辑网站ToolStripMenuItem
+            // editWebsite
             // 
-            this.编辑网站ToolStripMenuItem.Name = "编辑网站ToolStripMenuItem";
-            this.编辑网站ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.编辑网站ToolStripMenuItem.Text = "编辑网站";
+            this.editWebsite.Name = "editWebsite";
+            this.editWebsite.Size = new System.Drawing.Size(124, 22);
+            this.editWebsite.Text = "编辑网站";
+            this.editWebsite.Click += new System.EventHandler(this.editWebsite_Click);
             // 
-            // 复制网站ToolStripMenuItem
+            // copyWebsite
             // 
-            this.复制网站ToolStripMenuItem.Name = "复制网站ToolStripMenuItem";
-            this.复制网站ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.复制网站ToolStripMenuItem.Text = "复制网站";
+            this.copyWebsite.Name = "copyWebsite";
+            this.copyWebsite.Size = new System.Drawing.Size(124, 22);
+            this.copyWebsite.Text = "复制网站";
             // 
-            // 新增网站ToolStripMenuItem
+            // creatWebsite
             // 
-            this.新增网站ToolStripMenuItem.Name = "新增网站ToolStripMenuItem";
-            this.新增网站ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.新增网站ToolStripMenuItem.Text = "新增网站";
+            this.creatWebsite.Name = "creatWebsite";
+            this.creatWebsite.Size = new System.Drawing.Size(124, 22);
+            this.creatWebsite.Text = "新增网站";
+            this.creatWebsite.Click += new System.EventHandler(this.creatWebsite_Click);
             // 
-            // 删除网站ToolStripMenuItem
+            // deleteWebsite
             // 
-            this.删除网站ToolStripMenuItem.Name = "删除网站ToolStripMenuItem";
-            this.删除网站ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.删除网站ToolStripMenuItem.Text = "删除网站";
+            this.deleteWebsite.Name = "deleteWebsite";
+            this.deleteWebsite.Size = new System.Drawing.Size(124, 22);
+            this.deleteWebsite.Text = "删除网站";
             // 
             // taskGroup
             // 
@@ -1111,6 +1114,7 @@
             this.刷新ToolStripMenuItem});
             this.taskGroup.Name = "contextMenuStrip2";
             this.taskGroup.Size = new System.Drawing.Size(149, 158);
+            this.taskGroup.Opening += new System.ComponentModel.CancelEventHandler(this.taskGroup_Opening);
             // 
             // 新建任务ToolStripMenuItem2
             // 
@@ -1163,6 +1167,7 @@
             this.新建任务ToolStripMenuItem1});
             this.taskRightClick.Name = "contextMenuStrip3";
             this.taskRightClick.Size = new System.Drawing.Size(125, 92);
+            this.taskRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.taskRightClick_Opening);
             // 
             // 编辑任务ToolStripMenuItem
             // 
@@ -1197,6 +1202,7 @@
             this.刷新ToolStripMenuItem1});
             this.websiteGroup.Name = "网站分组右键contextMenuStrip4";
             this.websiteGroup.Size = new System.Drawing.Size(149, 92);
+            this.websiteGroup.Opening += new System.ComponentModel.CancelEventHandler(this.websiteGroup_Opening);
             // 
             // 编辑网站分组ToolStripMenuItem
             // 
@@ -1229,6 +1235,7 @@
             this.新建网站分组ToolStripMenuItem});
             this.websiteBlank.Name = "网站右键空白处contextMenuStrip6";
             this.websiteBlank.Size = new System.Drawing.Size(149, 48);
+            this.websiteBlank.Opening += new System.ComponentModel.CancelEventHandler(this.websiteBlank_Opening);
             // 
             // 刷新ToolStripMenuItem3
             // 
@@ -1249,17 +1256,18 @@
             this.新建任务分组ToolStripMenuItem1});
             this.taskBlank.Name = "任务右击空白contextMenuStrip7";
             this.taskBlank.Size = new System.Drawing.Size(149, 48);
+            this.taskBlank.Opening += new System.ComponentModel.CancelEventHandler(this.taskBlank_Opening);
             // 
             // 刷新ToolStripMenuItem4
             // 
             this.刷新ToolStripMenuItem4.Name = "刷新ToolStripMenuItem4";
-            this.刷新ToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.刷新ToolStripMenuItem4.Size = new System.Drawing.Size(148, 22);
             this.刷新ToolStripMenuItem4.Text = "刷新";
             // 
             // 新建任务分组ToolStripMenuItem1
             // 
             this.新建任务分组ToolStripMenuItem1.Name = "新建任务分组ToolStripMenuItem1";
-            this.新建任务分组ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.新建任务分组ToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
             this.新建任务分组ToolStripMenuItem1.Text = "新建任务分组";
             // 
             // imageList1
@@ -1376,8 +1384,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ContextMenuStrip websiteRightClick;
-        private System.Windows.Forms.ToolStripMenuItem 编辑网站ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 复制网站ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editWebsite;
+        private System.Windows.Forms.ToolStripMenuItem copyWebsite;
         private System.Windows.Forms.ContextMenuStrip taskGroup;
         private System.Windows.Forms.ToolStripMenuItem 新建任务ToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem 新建任务组ToolStripMenuItem;
@@ -1391,8 +1399,8 @@
         private System.Windows.Forms.ToolStripMenuItem 复制任务ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除任务ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 新建任务ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 新增网站ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 删除网站ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem creatWebsite;
+        private System.Windows.Forms.ToolStripMenuItem deleteWebsite;
         private System.Windows.Forms.ContextMenuStrip websiteGroup;
         private System.Windows.Forms.ToolStripMenuItem 编辑网站分组ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 新增网站分组ToolStripMenuItem;

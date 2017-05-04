@@ -92,6 +92,7 @@ namespace NewsCollection.Helper
 
         public Panel getPanel(String dateType)
         {
+            
             Console.WriteLine(dateType);
             switch (dateType)
             {
