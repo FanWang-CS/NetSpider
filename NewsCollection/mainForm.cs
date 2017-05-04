@@ -166,34 +166,34 @@ namespace NewsCollection
         {
             if (treeView1.Parent.Text == "网站管理")
             {
-                treeView1.ContextMenuStrip = 网站右键空白处contextMenuStrip6;
+                treeView1.ContextMenuStrip = websiteBlank;
 
                 TreeNode selectNode = treeView1.GetNodeAt(e.X, e.Y);
                 if (selectNode.Level == 0)
                 {
-                    treeView1.ContextMenuStrip = 网站分组右键contextMenuStrip4;
+                    treeView1.ContextMenuStrip = websiteGroup;
                 }
                 else if (selectNode.Level == 1)
 
                 {
-                    treeView1.ContextMenuStrip = 网站右键contextMenuStrip1;
+                    treeView1.ContextMenuStrip = websiteRightClick;
                 }
             }
             else if (treeView1.Parent.Text == "我的任务")
             {
-                treeView1.ContextMenuStrip = 任务右击空白contextMenuStrip7;
+                treeView1.ContextMenuStrip = taskBlank;
 
                 TreeNode selectNode = treeView1.GetNodeAt(e.X, e.Y);
 
                 if (selectNode.Level == 0)
 
                 {
-                    treeView1.ContextMenuStrip = 任务分组右键contextMenuStrip2;
+                    treeView1.ContextMenuStrip = taskGroup;
                 }
                 else if (selectNode.Level == 1)
 
                 {
-                    treeView1.ContextMenuStrip = 任务右键contextMenuStrip3;
+                    treeView1.ContextMenuStrip = taskRightClick;
                 }
             }
 
