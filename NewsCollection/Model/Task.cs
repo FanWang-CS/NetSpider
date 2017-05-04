@@ -1,4 +1,5 @@
 ﻿using NetSpider.Filter;
+using NewsCollection.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -52,7 +53,13 @@ namespace NewsCollection.Model
             this.groupname = groupname;
             webLoader = new WebBrowser();
             webLoader.DocumentCompleted += getHtmlContent;
+            webLoader.Navigated += AutoComfirmDialog;
             htmlParser = new Parser();
+        }
+
+        private void AutoComfirmDialog(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            WebBrowserHelper.InjectAlertBlocker(webLoader);
         }
 
         public void addInfoNodeFilter(NodeFilter nodefilter)

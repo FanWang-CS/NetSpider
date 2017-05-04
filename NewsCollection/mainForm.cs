@@ -469,7 +469,6 @@ namespace NewsCollection
         //private Control _CurtainControl;
         private String __CurtainNodeText;
         DataBaseManager dataManager = DataBaseManager.getInstance();
-        //WebsiteDao websiteDao = new WebsiteDao();
         private void editWebsite_Click(object sender, EventArgs e)
         {
             //获取当前任务的参数内容
