@@ -61,6 +61,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -81,7 +82,7 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "将同一类型的任务放在一个分组里便于管理";
             // 
-            // taskGroup
+            // TaskGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -91,7 +92,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "taskGroup";
+            this.Name = "TaskGroup";
             this.Text = "新建任务分组";
             this.ResumeLayout(false);
             this.PerformLayout();

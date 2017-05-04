@@ -16,6 +16,7 @@ namespace NewsCollection
     {
         DataPanel dataPanel = new DataPanel();
         Panel settingPanel = new Panel();
+       // DataExportDao dataExportDao = new DataExportDao();
         public ExportDataBase1()
         {
             InitializeComponent();

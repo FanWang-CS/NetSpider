@@ -102,6 +102,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "添加";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -111,8 +112,9 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // websiteForm
+            // WebsiteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,7 +127,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "websiteForm";
+            this.Name = "WebsiteForm";
             this.Text = "网址添加";
             this.Load += new System.EventHandler(this.websiteForm_Load);
             this.ResumeLayout(false);

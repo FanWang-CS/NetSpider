@@ -95,7 +95,7 @@
     <Compile Include="WebsiteGroup.Designer.cs">
       <DependentUpon>WebsiteGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dao\DataPanel.cs" />
+    <Compile Include="Helper\DataPanel.cs" />
     <Compile Include="Helper\ContolsCollection.cs" />
     <Compile Include="Helper\ImageHelp.cs" />
     <Compile Include="Form1.cs">

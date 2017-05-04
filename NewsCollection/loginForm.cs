@@ -39,6 +39,7 @@ namespace NewsCollection
         private void button1_Click(object sender, EventArgs e)
         {
             DataBaseManager dataBaseManager = DataBaseManager.getInstance();
+            //LoginDao loginDao = new LoginDao();
             String usertype = (String)comboBox1.SelectedItem;
             String username = textBox1.Text;
             String password = textBox2.Text;

@@ -40,6 +40,7 @@ namespace NewsCollection
         private void button1_Click(object sender, EventArgs e)
         {
             DataBaseManager dataManager = DataBaseManager.getInstance();
+            //RegisterDao registerDao = new RegisterDao();
             String Usertype = (String)comboBox1.SelectedItem;
             String Username = textBox2.Text;
             String Email = textBox5.Text;

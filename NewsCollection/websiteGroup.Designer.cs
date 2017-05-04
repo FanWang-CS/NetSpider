@@ -62,6 +62,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "确定";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -82,7 +83,7 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "将同一类的资讯信息网站放在一个分组便于管理";
             // 
-            // websiteGroup
+            // WebsiteGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -92,7 +93,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "websiteGroup";
+            this.Name = "WebsiteGroup";
             this.Text = "新建网站分组";
             this.Load += new System.EventHandler(this.websiteGroup_Load);
             this.ResumeLayout(false);

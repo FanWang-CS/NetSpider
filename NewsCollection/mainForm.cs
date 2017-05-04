@@ -1,4 +1,5 @@
-﻿using NewsCollection.Helper;
+﻿using NewsCollection.Dao;
+using NewsCollection.Helper;
 using NewsCollection.Model;
 using System;
 using System.Collections.Generic;
@@ -171,12 +172,12 @@ namespace NewsCollection
                 TreeNode selectNode = treeView1.GetNodeAt(e.X, e.Y);
                 if (selectNode.Level == 0)
                 {
-                    treeView1.ContextMenuStrip = websiteGroup;
+                    selectNode.ContextMenuStrip = websiteGroup;
                 }
                 else if (selectNode.Level == 1)
 
                 {
-                    treeView1.ContextMenuStrip = websiteRightClick;
+                    selectNode.ContextMenuStrip = websiteRightClick;
                 }
             }
             else if (treeView1.Parent.Text == "我的任务")
@@ -188,12 +189,12 @@ namespace NewsCollection
                 if (selectNode.Level == 0)
 
                 {
-                    treeView1.ContextMenuStrip = taskGroup;
+                    selectNode.ContextMenuStrip = taskGroup;
                 }
                 else if (selectNode.Level == 1)
 
                 {
-                    treeView1.ContextMenuStrip = taskRightClick;
+                    selectNode.ContextMenuStrip = taskRightClick;
                 }
             }
 
@@ -462,6 +463,67 @@ namespace NewsCollection
                 tables.Add(row);
             }
              return tables;
+        }
+
+        //编辑网站
+        //private Control _CurtainControl;
+        private String __CurtainNodeText;
+        DataBaseManager dataManager = DataBaseManager.getInstance();
+        //WebsiteDao websiteDao = new WebsiteDao();
+        private void editWebsite_Click(object sender, EventArgs e)
+        {
+            //获取当前任务的参数内容
+            if (__CurtainNodeText != null)
+            {
+                //String WebsiteName = _CurtainControl.Text;
+                DataTable dt = dataManager.getCurtainWebsite(__CurtainNodeText);
+                WebsiteForm websiteForm = new WebsiteForm(dt);
+                websiteForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("您未选中任何网站，无法进行编辑，请先选中要编辑的网站", "提示");
+                return;
+            }
+
+        }
+        //新增网站
+        private void creatWebsite_Click(object sender, EventArgs e)
+        {
+            WebsiteForm websiteForm = new WebsiteForm();
+            websiteForm.Show();
+        }
+
+        //获取contextMenuStrip是点击什么控件触发的
+        private void taskGroup_Opening(object sender, CancelEventArgs e)
+        {
+           // _CurtainControl = taskGroup.SourceControl;
+        }
+
+        private void websiteRightClick_Opening(object sender, CancelEventArgs e)
+        {
+            __CurtainNodeText = treeView1.SelectedNode.Text;
+            //_CurtainControl = taskGroup.SourceControl;
+        }
+
+        private void taskBlank_Opening(object sender, CancelEventArgs e)
+        {
+            //_CurtainControl = taskGroup.SourceControl;
+        }
+
+        private void websiteBlank_Opening(object sender, CancelEventArgs e)
+        {
+            //_CurtainControl = taskGroup.SourceControl;
+        }
+
+        private void websiteGroup_Opening(object sender, CancelEventArgs e)
+        {
+            //_CurtainControl = taskGroup.SourceControl;
+        }
+
+        private void taskRightClick_Opening(object sender, CancelEventArgs e)
+        {
+           // _CurtainControl = taskGroup.SourceControl;
         }
     }
 }
