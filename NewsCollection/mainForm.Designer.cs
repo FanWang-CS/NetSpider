@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.新建任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,10 +57,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.showtype = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.getdata = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Column = new System.Windows.Forms.DataGridViewButtonColumn();
             this.neednextpageview = new System.Windows.Forms.CheckBox();
             this.next_input2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -141,6 +138,10 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.showtype = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.getdata = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column = new System.Windows.Forms.DataGridViewButtonColumn();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -451,49 +452,6 @@
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
-            // 
-            // showtype
-            // 
-            this.showtype.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.showtype.HeaderText = "字段名";
-            this.showtype.Items.AddRange(new object[] {
-            "标题",
-            "内容",
-            "时间"});
-            this.showtype.Name = "showtype";
-            this.showtype.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.showtype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.showtype.Width = 150;
-            // 
-            // getdata
-            // 
-            this.getdata.HeaderText = "提取到的数据";
-            this.getdata.Name = "getdata";
-            this.getdata.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.Column4.HeaderText = "提取数据类型";
-            this.Column4.Items.AddRange(new object[] {
-            "innerTEXT",
-            "innerHTML"});
-            this.Column4.Name = "Column4";
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column4.Width = 150;
-            // 
-            // Column
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column.HeaderText = "删除";
-            this.Column.Name = "Column";
-            this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column.UseColumnTextForButtonValue = true;
-            this.Column.Width = 50;
             // 
             // neednextpageview
             // 
@@ -1296,6 +1254,47 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // showtype
+            // 
+            this.showtype.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.showtype.HeaderText = "字段名";
+            this.showtype.Items.AddRange(new object[] {
+            "标题",
+            "内容",
+            "时间"});
+            this.showtype.Name = "showtype";
+            this.showtype.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.showtype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.showtype.Width = 150;
+            // 
+            // getdata
+            // 
+            this.getdata.HeaderText = "提取到的数据";
+            this.getdata.Name = "getdata";
+            this.getdata.Width = 150;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle1.NullValue = "InnerText";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column4.HeaderText = "提取数据类型";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column4.Width = 150;
+            // 
+            // Column
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column.HeaderText = "删除";
+            this.Column.Name = "Column";
+            this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column.UseColumnTextForButtonValue = true;
+            this.Column.Width = 50;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1465,12 +1464,12 @@
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.ComboBox neturlview;
         private System.Windows.Forms.WebBrowser webview;
-        private System.Windows.Forms.DataGridViewComboBoxColumn showtype;
-        private System.Windows.Forms.DataGridViewTextBoxColumn getdata;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewButtonColumn Column;
         private System.Windows.Forms.TextBox next_input2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox next_input1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn showtype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn getdata;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewButtonColumn Column;
     }
 }

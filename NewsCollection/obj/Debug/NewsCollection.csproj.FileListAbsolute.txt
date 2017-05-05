@@ -38,3 +38,4 @@ F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.exe
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.pdb
 F:\C#\BS\NewsCollection\NetSpider\NewsCollection\obj\Debug\NewsCollection.csprojResolveAssemblyReference.cache
 D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.csproj.ResolveComReference.cache
+D:\C#WorkSpace\wf\NetSpider\NewsCollection\obj\Debug\NewsCollection.csprojResolveAssemblyReference.cache

@@ -50,19 +50,6 @@ namespace NewsCollection.Helper
             connection = new MySqlConnection(connStr.ToString());
         }
 
-        public Boolean testConnect()
-        {
-            try
-            {
-                connection.Open();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         /// <summary>
         /// 获取所有远程数据库的名称
         /// </summary>

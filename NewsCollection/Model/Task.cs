@@ -118,17 +118,20 @@ namespace NewsCollection.Model
         /// </summary>
         public void execute(DataGridView datagridview, Button button)
         {
+            Console.WriteLine("执行任务");
             showDataGridView = datagridview;
             nextBtn = button;
             nextBtn.Visible = false;
             orFilter = new OrNodeFilter(infoNodeFilters.ToArray());
             webLoader.Url = new Uri(neturl);
             webLoader.Refresh();
+            showDataGridView.Columns.Clear();  //清空数据
             if (keyWords != null && keyWords.Count() > 0)
             {
                 int size = keyWords.Count();
                 for (int i = 0; i < size; i++)
                 {
+                    
                     showDataGridView.Columns.Add(keyWords.ElementAt(i) + i, keyWords.ElementAt(i) + i); //初始化展示控件
                 }
             }

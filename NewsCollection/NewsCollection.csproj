@@ -198,5 +198,8 @@
     <Content Include="Resources\up.png" />
     <Content Include="Resources\图标1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
