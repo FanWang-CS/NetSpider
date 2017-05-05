@@ -168,6 +168,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "loginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "计量资讯采集器";
             this.Load += new System.EventHandler(this.loginForm_Load);
             this.ResumeLayout(false);

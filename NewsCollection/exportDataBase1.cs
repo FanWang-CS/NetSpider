@@ -137,8 +137,15 @@ namespace NewsCollection
             }
             DatabaseHelper.getInstance().DataBaseName = selectedDatabase;
             this.Hide();
-            exportDataBase2 exportDataBase2 = new exportDataBase2();
+            exportDataBase2 exportDataBase2 = new exportDataBase2(this);
             exportDataBase2.Show();
+        }
+
+        //释放DataBaseHelper对象
+        private void ExportDataBase1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Console.WriteLine("清空对象");
+            DatabaseHelper.getInstance().close();
         }
     }
 }

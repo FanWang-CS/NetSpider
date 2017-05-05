@@ -37,18 +37,16 @@ namespace NewsCollection
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.outconfig_comboBox = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.saveconfig_textbox = new System.Windows.Forms.TextBox();
+            this.saveconfig_checkbox = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.database_comboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.saveconfig_checkbox = new System.Windows.Forms.CheckBox();
-            this.saveconfig_textbox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,11 +111,40 @@ namespace NewsCollection
             this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(33, 131);
+            this.groupBox2.Location = new System.Drawing.Point(33, 129);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(621, 417);
+            this.groupBox2.Size = new System.Drawing.Size(621, 403);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.saveconfig_textbox);
+            this.groupBox4.Controls.Add(this.saveconfig_checkbox);
+            this.groupBox4.Location = new System.Drawing.Point(13, 331);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(601, 64);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            // 
+            // saveconfig_textbox
+            // 
+            this.saveconfig_textbox.Enabled = false;
+            this.saveconfig_textbox.Location = new System.Drawing.Point(126, 26);
+            this.saveconfig_textbox.Name = "saveconfig_textbox";
+            this.saveconfig_textbox.Size = new System.Drawing.Size(433, 23);
+            this.saveconfig_textbox.TabIndex = 1;
+            // 
+            // saveconfig_checkbox
+            // 
+            this.saveconfig_checkbox.AutoSize = true;
+            this.saveconfig_checkbox.Location = new System.Drawing.Point(23, 27);
+            this.saveconfig_checkbox.Name = "saveconfig_checkbox";
+            this.saveconfig_checkbox.Size = new System.Drawing.Size(75, 21);
+            this.saveconfig_checkbox.TabIndex = 0;
+            this.saveconfig_checkbox.Text = "保存配置";
+            this.saveconfig_checkbox.UseVisualStyleBackColor = true;
+            this.saveconfig_checkbox.CheckedChanged += new System.EventHandler(this.saveconfig_checkbox_CheckedChanged);
             // 
             // button4
             // 
@@ -177,79 +204,31 @@ namespace NewsCollection
             this.label3.TabIndex = 0;
             this.label3.Text = "选择数据库类型";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(398, 554);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 22);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "上一步";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(495, 554);
+            this.button2.Location = new System.Drawing.Point(532, 542);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 22);
+            this.button2.Size = new System.Drawing.Size(117, 28);
             this.button2.TabIndex = 4;
             this.button2.Text = "下一步";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(591, 554);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 22);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "取消";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.saveconfig_textbox);
-            this.groupBox4.Controls.Add(this.saveconfig_checkbox);
-            this.groupBox4.Location = new System.Drawing.Point(13, 332);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(601, 64);
-            this.groupBox4.TabIndex = 7;
-            this.groupBox4.TabStop = false;
-            // 
-            // saveconfig_checkbox
-            // 
-            this.saveconfig_checkbox.AutoSize = true;
-            this.saveconfig_checkbox.Location = new System.Drawing.Point(23, 27);
-            this.saveconfig_checkbox.Name = "saveconfig_checkbox";
-            this.saveconfig_checkbox.Size = new System.Drawing.Size(75, 21);
-            this.saveconfig_checkbox.TabIndex = 0;
-            this.saveconfig_checkbox.Text = "保存配置";
-            this.saveconfig_checkbox.UseVisualStyleBackColor = true;
-            this.saveconfig_checkbox.CheckedChanged += new System.EventHandler(this.saveconfig_checkbox_CheckedChanged);
-            // 
-            // saveconfig_textbox
-            // 
-            this.saveconfig_textbox.Enabled = false;
-            this.saveconfig_textbox.Location = new System.Drawing.Point(126, 26);
-            this.saveconfig_textbox.Name = "saveconfig_textbox";
-            this.saveconfig_textbox.Size = new System.Drawing.Size(433, 23);
-            this.saveconfig_textbox.TabIndex = 1;
             // 
             // ExportDataBase1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 582);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "ExportDataBase1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "导出到数据";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExportDataBase1_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -274,9 +253,7 @@ namespace NewsCollection
         private System.Windows.Forms.ComboBox outconfig_comboBox;
         private System.Windows.Forms.ComboBox database_comboBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox saveconfig_textbox;

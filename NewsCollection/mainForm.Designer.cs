@@ -57,6 +57,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.showtype = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.getdata = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column = new System.Windows.Forms.DataGridViewButtonColumn();
             this.neednextpageview = new System.Windows.Forms.CheckBox();
             this.next_input2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -111,11 +115,11 @@
             this.deleteWebsite = new System.Windows.Forms.ToolStripMenuItem();
             this.taskGroupClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.createtask = new System.Windows.Forms.ToolStripMenuItem();
-            this.creatTaskGroup1 = new System.Windows.Forms.ToolStripMenuItem();
             this.importTask = new System.Windows.Forms.ToolStripMenuItem();
             this.exportTask = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteTaskGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.editTaskGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.creatTaskGroup1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteTaskGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.taskGroupRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.taskRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editTask = new System.Windows.Forms.ToolStripMenuItem();
@@ -135,10 +139,6 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.showtype = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.getdata = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column = new System.Windows.Forms.DataGridViewButtonColumn();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -449,6 +449,47 @@
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
+            // 
+            // showtype
+            // 
+            this.showtype.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.showtype.HeaderText = "字段名";
+            this.showtype.Items.AddRange(new object[] {
+            "标题",
+            "内容",
+            "时间"});
+            this.showtype.Name = "showtype";
+            this.showtype.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.showtype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.showtype.Width = 150;
+            // 
+            // getdata
+            // 
+            this.getdata.HeaderText = "提取到的数据";
+            this.getdata.Name = "getdata";
+            this.getdata.Width = 150;
+            // 
+            // Column4
+            // 
+            dataGridViewCellStyle1.NullValue = "InnerText";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column4.HeaderText = "提取数据类型";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column4.Width = 150;
+            // 
+            // Column
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column.HeaderText = "删除";
+            this.Column.Name = "Column";
+            this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column.UseColumnTextForButtonValue = true;
+            this.Column.Width = 50;
             // 
             // neednextpageview
             // 
@@ -1062,49 +1103,49 @@
             // createtask
             // 
             this.createtask.Name = "createtask";
-            this.createtask.Size = new System.Drawing.Size(152, 22);
+            this.createtask.Size = new System.Drawing.Size(136, 22);
             this.createtask.Text = "新建任务";
             this.createtask.Click += new System.EventHandler(this.createtask_Click);
-            // 
-            // creatTaskGroup1
-            // 
-            this.creatTaskGroup1.Name = "creatTaskGroup1";
-            this.creatTaskGroup1.Size = new System.Drawing.Size(152, 22);
-            this.creatTaskGroup1.Text = "新建任务组";
-            this.creatTaskGroup1.Click += new System.EventHandler(this.creatTaskGroup1_Click);
             // 
             // importTask
             // 
             this.importTask.Name = "importTask";
-            this.importTask.Size = new System.Drawing.Size(152, 22);
+            this.importTask.Size = new System.Drawing.Size(136, 22);
             this.importTask.Text = "导入任务";
             this.importTask.Click += new System.EventHandler(this.importTaskGroup_Click);
             // 
             // exportTask
             // 
             this.exportTask.Name = "exportTask";
-            this.exportTask.Size = new System.Drawing.Size(152, 22);
+            this.exportTask.Size = new System.Drawing.Size(136, 22);
             this.exportTask.Text = "导出任务";
             this.exportTask.Click += new System.EventHandler(this.exportTaskGroup_Click);
-            // 
-            // deleteTaskGroup
-            // 
-            this.deleteTaskGroup.Name = "deleteTaskGroup";
-            this.deleteTaskGroup.Size = new System.Drawing.Size(152, 22);
-            this.deleteTaskGroup.Text = "删除组";
-            this.deleteTaskGroup.Click += new System.EventHandler(this.deleteTaskGroup_Click);
             // 
             // editTaskGroup
             // 
             this.editTaskGroup.Name = "editTaskGroup";
-            this.editTaskGroup.Size = new System.Drawing.Size(152, 22);
+            this.editTaskGroup.Size = new System.Drawing.Size(136, 22);
             this.editTaskGroup.Text = "编辑任务组";
             this.editTaskGroup.Click += new System.EventHandler(this.editTaskGroup_Click);
+            // 
+            // creatTaskGroup1
+            // 
+            this.creatTaskGroup1.Name = "creatTaskGroup1";
+            this.creatTaskGroup1.Size = new System.Drawing.Size(136, 22);
+            this.creatTaskGroup1.Text = "新建任务组";
+            this.creatTaskGroup1.Click += new System.EventHandler(this.creatTaskGroup1_Click);
+            // 
+            // deleteTaskGroup
+            // 
+            this.deleteTaskGroup.Name = "deleteTaskGroup";
+            this.deleteTaskGroup.Size = new System.Drawing.Size(136, 22);
+            this.deleteTaskGroup.Text = "删除组";
+            this.deleteTaskGroup.Click += new System.EventHandler(this.deleteTaskGroup_Click);
             // 
             // taskGroupRefresh
             // 
             this.taskGroupRefresh.Name = "taskGroupRefresh";
-            this.taskGroupRefresh.Size = new System.Drawing.Size(152, 22);
+            this.taskGroupRefresh.Size = new System.Drawing.Size(136, 22);
             this.taskGroupRefresh.Text = "刷新";
             this.taskGroupRefresh.Click += new System.EventHandler(this.taskGroupRefresh_Click);
             // 
@@ -1204,19 +1245,19 @@
             this.taskBlankRefresh,
             this.createTaskgroup});
             this.taskBlank.Name = "任务右击空白contextMenuStrip7";
-            this.taskBlank.Size = new System.Drawing.Size(153, 70);
+            this.taskBlank.Size = new System.Drawing.Size(149, 48);
             // 
             // taskBlankRefresh
             // 
             this.taskBlankRefresh.Name = "taskBlankRefresh";
-            this.taskBlankRefresh.Size = new System.Drawing.Size(152, 22);
+            this.taskBlankRefresh.Size = new System.Drawing.Size(148, 22);
             this.taskBlankRefresh.Text = "刷新";
             this.taskBlankRefresh.Click += new System.EventHandler(this.taskBlankRefresh_Click);
             // 
             // createTaskgroup
             // 
             this.createTaskgroup.Name = "createTaskgroup";
-            this.createTaskgroup.Size = new System.Drawing.Size(152, 22);
+            this.createTaskgroup.Size = new System.Drawing.Size(148, 22);
             this.createTaskgroup.Text = "新建任务分组";
             this.createTaskgroup.Click += new System.EventHandler(this.createTaskgroup_Click);
             // 
@@ -1244,47 +1285,6 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // showtype
-            // 
-            this.showtype.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.showtype.HeaderText = "字段名";
-            this.showtype.Items.AddRange(new object[] {
-            "标题",
-            "内容",
-            "时间"});
-            this.showtype.Name = "showtype";
-            this.showtype.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.showtype.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.showtype.Width = 150;
-            // 
-            // getdata
-            // 
-            this.getdata.HeaderText = "提取到的数据";
-            this.getdata.Name = "getdata";
-            this.getdata.Width = 150;
-            // 
-            // Column4
-            // 
-            dataGridViewCellStyle1.NullValue = "InnerText";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column4.HeaderText = "提取数据类型";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column4.Width = 150;
-            // 
-            // Column
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column.HeaderText = "删除";
-            this.Column.Name = "Column";
-            this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column.UseColumnTextForButtonValue = true;
-            this.Column.Width = 50;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1297,6 +1297,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "计量资讯采集器";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.Resize += new System.EventHandler(this.mainForm_Resize);

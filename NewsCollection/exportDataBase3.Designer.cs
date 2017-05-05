@@ -98,6 +98,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "上一步";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -131,7 +132,9 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel1);
             this.Name = "ExportDataBase3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "导出到数据库";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExportDataBase3_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

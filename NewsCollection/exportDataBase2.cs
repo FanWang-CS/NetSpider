@@ -13,8 +13,11 @@ namespace NewsCollection
 {
     public partial class exportDataBase2 : Form
     {
-        public exportDataBase2()
+        private ExportDataBase1 exportDataBase1;
+  
+        public exportDataBase2(ExportDataBase1 exportDataBase1)
         {
+            this.exportDataBase1 = exportDataBase1;
             InitializeComponent();
             initDatas();
         }
@@ -37,12 +40,21 @@ namespace NewsCollection
             tables_comboBox.SelectedIndex = 0;
         }
 
+        private Boolean isClickBtn2Close = false;
+        //点击上一步
+        private void button1_Click(object sender, EventArgs e)
+        {
+            isClickBtn2Close = true;
+            this.Close();
+        }
+
+        //点击下一步
         private void button2_Click(object sender, EventArgs e)
         {
             if (loadFieldInfo())
             {
                 this.Hide();
-                ExportDataBase3 exportDataBase3 = new ExportDataBase3();
+                ExportDataBase3 exportDataBase3 = new ExportDataBase3(this);
                 exportDataBase3.Show();
             }
         }
@@ -106,6 +118,20 @@ namespace NewsCollection
             string value = "";
             tableinfo.TryGetValue(((ComboBox)sender).Text,out value);
             dataGridView1.CurrentRow.Cells[3].Value = value;
+        }
+
+        //关闭该窗口
+        private void exportDataBase2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //通过按钮关闭
+            if (isClickBtn2Close)
+            {
+                exportDataBase1.Show();
+            }
+            else
+            {
+                exportDataBase1.Close();
+            }
         }
     }
 }

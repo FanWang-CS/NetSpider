@@ -204,6 +204,7 @@ namespace NewsCollection.Helper
                 connection.Close();
                 connection = null;
             }
+            mInstance = null;
         }
     }
 }
