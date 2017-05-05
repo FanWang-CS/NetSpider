@@ -122,10 +122,8 @@ namespace NewsCollection.Model
             showDataGridView = datagridview;
             nextBtn = button;
             nextBtn.Visible = false;
-            orFilter = new OrNodeFilter(infoNodeFilters.ToArray());
-            webLoader.Url = new Uri(neturl);
-            webLoader.Refresh();
-            showDataGridView.Columns.Clear();  //清空数据
+            orFilter = new OrNodeFilter(infoNodeFilters.ToArray()); 
+            showDataGridView.Columns.Clear();  //清空DataGridView数据
             if (keyWords != null && keyWords.Count() > 0)
             {
                 int size = keyWords.Count();
@@ -135,6 +133,9 @@ namespace NewsCollection.Model
                     showDataGridView.Columns.Add(keyWords.ElementAt(i) + i, keyWords.ElementAt(i) + i); //初始化展示控件
                 }
             }
+            // webLoader.Url = new Uri(neturl);
+            //webLoader.Refresh();
+            webLoader.Navigate(neturl);
         }
 
         /// <summary>
@@ -174,8 +175,9 @@ namespace NewsCollection.Model
                             newUrl = neturl + newUrl.Substring(newUrl.IndexOf("?"));
                         }
                         Console.WriteLine("新网址为：" + newUrl);
-                        webLoader.Url = new Uri(newUrl);
-                        webLoader.Refresh();
+                        //webLoader.Url = new Uri(newUrl);
+                        //webLoader.Refresh();
+                        webLoader.Navigate(newUrl);
                     }
                     else
                     {
