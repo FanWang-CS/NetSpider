@@ -78,6 +78,8 @@
     <Compile Include="Helper\WebBrowserHelper.cs" />
     <Compile Include="Model\ClassInnerTextNodeFilter.cs" />
     <Compile Include="Model\OrNodeFilter.cs" />
+    <Compile Include="Operation\TaskOperation.cs" />
+    <Compile Include="Operation\WebsiteOpeartion.cs" />
     <Compile Include="TaskGroup.cs">
       <SubType>Form</SubType>
     </Compile>

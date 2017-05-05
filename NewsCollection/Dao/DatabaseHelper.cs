@@ -51,30 +51,62 @@ namespace NewsCollection.Helper
         }
 
         /// <summary>
+        /// 查询数据
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        internal DataTable getData(String sql)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                DataSet dataSet = new DataSet();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
+                adapter.Fill(dataSet);
+                dataTable = dataSet.Tables[0];
+                return dataTable;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return dataTable;
+            }
+        }
+        //更新数据：插入和更新
+        internal Boolean changeDataWithoutReturn(String sql)
+        {
+            try
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                connection.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 获取所有远程数据库的名称
         /// </summary>
         /// <returns></returns>
         public List<String> queryAllDatabaseName()
         {
+            String sql = "show databases;";
             List<String> databases = new List<string>();
-            try
+            DataTable table = getData(sql);
+            int rowNum = table.Rows.Count;
+            for (int i = 0; i < rowNum; i++)
             {
-                DataSet dataSet = new DataSet();
-                MySqlDataAdapter adapter = new MySqlDataAdapter("show databases;", connection);
-                adapter.Fill(dataSet);
-                DataTable table = dataSet.Tables[0];
-                int rowNum = table.Rows.Count;
-                for (int i = 0; i < rowNum; i++)
-                {
-                    String value = table.Rows[i][0] as String;
-                    databases.Add(value);
-                }
-                return databases;
-            }catch(Exception e1)
-            {
-                Console.WriteLine(e1.ToString());
-                return databases;
+                String value = table.Rows[i][0] as String;
+                databases.Add(value);
             }
+            return databases;
         }
 
         /// <summary>
@@ -85,25 +117,14 @@ namespace NewsCollection.Helper
         {
             List<String> tables = new List<string>();
             String sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '" + dataBaseName + "';";
-            try
+            DataTable table = getData(sql);
+            int rowNum = table.Rows.Count;
+            for (int i = 0; i < rowNum; i++)
             {
-                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
-                DataSet dataSet = new DataSet();
-                adapter.Fill(dataSet);
-                DataTable table = dataSet.Tables[0];
-                int rowNum = table.Rows.Count;
-                for (int i = 0; i < rowNum; i++)
-                {
-                    String value = table.Rows[i][0] as String;
-                    tables.Add(value);
-                }
-                return tables;
+                String value = table.Rows[i][0] as String;
+                tables.Add(value);
             }
-            catch(Exception e1)
-            {
-                Console.WriteLine(e1.ToString());
-                return tables;
-            }
+            return tables;
         }
 
         /// <summary>
@@ -115,26 +136,15 @@ namespace NewsCollection.Helper
             Dictionary<String, String> map = new Dictionary<string, string>();
             String sql = "select column_name,data_type from information_schema.columns " +
                 "where TABLE_SCHEMA='" + dataBaseName +"' and table_name='" + tableName + "';" ;
-            try
+            DataTable table = getData(sql);
+            int rowNum = table.Rows.Count;
+            for (int i = 0; i < rowNum; i++)
             {
-                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
-                DataSet dataSet = new DataSet();
-                adapter.Fill(dataSet);
-                DataTable table = dataSet.Tables[0];
-                int rowNum = table.Rows.Count;
-                for (int i = 0; i < rowNum; i++)
-                {
-                    String name = table.Rows[i][0] as String;
-                    String type = table.Rows[i][1] as String;
-                    map.Add(name, type);
-                }
-                return map;
+                String name = table.Rows[i][0] as String;
+                String type = table.Rows[i][1] as String;
+                map.Add(name, type);
             }
-            catch(Exception e1)
-            {
-                Console.WriteLine(e1);
-                return map;
-            }
+            return map;
         }
 
         /// <summary>
@@ -158,21 +168,29 @@ namespace NewsCollection.Helper
             }
             sqlBuilder.Append("@" + keyFiled.ElementAt(fieldNum - 1) + ");");
             //数据真正插入
-            connection.Open();
-            int row = contents.Count;
-            for(int i = 0; i < row; i++)
+            try
             {
-                List<String> rowData = contents.ElementAt(i);
-                MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "use " + dataBaseName + "; " + sqlBuilder.ToString();
-                for (int j=0;j < fieldNum; j++)
+                connection.Open();
+                int row = contents.Count;
+                for (int i = 0; i < row; i++)
                 {
-                    command.Parameters.AddWithValue("@" + keyFiled.ElementAt(j), rowData.ElementAt(j));
+                    List<String> rowData = contents.ElementAt(i);
+                    MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = "use " + dataBaseName + "; " + sqlBuilder.ToString();
+                    for (int j = 0; j < fieldNum; j++)
+                    {
+                        command.Parameters.AddWithValue("@" + keyFiled.ElementAt(j), rowData.ElementAt(j));
+                    }
+                    command.ExecuteNonQuery();
+                    showBox.AppendText("第 " + i + " 条数据插入成功\n");
                 }
-                command.ExecuteNonQuery();
-                showBox.AppendText("第 "+ i +" 条数据插入成功\n");
+                showBox.AppendText("\n所有数据插入完毕\n");
+                connection.Close();
+            }catch(Exception e1)
+            {
+                Console.WriteLine(e1);
             }
-            showBox.AppendText("\n所有数据插入完毕\n");
+           
         }
 
         /// <summary>

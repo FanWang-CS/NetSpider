@@ -1,4 +1,5 @@
 ﻿using NewsCollection.Dao;
+using NewsCollection.Operation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace NewsCollection
     public partial class WebsiteForm : Form
     {
         DataBaseManager dataBaseManager = DataBaseManager.getInstance();
-        DataBaseManager dataManager = DataBaseManager.getInstance();
+        public String GroupNodeText = null;
         public WebsiteForm()
         {
             InitializeComponent();
@@ -40,8 +41,8 @@ namespace NewsCollection
                 oldUrl = dt.Rows[0]["url"] as String;
                 oldNote = dt.Rows[0]["note"] as String;
                 textBox1.Text = oldTitle;
-                textBox1.Text = oldUrl;
-                textBox1.Text = oldNote;
+                textBox2.Text = oldUrl;
+                textBox3.Text = oldNote;
             }
         }
 
@@ -52,10 +53,11 @@ namespace NewsCollection
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             String title = textBox1.Text;
             String Url = textBox2.Text;
             String note = textBox3.Text;
-            String[] websiteInfo = new String[3] { title, Url, note };
+            String[] websiteInfo = new String[4] { title, Url, note, GroupNodeText };
             if (button1.Text == "确定")
             {
                 
@@ -102,6 +104,10 @@ namespace NewsCollection
                         {
                             this.Close();
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("添加失败", "提示");
                     }
                 }
             }
