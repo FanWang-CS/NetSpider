@@ -260,6 +260,14 @@ namespace NewsCollection.Dao
             String sql = "DELETE form taskgroup WHERE id='" + groupID + "'";
             return changeDataWithoutReturn(sql);
         }
+        //查找包含搜索关键字的分组和网站
+        public DataTable searchwebsite(String keyword)
+        {
+            String sql = "SELECT groupid,b.title AS groupname ,a.title AS website " +
+                "FROM website AS a LEFT JOIN webgroup AS b ON a.groupid=b.id " +
+                "WHERE a.title LIKE '%"+keyword+"%' OR b.title LIKE '%"+keyword+"%' ORDER BY groupid";
+            return getData(sql);
+        }
         public void close()
         {
             if(mInstance != null){

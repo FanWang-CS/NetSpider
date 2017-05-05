@@ -724,6 +724,28 @@ namespace NewsCollection
             // _CurtainControl = taskGroup.SourceControl;
         }
 
-        
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Control || e.KeyCode == Keys.Enter)
+            {
+                String keyword = textBox1.Text;
+                if (keyword == null || keyword.Trim().Equals(""))
+                {
+                    MessageBox.Show("请输入搜索关键词", "提示");
+                    return;
+                }
+                String curtainGroupBox = textBox1.Parent.Text;
+                if (curtainGroupBox == "网站管理")
+                {
+                    DataTable dt = dataManager.searchwebsite(keyword);
+                    new WebsiteOpeartion().refresh(treeView1, dt);
+                }
+                else if (curtainGroupBox == "我的任务")
+                {
+                    //TODO
+                }
+            }
+            
+        }
     }
 }

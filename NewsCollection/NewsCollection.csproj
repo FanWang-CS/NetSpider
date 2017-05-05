@@ -53,6 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminForm.Designer.cs">
+      <DependentUpon>adminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TaskController.cs" />
     <Compile Include="Dao\DataBaseConfig.cs" />
     <Compile Include="Dao\DatabaseHelper.cs" />
