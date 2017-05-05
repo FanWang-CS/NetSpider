@@ -1,6 +1,7 @@
 ﻿using NewsCollection.Dao;
 using NewsCollection.Helper;
 using NewsCollection.Model;
+using NewsCollection.Operation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace NewsCollection
 {
     public partial class MainForm : Form
     {
-
+        DataBaseManager dataManager = DataBaseManager.getInstance();
         ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
         int step = 0;
         public int Step
@@ -68,18 +69,32 @@ namespace NewsCollection
                 treeView1.Visible = true;
                 textBox1.Visible = true;
                 treeView1.Name = "treeView1";
-                treeView1.Nodes.Clear();
-                //四种新闻类型
-                TreeNode tn1 = treeView1.Nodes.Add("通知公告");
-                TreeNode tn2 = treeView1.Nodes.Add("新闻资讯");
-                TreeNode tn3 = treeView1.Nodes.Add("行业动态");
-                TreeNode tn4 = treeView1.Nodes.Add("法规政策");
-                TreeNode tn5 = treeView1.Nodes.Add("图文消息");
-                //
-                TreeNode Ntn1 = new TreeNode("湖南计量院");
-                TreeNode Ntn2 = new TreeNode("湖南质监局");
-                tn1.Nodes.Add(Ntn1);
-                tn1.Nodes.Add(Ntn2);
+                treeView1.ContextMenuStrip = websiteBlank;
+                WebsiteOpeartion websiteOpeartion = new WebsiteOpeartion();
+                websiteOpeartion.refresh(treeView1);
+                //treeView1.Nodes.Clear();
+                //DataTable dt1 = dataManager.getWebsiteGroup();
+                //for(int i=0; i < dt1.Rows.Count; i++)
+                //{
+                //    TreeNode tn = treeView1.Nodes.Add(dt1.Rows[i]["title"] as String);
+                //    DataTable dt2=dataManager.getWebsiteInGroup(dt1.Rows[i]["title"] as String);
+                //    for(int j = 0; j < dt2.Rows.Count; i++)
+                //    {
+                //        TreeNode ntn = new TreeNode(dt2.Rows[i]["title"] as String);
+                //        tn.Nodes.Add(ntn);
+                //    }
+                //}
+                ////四种新闻类型
+                //TreeNode tn1 = treeView1.Nodes.Add("通知公告");
+                //TreeNode tn2 = treeView1.Nodes.Add("新闻资讯");
+                //TreeNode tn3 = treeView1.Nodes.Add("行业动态");
+                //TreeNode tn4 = treeView1.Nodes.Add("法规政策");
+                //TreeNode tn5 = treeView1.Nodes.Add("图文消息");
+                ////
+                //TreeNode Ntn1 = new TreeNode("湖南计量院");
+                //TreeNode Ntn2 = new TreeNode("湖南质监局");
+                //tn1.Nodes.Add(Ntn1);
+                //tn1.Nodes.Add(Ntn2);
 
             }
         }
@@ -122,16 +137,20 @@ namespace NewsCollection
                 textBox1.Visible = true;
                 treeView1.Name = "treeView1";
                 treeView1.Nodes.Clear();
+                treeView1.ContextMenuStrip = taskBlank;
                 //四种新闻类型
-                TreeNode tn1 = treeView1.Nodes.Add("通知公告");
-                TreeNode tn2 = treeView1.Nodes.Add("新闻资讯");
-                TreeNode tn3 = treeView1.Nodes.Add("行业动态");
-                TreeNode tn4 = treeView1.Nodes.Add("法规政策");
-                //
-                TreeNode Ntn1 = new TreeNode("湖南计量院");
-                TreeNode Ntn2 = new TreeNode("湖南质监局");
-                tn1.Nodes.Add(Ntn1);
-                tn1.Nodes.Add(Ntn2);
+                TaskOperation taskOperation = new TaskOperation();
+                taskOperation.refresh(treeView1);
+
+                //TreeNode tn1 = treeView1.Nodes.Add("通知公告");
+                //TreeNode tn2 = treeView1.Nodes.Add("新闻资讯");
+                //TreeNode tn3 = treeView1.Nodes.Add("行业动态");
+                //TreeNode tn4 = treeView1.Nodes.Add("法规政策");
+                ////
+                //TreeNode Ntn1 = new TreeNode("湖南计量院");
+                //TreeNode Ntn2 = new TreeNode("湖南质监局");
+                //tn1.Nodes.Add(Ntn1);
+                //tn1.Nodes.Add(Ntn2);
 
             }
         }
@@ -170,14 +189,20 @@ namespace NewsCollection
                 treeView1.ContextMenuStrip = websiteBlank;
 
                 TreeNode selectNode = treeView1.GetNodeAt(e.X, e.Y);
-                if (selectNode.Level == 0)
+                if (selectNode == null)
                 {
-                    selectNode.ContextMenuStrip = websiteGroup;
+                    return;
+                }
+                else if (selectNode.Level == 0)
+                {
+                    selectNode.ContextMenuStrip = websiteGroupClick;
+                    return;
                 }
                 else if (selectNode.Level == 1)
 
                 {
                     selectNode.ContextMenuStrip = websiteRightClick;
+                    return;
                 }
             }
             else if (treeView1.Parent.Text == "我的任务")
@@ -189,12 +214,14 @@ namespace NewsCollection
                 if (selectNode.Level == 0)
 
                 {
-                    selectNode.ContextMenuStrip = taskGroup;
+                    selectNode.ContextMenuStrip = taskGroupClick;
+                    return;
                 }
                 else if (selectNode.Level == 1)
 
                 {
                     selectNode.ContextMenuStrip = taskRightClick;
+                    return;
                 }
             }
 
@@ -303,6 +330,11 @@ namespace NewsCollection
                 webview.Document.Click += onWebViewNodeClicked;
                 isBindDocumentClick = true;
             }
+        }
+
+        private void webview_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            WebBrowserHelper.InjectAlertBlocker(webview);
         }
 
         private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
@@ -465,17 +497,29 @@ namespace NewsCollection
              return tables;
         }
 
+        //网站右击
+        private void websiteRightClick_Opening(object sender, CancelEventArgs e)
+        {
+            if (treeView1.SelectedNode != null)
+            {
+                CurtainNodeText = treeView1.SelectedNode.Text;
+                ParentNodeText = treeView1.SelectedNode.Parent.Text;
+            }
+           
+        }
+
         //编辑网站
         //private Control _CurtainControl;
-        private String __CurtainNodeText;
-        DataBaseManager dataManager = DataBaseManager.getInstance();
+        private String CurtainNodeText;
+        private String ParentNodeText;
         private void editWebsite_Click(object sender, EventArgs e)
         {
             //获取当前任务的参数内容
-            if (__CurtainNodeText != null)
+            if (CurtainNodeText != null&& ParentNodeText!=null)
             {
                 //String WebsiteName = _CurtainControl.Text;
-                DataTable dt = dataManager.getCurtainWebsite(__CurtainNodeText);
+                //DataBaseManager dataManager = DataBaseManager.getInstance();
+                DataTable dt = dataManager.getCurtainWebsite(CurtainNodeText, ParentNodeText);
                 WebsiteForm websiteForm = new WebsiteForm(dt);
                 websiteForm.Show();
             }
@@ -486,48 +530,195 @@ namespace NewsCollection
             }
 
         }
+       
+       
+        //删除网站
+        private void deleteWebsite_Click(object sender, EventArgs e)
+        {
+            //获取当前任务的参数内容
+            if (CurtainNodeText != null)
+            {
+                //DataBaseManager dataManager = DataBaseManager.getInstance();
+                DataTable dt = dataManager.getCurtainWebsite(CurtainNodeText, ParentNodeText);
+                Boolean result = dataManager.deleteWebsite(dt.Rows[0]["id"] as String);
+                if (result)
+                {
+                    new WebsiteOpeartion().refresh(treeView1);
+                }
+                else
+                {
+                    MessageBox.Show("无法删除","提示");
+                }
+            }
+            else
+            {
+                MessageBox.Show("您未选中任何网站，无法进行编辑，请先选中要编辑的网站", "提示");
+                return;
+            }
+        }
+        //网站组右键
+        private void websiteGroup_Opening(object sender, CancelEventArgs e)
+        {
+
+            if (treeView1.SelectedNode != null)
+            {
+                CurtainNodeText = treeView1.SelectedNode.Text;
+            }
+        }
         //新增网站
         private void creatWebsite_Click(object sender, EventArgs e)
         {
             WebsiteForm websiteForm = new WebsiteForm();
+            websiteForm.GroupNodeText = CurtainNodeText;
             websiteForm.Show();
+            new WebsiteOpeartion().refresh(treeView1);
+        }
+        //编辑分组
+        private void editWebsiteGroup_Click(object sender, EventArgs e)
+        {
+            if (CurtainNodeText != null)
+            {
+                //DataBaseManager dataManager = DataBaseManager.getInstance();
+                DataTable dt = dataManager.getCurtainWebGroup(CurtainNodeText);
+                WebsiteGroup websiteGroup = new WebsiteGroup(dt);
+                websiteGroup.Show();
+            }
+            else
+            {
+                MessageBox.Show("请选中要编辑的分组", "提示");
+                return;
+            }
+            
+        }
+        //创建分组
+        private void creatWebsiteGroup_Click(object sender, EventArgs e)
+        {
+            WebsiteGroup websiteGroup = new WebsiteGroup();
+            websiteGroup.Show();
+            new WebsiteOpeartion().refresh(treeView1);
+        }
+        //删除分组
+        private void deleteWebsiteGroup_Click(object sender, EventArgs e)
+        {
+            //获取当前任务的参数内容
+            if (CurtainNodeText != null)
+            {
+                //DataBaseManager dataManager = DataBaseManager.getInstance();
+                DataTable dt = dataManager.getCurtainWebGroup(CurtainNodeText);
+                Boolean result = dataManager.deleteWebGroup(dt.Rows[0]["id"] as String);
+                if (result)
+                {
+                    new WebsiteOpeartion().refresh(treeView1);
+                }
+                else
+                {
+                    MessageBox.Show("无法删除", "提示");
+                }
+            }
+        }
+        //刷新
+        private void websiteGroupRefresh_Click(object sender, EventArgs e)
+        {
+            new WebsiteOpeartion().refresh(treeView1);
+        }
+        //点击空白处时的刷新
+        private void websiteBlankRefresh_Click(object sender, EventArgs e)
+        {
+            new WebsiteOpeartion().refresh(treeView1);
         }
 
+        private void createWebsiteGroup_Click(object sender, EventArgs e)
+        {
+            creatWebsiteGroup_Click(sender, e);
+        }
+        /// <summary>
+        /// 任务分组
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         //获取contextMenuStrip是点击什么控件触发的
         private void taskGroup_Opening(object sender, CancelEventArgs e)
         {
-            __CurtainNodeText = treeView1.SelectedNode.Text;
+            CurtainNodeText = treeView1.SelectedNode.Text;
+           
             // _CurtainControl = taskGroup.SourceControl;
         }
-
-        private void websiteRightClick_Opening(object sender, CancelEventArgs e)
+        private void createtask_Click(object sender, EventArgs e)
         {
-            __CurtainNodeText = treeView1.SelectedNode.Text;
-            //_CurtainControl = taskGroup.SourceControl;
+
         }
 
-        private void taskBlank_Opening(object sender, CancelEventArgs e)
+        private void creatTaskGroup1_Click(object sender, EventArgs e)
         {
-            __CurtainNodeText = treeView1.SelectedNode.Text;
-            //_CurtainControl = taskGroup.SourceControl;
+            TaskGroup taskGroup = new TaskGroup();
+            taskGroup.Show();
+            new TaskOperation().refresh(treeView1);
         }
 
-        private void websiteBlank_Opening(object sender, CancelEventArgs e)
+        private void importTaskGroup_Click(object sender, EventArgs e)
         {
-            __CurtainNodeText = treeView1.SelectedNode.Text;
-            //_CurtainControl = taskGroup.SourceControl;
+
         }
 
-        private void websiteGroup_Opening(object sender, CancelEventArgs e)
+        private void exportTaskGroup_Click(object sender, EventArgs e)
         {
-            __CurtainNodeText = treeView1.SelectedNode.Text;
-            //_CurtainControl = taskGroup.SourceControl;
+
+        }
+
+        private void deleteTaskGroup_Click(object sender, EventArgs e)
+        {
+            //获取当前任务的参数内容
+            if (CurtainNodeText != null)
+            {
+                DataTable dt = dataManager.getCurtainTaskGroup(CurtainNodeText);
+                Boolean result = dataManager.deleteTaskGroup(dt.Rows[0]["id"] as String);
+                if (result)
+                {
+                    new TaskOperation().refresh(treeView1);
+                }
+                else
+                {
+                    MessageBox.Show("无法删除", "提示");
+                }
+            }
+        }
+        //修改任务组
+        private void editTaskGroup_Click(object sender, EventArgs e)
+        {
+            if (CurtainNodeText != null)
+            {
+                DataTable dt = dataManager.getCurtainWebGroup(CurtainNodeText);
+                TaskGroup taskGroup = new TaskGroup(dt);
+                taskGroup.Show();
+            }
+            else
+            {
+                MessageBox.Show("请选中要编辑的分组", "提示");
+                return;
+            }
+        }
+
+        private void taskGroupRefresh_Click(object sender, EventArgs e)
+        {
+
+        }
+        //空白处的刷新
+        private void taskBlankRefresh_Click(object sender, EventArgs e)
+        {
+            new TaskOperation().refresh(treeView1);
+        }
+
+        private void createTaskgroup_Click(object sender, EventArgs e)
+        {
+            creatTaskGroup1_Click(sender, e);
         }
 
         private void taskRightClick_Opening(object sender, CancelEventArgs e)
         {
-            __CurtainNodeText = treeView1.SelectedNode.Text;
+            CurtainNodeText = treeView1.SelectedNode.Text;
             // _CurtainControl = taskGroup.SourceControl;
         }
+
+        
     }
 }

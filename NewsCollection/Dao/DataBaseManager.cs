@@ -48,11 +48,20 @@ namespace NewsCollection.Dao
         /// <returns></returns>
         internal DataTable getData(String sql)
         {
-            DataSet dataSet = new DataSet();
-            MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
-            adapter.Fill(dataSet);
-            DataTable dataTable = dataSet.Tables[0];
-            return dataTable;
+            DataTable dataTable = new DataTable();
+            try
+            {
+                DataSet dataSet = new DataSet();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
+                adapter.Fill(dataSet);
+                dataTable = dataSet.Tables[0];
+                return dataTable;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return dataTable;
+            }
         }
         //更新数据：插入和更新（更新有待考证）
         internal Boolean changeDataWithoutReturn(String sql)
@@ -63,6 +72,7 @@ namespace NewsCollection.Dao
                 MySqlCommand command = connection.CreateCommand();
                 command.CommandText = sql;
                 command.ExecuteNonQuery();
+                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -118,10 +128,11 @@ namespace NewsCollection.Dao
         public DataTable getAllConfig()
         {
             String sql = "select configname,ip, port,dbname from OuterConfig where username = " + currentUserName;
-            MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
-            DataSet dataSet = new DataSet();
-            adapter.Fill(dataSet);
-            return dataSet.Tables[0];
+            //MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
+            //DataSet dataSet = new DataSet();
+            //adapter.Fill(dataSet);
+            //return dataSet.Tables[0];
+            return getData(sql);
         }
 
         /// <summary>
@@ -143,16 +154,32 @@ namespace NewsCollection.Dao
                 MySqlCommand command = connection.CreateCommand();
                 command.CommandText = sql;
                 command.ExecuteNonQuery();
+                connection.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
         }
-        //获取当前编辑的网站
-        public DataTable getCurtainWebsite(String websiteName)
+        //获取网站分组
+        public DataTable getWebsiteGroup()
         {
-            String sql = "SELECT * FROM website WHERE title = '" + websiteName + "'";
+            String sql = "SELECT title FROM `webgroup`";
+            DataTable dt = getData(sql);
+            return dt;
+        }
+        //获取网站组里面网站
+        public DataTable getWebsiteInGroup(String group)
+        {
+            String sql = "SELECT a.title AS title FROM website AS a,webgroup AS b WHERE a.groupid=b.id AND b.title = '"+ group + "'";
+            DataTable dt = getData(sql);
+            return dt;
+        }
+        //获取当前编辑的网站
+        public DataTable getCurtainWebsite(String websiteName,String parentName)
+        {
+            String sql = "SELECT * FROM website AS a LEFT JOIN webgroup AS b ON a.groupid = b.id " +
+                "WHERE a.title = '"+ websiteName + "' AND b.title = '"+ parentName + "' ";
             DataTable dt = getData(sql);
             return dt;
         }
@@ -165,11 +192,89 @@ namespace NewsCollection.Dao
         }
         //新增网站记录
         public Boolean insertWebsite(String[] websiteInfo)
-        {
-            String sql = "INSERT INTO website(id,title,url,note) VALUES(REPLACE(UUID(),'-',''),'"+ websiteInfo[0]+ "','" + websiteInfo[1] + "','" + websiteInfo[2] + "')";
+         {
+            String sql = "insert into website(id,title,url,note,groupid) select REPLACE(UUID(),'-',''),'" + websiteInfo[0] + "' as title,'" + websiteInfo[1] + "'as url,'" + websiteInfo[2] + "' as note,id from webgroup where title='"+ websiteInfo[3] + "'";
             return changeDataWithoutReturn(sql);
         }
+        //删除网站记录
+        public Boolean deleteWebsite(String websiteId)
+        {
+            String sql = "DELETE FROM website WHERE id ='"+websiteId+"'";
+            return changeDataWithoutReturn(sql);
+        }
+        //获取当前编辑网站分组
+        public DataTable getCurtainWebGroup(String CurtainNodeText)
+        {
+            String sql = "SELECT * FROM webgroup WHERE title='" + CurtainNodeText + "'";
+            return getData(sql);
+        }
+        //创建网站分组
+        public Boolean creatWebGroup(String [] groupInfo)
+        {
+            String sql = "INSERT INTO webgroup VALUES(REPLACE(UUID(),'-',''),'" + groupInfo[0] + "','" + groupInfo[1] + "')";
+            return changeDataWithoutReturn(sql);
+        }
+        //编辑网站分组
+        public Boolean editWebGroup(String groupID,String[] groupInfo)
+        {
+            String sql = "UPDATE webgroup SET title='"+ groupInfo [0]+ "',note='" + groupInfo[0] + "' WHERE id='" + groupID + "'";
+            return changeDataWithoutReturn(sql);
+        }
+        //删除网站分组
+        public Boolean deleteWebGroup(String groupID)
+        {
+            String sql = "DELETE FROM website WHERE groupid = '" + groupID + "'";
+            if (changeDataWithoutReturn(sql))
+            {
+                sql = "DELETE from webgroup WHERE id='" + groupID + "'";
+                return changeDataWithoutReturn(sql);
+            }
+            else
+                return false;
+        }
 
+        /// <summary>
+        /// 任务组数据库操作
+        /// </summary>
+        /// 
+        //获取任务分组
+        public DataTable getTaskGroup()
+        {
+            String sql = "SELECT title FROM `taskgroup`";
+            DataTable dt = getData(sql);
+            return dt;
+        }
+        //获取任务组里面网站
+        public DataTable getTaskInGroup(String group)
+        {
+            String sql = "SELECT a.title AS title FROM task AS a,taskgroup AS b WHERE a.groupid=b.id AND b.title = '" + group + "'";
+            DataTable dt = getData(sql);
+            return dt;
+        }
+        //获取当前编辑任务分组
+        public DataTable getCurtainTaskGroup(String CurtainNodeText)
+        {
+            String sql = "SELECT * FROM taskgroup WHERE title='" + CurtainNodeText + "'";
+            return getData(sql);
+        }
+        //创建任务分组
+        public Boolean creatTaskGroup(String[] groupInfo)
+        {
+            String sql = "INSERT INTO taskgroup VALUES(REPLACE(UUID(),'-',''),'" + groupInfo[0] + "','" + groupInfo[1] + "')";
+            return changeDataWithoutReturn(sql);
+        }
+        //编辑任务分组
+        public Boolean editTaskGroup(String groupID, String[] groupInfo)
+        {
+            String sql = "UPDATE taskgroup SET title='" + groupInfo[0] + "',note='" + groupInfo[0] + "' WHERE id='" + groupID + "'";
+            return changeDataWithoutReturn(sql);
+        }
+        //删除任务分组
+        public Boolean deleteTaskGroup(String groupID)
+        {
+            String sql = "DELETE form taskgroup WHERE id='" + groupID + "'";
+            return changeDataWithoutReturn(sql);
+        }
         public void close()
         {
             if(mInstance != null){
