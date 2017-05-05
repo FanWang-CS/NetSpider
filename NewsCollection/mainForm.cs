@@ -280,9 +280,11 @@ namespace NewsCollection
                         }
                         try  //输入网址不合法，健壮性判断
                         {
-                            webview.Url = new Uri(netUrl);
-                            webview.Refresh();
+                            // webview.Url = new Uri(netUrl);
+                            // webview.Refresh();
+                            webview.Navigate(netUrl);
                             task.NetUrl = netUrl;
+                            Console.WriteLine("加载页面：" + netUrl);
                             webview.Visible = true;
                         }
                         catch(Exception e1)
@@ -325,6 +327,8 @@ namespace NewsCollection
         private Boolean isBindDocumentClick = false;
         private void webview_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            webview.Stop();
+            Console.WriteLine("页面加载完成！！");
             if (!isBindDocumentClick)
             {
                 webview.Document.Click += onWebViewNodeClicked;
@@ -340,9 +344,10 @@ namespace NewsCollection
         private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
         {
            
-            String netUrl = neturlview.Text.ToString();
-            webview.Url = new Uri(netUrl);
-            webview.Refresh();
+           String netUrl = neturlview.Text.ToString();
+            //webview.Url = new Uri(netUrl);
+            //webview.Refresh();
+            webview.Navigate(netUrl);
             if (webview.Document != null)
             {
                 HtmlElement elem = webview.Document.GetElementFromPoint(e.ClientMousePosition);
