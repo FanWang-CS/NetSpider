@@ -14,26 +14,20 @@ namespace NewsCollection
 {
     public partial class loginForm : Form
     {
-        public Form form1 = new Form();
-        public loginForm()
-        {
-            InitializeComponent();
-        }
+        private Form mainForm;
+        private Boolean isLoginSuccess = false;
+
         public loginForm(Form rForm)
         {
+            mainForm = rForm;
             InitializeComponent();
-            form1 = rForm;
         }
+
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            RegisterForm register = new RegisterForm();
+            RegisterForm register = new RegisterForm(this);
             register.Show();
-        }
-        
-        private void loginForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -62,9 +56,9 @@ namespace NewsCollection
                 int checkstatus = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
                 if (checkstatus == 1)
                 {
-                    this.Hide();
+                    isLoginSuccess = true;
+                    this.Close();
                     dataBaseManager.CurrentUserName = username; //绑定当前用户，保证全局可获取
-                    MainForm mainForm = new MainForm();
                     mainForm.Show();
                 }
                 else
@@ -80,6 +74,14 @@ namespace NewsCollection
             comboBox1.SelectedIndex = -1;
             textBox1.Text = "";
             textBox2.Text = "";
+        }
+
+        private void loginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!isLoginSuccess)
+            {
+                mainForm.Close();
+            }
         }
     }
 }

@@ -15,9 +15,12 @@ namespace NewsCollection
 {
     public partial class RegisterForm : Form
     {
-        public RegisterForm()
+        private loginForm loginForm;
+
+        public RegisterForm(loginForm loginForm)
         {
             InitializeComponent();
+            this.loginForm = loginForm;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -83,10 +86,7 @@ namespace NewsCollection
                 DialogResult dr = MessageBox.Show("注册成功，马上去登陆吧！", "提示", MessageBoxButtons.OKCancel);
                 if (dr == DialogResult.OK)
                 {
-                    this.Hide();
-                    loginForm loginForm = new loginForm(this);
-                    loginForm.Show();
-                    loginForm.form1.Close();
+                    this.Close();
                 }
                 else
                 {
@@ -103,6 +103,11 @@ namespace NewsCollection
         private void RegisterForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void RegisterForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loginForm.Show();
         }
     }
 }

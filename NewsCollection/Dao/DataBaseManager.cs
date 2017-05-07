@@ -260,6 +260,35 @@ namespace NewsCollection.Dao
             String sql = "DELETE form taskgroup WHERE id='" + groupID + "'";
             return changeDataWithoutReturn(sql);
         }
+
+        /// <summary>
+        /// 存入任务
+        /// </summary>
+        /// <param name="taskName">任务名</param>
+        /// <param name="taskDes">任务描述</param>
+        /// <param name="taskGroup">任务组</param>
+        /// <param name="taskUrl">任务Url</param>
+        /// <param name="taskNextFilter">任务翻页规则</param>
+        /// <param name="taskFilter">任务扒取规则</param>
+        /// <param name="keyWord">关键字</param>
+        /// <returns></returns>
+        public Boolean saveTask(String taskName, String taskDes, String  taskGroup, String taskUrl,
+                                String taskNextFilter, String taskFilter, String keyWord)
+        {
+            String sql = "INSERT INTO Task(owner, tname, tdes,tgroup,turl,tnextfilter,tfilter,tkeyword) VALUES("
+                + currentUserName + ","
+                + taskName + ","
+                + taskDes + "," 
+                + taskGroup + ","
+                + taskUrl + ","
+                + taskNextFilter + ","
+                + taskFilter + ","
+                + keyWord + ")";
+            return changeDataWithoutReturn(sql);
+        }
+
+
+
         public void close()
         {
             if(mInstance != null){

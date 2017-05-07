@@ -16,7 +16,7 @@ namespace NewsCollection
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new loginForm());
+            Application.Run(new MainForm());
         }
     }
 }

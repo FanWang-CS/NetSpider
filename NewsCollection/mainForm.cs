@@ -38,6 +38,13 @@ namespace NewsCollection
             //button8.Top = panel1.Bottom + 20;
         }
 
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            this.Hide();
+            loginForm loginForm = new loginForm(this);
+            loginForm.Show();
+        }
+
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
         {
 
@@ -175,11 +182,6 @@ namespace NewsCollection
                     }
                 }
             }
-        }
-
-        private void mainForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void treeView1_MouseClick(object sender, MouseEventArgs e)
@@ -723,7 +725,5 @@ namespace NewsCollection
             CurtainNodeText = treeView1.SelectedNode.Text;
             // _CurtainControl = taskGroup.SourceControl;
         }
-
-        
     }
 }
