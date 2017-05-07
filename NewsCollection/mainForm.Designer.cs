@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.新建任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -471,8 +471,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle1.NullValue = "InnerText";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.NullValue = "InnerText";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column4.HeaderText = "提取数据类型";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -481,9 +481,9 @@
             // 
             // Column
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column.HeaderText = "删除";
             this.Column.Name = "Column";
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -963,6 +963,7 @@
             this.textBox1.Size = new System.Drawing.Size(178, 29);
             this.textBox1.TabIndex = 6;
             this.textBox1.Visible = false;
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
             // treeView1
             // 

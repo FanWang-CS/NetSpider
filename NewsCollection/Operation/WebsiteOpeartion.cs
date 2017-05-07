@@ -28,5 +28,24 @@ namespace NewsCollection.Operation
                 }
             }
         }
+        //搜索时界面的展示刷新
+        public void refresh(TreeView treeView1,DataTable dt1)
+        {
+            treeView1.Nodes.Clear();
+            TreeNode tn = new TreeNode();
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                if (i == 0)
+                {
+                    tn = treeView1.Nodes.Add(dt1.Rows[i]["groupname"] as String);
+                }
+                else if(!(dt1.Rows[i]["groupid"] as String).Equals(dt1.Rows[i-1]["groupid"] as String))
+                {
+                    tn = treeView1.Nodes.Add(dt1.Rows[i]["groupname"] as String);
+                }
+                TreeNode ntn = new TreeNode(dt1.Rows[i]["website"] as String);
+                tn.Nodes.Add(ntn);
+            }
+        }
     }
 }
