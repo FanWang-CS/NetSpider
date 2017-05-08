@@ -14,19 +14,23 @@ namespace NewsCollection.Model
 
         public ClassInnerTextNodeFilter(String tagName,String innerText)
         {
-            this.tagName = tagName;
+            this.TagName = tagName;
             if (innerText.EndsWith(">"))
             {
                 innerText = innerText.Substring(0, innerText.Length - 1);
             }
-            this.innerText = innerText;
+            this.InnerText = innerText;
         }
+
+        public string TagName { get => tagName; set => tagName = value; }
+        public string InnerText { get => innerText; set => innerText = value; }
+
         public bool Accept(INode node)
         {
            if(node is ITag)
             {
                 ITag tag = node as ITag;
-                if (tag.TagName.Equals(tagName) && tag.FirstChild != null && tag.FirstChild.GetText().StartsWith(innerText)){
+                if (tag.TagName.Equals(TagName) && tag.FirstChild != null && tag.FirstChild.GetText().StartsWith(InnerText)){
                     return true;
                 }
             }

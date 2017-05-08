@@ -1,4 +1,5 @@
 ﻿using NetSpider.Filter;
+using NewsCollection.Dao;
 using NewsCollection.Helper;
 using System;
 using System.Collections.Generic;
@@ -31,12 +32,12 @@ namespace NewsCollection.Model
         private String neturl;
 
         //提取过滤器
-        private List<NodeFilter> infoNodeFilters = new List<NodeFilter>();
+        private List<ClassNodeFilter> infoNodeFilters = new List<ClassNodeFilter>();
         private OrNodeFilter orFilter;
         //字段类型
         private List<String> keyWords = new List<string>();
         //深度迭代过滤器
-        private NodeFilter nextPagerFilter;
+        private ClassInnerTextNodeFilter nextPagerFilter;
 
         private Boolean needNextPage;
 
@@ -62,7 +63,7 @@ namespace NewsCollection.Model
             WebBrowserHelper.InjectAlertBlocker(webLoader);
         }
 
-        public void addInfoNodeFilter(NodeFilter nodefilter)
+        public void addInfoNodeFilter(ClassNodeFilter nodefilter)
         {
             infoNodeFilters.Add(nodefilter);
         }
@@ -106,7 +107,7 @@ namespace NewsCollection.Model
         public string GroupName { get => groupname; set => groupname = value; }
         public string TaskDesc { get => taskdesc; set => taskdesc = value; }
         public string NetUrl { get => neturl; set => neturl = value; }
-        public NodeFilter NextPagerFilter { get => nextPagerFilter; set => nextPagerFilter = value; }
+        public ClassInnerTextNodeFilter NextPagerFilter { get => nextPagerFilter; set => nextPagerFilter = value; }
         public bool NeedNextPage { get => needNextPage; set => needNextPage = value; }
         internal TaskType TaskTyped { get => taskType; set => taskType = value; }
 
@@ -189,7 +190,38 @@ namespace NewsCollection.Model
                     nextBtn.Visible = true;
                 }
             }
+        }
 
+        //保存到数据库
+        public void save2DB()
+        {
+            StringBuilder filterStr = new StringBuilder();
+            StringBuilder keywordStr = new StringBuilder();
+            int len = keyWords.Count;
+            if(len > 0)
+            {
+                for(int i = 0; i < len; i++)
+                {
+                    filterStr.Append(infoNodeFilters.ElementAt(i).ClassName + "|");
+                    keywordStr.Append(keyWords.ElementAt(i) + "|");
+                }
+                filterStr.Remove(filterStr.Length - 1, 1);
+                keywordStr.Remove(keywordStr.Length - 1, 1);
+            }
+            
+            DataBaseManager.getInstance().saveTask(taskname,taskdesc, groupname, neturl,
+                                                    nextPagerFilter == null ? "": nextPagerFilter.TagName + "|" + nextPagerFilter.InnerText,
+                                                    filterStr.ToString(),
+                                                    keywordStr.ToString());
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
+        public static Task loadTask()
+        {
+
+            return null;
         }
     }
 }

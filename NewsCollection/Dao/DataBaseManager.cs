@@ -232,14 +232,15 @@ namespace NewsCollection.Dao
         //获取任务分组
         public DataTable getTaskGroup()
         {
-            String sql = "SELECT title FROM `taskgroup`";
+            String sql = "SELECT * FROM taskgroup AS a LEFT JOIN  USER AS b  ON a.owner=b.id WHERE username='"+currentUserName+"'";
             DataTable dt = getData(sql);
             return dt;
         }
         //获取任务组里面网站
-        public DataTable getTaskInGroup(String group)
+        public DataTable getTaskInGroup(String groupid)
         {
-            String sql = "SELECT a.title AS title FROM task AS a,taskgroup AS b WHERE a.groupid=b.id AND b.title = '" + group + "'";
+            String sql = "SELECT * FROM task AS c LEFT JOIN taskgroup AS a ON c.groupid = a.id " +
+                          "WHERE groupid = '"+ groupid + "'";
             DataTable dt = getData(sql);
             return dt;
         }
@@ -268,6 +269,35 @@ namespace NewsCollection.Dao
             return changeDataWithoutReturn(sql);
         }
 #endregion
+
+        /// <summary>
+        /// 存入任务
+        /// </summary>
+        /// <param name="taskName">任务名</param>
+        /// <param name="taskDes">任务描述</param>
+        /// <param name="taskGroup">任务组</param>
+        /// <param name="taskUrl">任务Url</param>
+        /// <param name="taskNextFilter">任务翻页规则</param>
+        /// <param name="taskFilter">任务扒取规则</param>
+        /// <param name="keyWord">关键字</param>
+        /// <returns></returns>
+        public Boolean saveTask(String taskName, String taskDes, String  taskGroup, String taskUrl,
+                                String taskNextFilter, String taskFilter, String keyWord)
+        {
+            String sql = "INSERT INTO Task(owner, tname, tdes,tgroup,turl,tnextfilter,tfilter,tkeyword) VALUES("
+                + currentUserName + ","
+                + taskName + ","
+                + taskDes + "," 
+                + taskGroup + ","
+                + taskUrl + ","
+                + taskNextFilter + ","
+                + taskFilter + ","
+                + keyWord + ")";
+            return changeDataWithoutReturn(sql);
+        }
+
+
+
         //查找包含搜索关键字的分组和网站
         public DataTable searchwebsite(String keyword)
         {
@@ -325,6 +355,7 @@ namespace NewsCollection.Dao
                          "WHEN checkstatus = '1' THEN '审核通过' ELSE '未审核' END `Status` FROM " + tableName;
             return getData(sql);
         }
+
         public void close()
         {
             if(mInstance != null){

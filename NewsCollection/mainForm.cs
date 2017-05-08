@@ -16,6 +16,7 @@ namespace NewsCollection
 {
     public partial class MainForm : Form
     {
+        Form loginForm;
         DataBaseManager dataManager = DataBaseManager.getInstance();
         ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
         int step = 0;
@@ -31,15 +32,15 @@ namespace NewsCollection
             }
         }
 
-        public MainForm()
+        public MainForm(Form rForm)
         {
+
+            loginForm = rForm;
             InitializeComponent();
-            //button7.Top = panel1.Bottom + 20;
-            //button8.Top = panel1.Bottom + 20;
             InitUserManager();
         }
 
-        private void InitUserManager()
+        public void InitUserManager()
         {
             if (dataManager.CurrentUserName != null){
                 userManager.Text = dataManager.CurrentUserName;
@@ -51,6 +52,13 @@ namespace NewsCollection
                 userManager.ToolTipText = "点击进行登录";
             }
         }
+
+        //private void MainForm_Shown(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    loginForm loginForm = new loginForm(this);
+        //    loginForm.Show();
+        //}
 
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
         {
@@ -167,11 +175,6 @@ namespace NewsCollection
                     }
                 }
             }
-        }
-
-        private void mainForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void treeView1_MouseClick(object sender, MouseEventArgs e)
@@ -653,7 +656,7 @@ namespace NewsCollection
         }
         private void createtask_Click(object sender, EventArgs e)
         {
-
+            tabControl1.SelectedIndex = 1;
         }
 
         private void creatTaskGroup1_Click(object sender, EventArgs e)
@@ -786,6 +789,11 @@ namespace NewsCollection
         private void userSetting_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            loginForm.Close();
         }
     }
 }

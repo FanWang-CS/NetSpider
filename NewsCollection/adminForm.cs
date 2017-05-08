@@ -13,10 +13,11 @@ namespace NewsCollection
 {
     public partial class adminForm : Form
     {
+        Form loginForm;
         DataBaseManager dataBaseManager = DataBaseManager.getInstance();
-
-        public adminForm()
+        public adminForm(Form rForm)
         {
+            loginForm = rForm;
             InitializeComponent();
             InitUserManager();
         }
@@ -312,7 +313,7 @@ namespace NewsCollection
             //userManager.ToolTipText = "点击进行登录";
             InitUserManager();
         }
-        private void InitUserManager()
+        public void InitUserManager()
         {
             if (dataBaseManager.CurrentUserName != null)
             {
@@ -336,10 +337,15 @@ namespace NewsCollection
             String curtaInuserStatus = userManager.Text;
             if (curtaInuserStatus == "登录")
             {
+                this.Hide();
                 loginForm login = new loginForm();
                 login.Show();
-                InitUserManager();
             }
+        }
+
+        private void adminForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loginForm.Close();
         }
     }
 }

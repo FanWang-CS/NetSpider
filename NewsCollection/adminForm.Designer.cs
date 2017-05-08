@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("人员审核");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("新增用户");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("人员管理", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("资讯审核");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("资讯管理", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("人员审核");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("新增用户");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("人员管理", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("资讯审核");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("资讯管理", new System.Windows.Forms.TreeNode[] {
+            treeNode9});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminForm));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -75,19 +75,19 @@
             this.treeView1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeView1.Location = new System.Drawing.Point(0, 28);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node2";
-            treeNode1.Text = "人员审核";
-            treeNode2.Name = "Node3";
-            treeNode2.Text = "新增用户";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "人员管理";
-            treeNode4.Name = "Node4";
-            treeNode4.Text = "资讯审核";
-            treeNode5.Name = "Node1";
-            treeNode5.Text = "资讯管理";
+            treeNode6.Name = "Node2";
+            treeNode6.Text = "人员审核";
+            treeNode7.Name = "Node3";
+            treeNode7.Text = "新增用户";
+            treeNode8.Name = "Node0";
+            treeNode8.Text = "人员管理";
+            treeNode9.Name = "Node4";
+            treeNode9.Text = "资讯审核";
+            treeNode10.Name = "Node1";
+            treeNode10.Text = "资讯管理";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode5});
+            treeNode8,
+            treeNode10});
             this.treeView1.Size = new System.Drawing.Size(220, 305);
             this.treeView1.TabIndex = 0;
             this.treeView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseClick);
@@ -374,6 +374,7 @@
             this.Name = "adminForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "计量资讯采集器";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.adminForm_FormClosed);
             this.Load += new System.EventHandler(this.adminForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

@@ -15,8 +15,10 @@ namespace NewsCollection.Model
         private String className;
         public ClassNodeFilter(String classname)
         {
-            this.className = classname;
+            this.ClassName = classname;
         }
+
+        public string ClassName { get => className; set => className = value; }
 
         public bool Accept(INode node)
         {
@@ -24,7 +26,7 @@ namespace NewsCollection.Model
             {
                 ITag tag = node as ITag;
                 String getClassName = tag.GetAttribute("class");
-                if (getClassName != null && getClassName.Equals(className))
+                if (getClassName != null && getClassName.Equals(ClassName))
                 {
                     return true;
                 }
