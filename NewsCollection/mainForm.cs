@@ -36,6 +36,20 @@ namespace NewsCollection
             InitializeComponent();
             //button7.Top = panel1.Bottom + 20;
             //button8.Top = panel1.Bottom + 20;
+            InitUserManager();
+        }
+
+        private void InitUserManager()
+        {
+            if (dataManager.CurrentUserName != null){
+                userManager.Text = dataManager.CurrentUserName;
+                userManager.ToolTipText = dataManager.CurrentUserName+"已登录";
+            }
+            else
+            {
+                userManager.Text = "登录";
+                userManager.ToolTipText = "点击进行登录";
+            }
         }
 
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
@@ -72,29 +86,7 @@ namespace NewsCollection
                 treeView1.ContextMenuStrip = websiteBlank;
                 WebsiteOpeartion websiteOpeartion = new WebsiteOpeartion();
                 websiteOpeartion.refresh(treeView1);
-                //treeView1.Nodes.Clear();
-                //DataTable dt1 = dataManager.getWebsiteGroup();
-                //for(int i=0; i < dt1.Rows.Count; i++)
-                //{
-                //    TreeNode tn = treeView1.Nodes.Add(dt1.Rows[i]["title"] as String);
-                //    DataTable dt2=dataManager.getWebsiteInGroup(dt1.Rows[i]["title"] as String);
-                //    for(int j = 0; j < dt2.Rows.Count; i++)
-                //    {
-                //        TreeNode ntn = new TreeNode(dt2.Rows[i]["title"] as String);
-                //        tn.Nodes.Add(ntn);
-                //    }
-                //}
-                ////四种新闻类型
-                //TreeNode tn1 = treeView1.Nodes.Add("通知公告");
-                //TreeNode tn2 = treeView1.Nodes.Add("新闻资讯");
-                //TreeNode tn3 = treeView1.Nodes.Add("行业动态");
-                //TreeNode tn4 = treeView1.Nodes.Add("法规政策");
-                //TreeNode tn5 = treeView1.Nodes.Add("图文消息");
-                ////
-                //TreeNode Ntn1 = new TreeNode("湖南计量院");
-                //TreeNode Ntn2 = new TreeNode("湖南质监局");
-                //tn1.Nodes.Add(Ntn1);
-                //tn1.Nodes.Add(Ntn2);
+              
 
             }
         }
@@ -465,8 +457,9 @@ namespace NewsCollection
                 next_input2.Text = "";
             }
         }
-
+        #region 数据导出
         //导出到数据库
+        
         private void button14_Click(object sender, EventArgs e)
         {
             //判断有无数据
@@ -484,24 +477,34 @@ namespace NewsCollection
             ExportDataBase1 exportDataBase1 = new ExportDataBase1();
             exportDataBase1.Show();
         }
-
-        private List<List<String>> outputDatas(DataGridView dataGridView)
+        public List<List<String>> outputDatas(DataGridView dataGridView)
         {
             int rowNum = dataGridView.Rows.Count;
             int colNum = dataGridView.Columns.Count;
             List<List<String>> tables = new List<List<string>>();
-            for(int i = 0; i < rowNum; i++)
+            for (int i = 0; i < rowNum; i++)
             {
                 List<String> row = new List<string>();
-                for(int j = 0; j < colNum; j++)
+                for (int j = 0; j < colNum; j++)
                 {
                     row.Add(dataGridView.Rows[i].Cells[j].Value as String);
                 }
                 tables.Add(row);
             }
-             return tables;
+            return tables;
         }
+        //导出TXT
+        ExportOperation exportOperation = new ExportOperation();
+        private void button12_Click(object sender, EventArgs e)
+        {
+            exportOperation.dataGridViewTOTxt(dataGridView2);
+        }
+        //导出到Excel
+        private void button13_Click(object sender, EventArgs e)
+        {
 
+        }
+        #endregion
         //网站右击
         private void websiteRightClick_Opening(object sender, CancelEventArgs e)
         {
@@ -669,7 +672,7 @@ namespace NewsCollection
         {
 
         }
-
+        //删除任务分组
         private void deleteTaskGroup_Click(object sender, EventArgs e)
         {
             //获取当前任务的参数内容
@@ -702,7 +705,7 @@ namespace NewsCollection
                 return;
             }
         }
-
+        //
         private void taskGroupRefresh_Click(object sender, EventArgs e)
         {
 
@@ -712,7 +715,7 @@ namespace NewsCollection
         {
             new TaskOperation().refresh(treeView1);
         }
-
+        //空白处创建任务分组
         private void createTaskgroup_Click(object sender, EventArgs e)
         {
             creatTaskGroup1_Click(sender, e);
@@ -723,7 +726,7 @@ namespace NewsCollection
             CurtainNodeText = treeView1.SelectedNode.Text;
             // _CurtainControl = taskGroup.SourceControl;
         }
-
+        //搜索框
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Control || e.KeyCode == Keys.Enter)
@@ -746,6 +749,43 @@ namespace NewsCollection
                 }
             }
             
+        }
+        //工具栏的创建人物分组
+        private void createTaskGroup1_Click(object sender, EventArgs e)
+        {
+            creatTaskGroup1_Click(sender, e);
+        }
+        #region 右上角的用户管理模块
+        //点击下拉框的弹出
+        private void exit_Click(object sender, EventArgs e)
+        {
+            dataManager.CurrentUserName = null;//解除用户绑定
+            //userManager.Text = "登录";
+            //userManager.ToolTipText = "点击进行登录";
+            InitUserManager();
+        }
+
+        //点击标题
+        private void userManager_ButtonClick(object sender, EventArgs e)
+        {
+            String curtaInuserStatus = userManager.Text;
+            if (curtaInuserStatus == "登录")
+            {
+                loginForm login = new loginForm();
+                login.Show();
+                InitUserManager();
+            }
+        }
+        #endregion
+        //tabpage2上新建一个分组
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            creatTaskGroup1_Click(sender, e);
+        }
+
+        private void userSetting_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

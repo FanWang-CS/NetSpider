@@ -84,6 +84,8 @@
     <Compile Include="Helper\WebBrowserHelper.cs" />
     <Compile Include="Model\ClassInnerTextNodeFilter.cs" />
     <Compile Include="Model\OrNodeFilter.cs" />
+    <Compile Include="Operation\adminFormOperation.cs" />
+    <Compile Include="Operation\ExportOperation.cs" />
     <Compile Include="Operation\TaskOperation.cs" />
     <Compile Include="Operation\WebsiteOpeartion.cs" />
     <Compile Include="TaskGroup.cs">
@@ -135,6 +137,9 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="adminForm.resx">
+      <DependentUpon>adminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExportDataBase1.resx">
       <DependentUpon>ExportDataBase1.cs</DependentUpon>
     </EmbeddedResource>
