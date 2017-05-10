@@ -256,7 +256,7 @@ namespace NewsCollection
                         String groupname = taskgroupview.Text.ToString();
                         if (String.IsNullOrEmpty(taskname))
                         {
-                            MessageBox.Show("请选择任务分组");
+                            MessageBox.Show("任务名不能为空");
                             return;
                         }
                         if (String.IsNullOrEmpty(groupname))
