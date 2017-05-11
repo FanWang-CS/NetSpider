@@ -198,7 +198,7 @@ namespace NewsCollection.Model
                     {
                         columnsCounts.Add(column.Count);
                     }
-                    int maxPoint = columnsCounts.Min();  //最短列
+                    int maxPoint = columnsCounts.Min();  //最短列,保证表格对齐
                     for(int i = 0; i < maxPoint; i++)
                     {
                         List<String> row = new List<string>();
@@ -223,8 +223,6 @@ namespace NewsCollection.Model
                             newUrl = neturl + newUrl.Substring(newUrl.IndexOf("?"));
                         }
                         Console.WriteLine("新网址为：" + newUrl);
-                        //webLoader.Url = new Uri(newUrl);
-                        //webLoader.Refresh();
                         webLoader.Navigate(newUrl);
                     }
                     else

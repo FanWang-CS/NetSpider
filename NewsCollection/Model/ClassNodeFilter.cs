@@ -28,7 +28,6 @@ namespace NewsCollection.Model
             if (node != null && node is ITag)
             {
                 ITag tag = node as ITag;
-                Console.WriteLine("ITag.Name = " + tag.TagName);
                 String getClassName = tag.GetAttribute("class");
                 if (tag.TagName.Equals(TagName) && getClassName != null && getClassName.Equals(ClassName))
                 {

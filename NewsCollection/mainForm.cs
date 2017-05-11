@@ -41,9 +41,9 @@ namespace NewsCollection
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            //this.Hide();
-            //loginForm loginForm = new loginForm(this);
-            //loginForm.Show();
+            this.Hide();
+            loginForm loginForm = new loginForm(this);
+            loginForm.Show();
         }
 
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
