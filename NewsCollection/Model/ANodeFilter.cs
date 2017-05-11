@@ -21,9 +21,13 @@ namespace NewsCollection.Model
             if(node != null && node is ITag)
             {
                 ITag linkTag = node as ITag;
-                if(linkTag.TagName.Equals("A") && linkTag.GetAttribute("href") != null && linkTag.GetAttribute("href").StartsWith(hrefPrefix))
+                if(linkTag.TagName.Equals("A") && linkTag.GetAttribute("href") != null)
                 {
-                    return true;
+                    String linkStr = linkTag.GetAttribute("href");
+                    if(!linkStr.Contains("?") && linkStr.StartsWith(hrefPrefix))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

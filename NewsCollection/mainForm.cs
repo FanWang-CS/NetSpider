@@ -349,6 +349,8 @@ namespace NewsCollection
         private void webview_NewWindow(object sender, CancelEventArgs e)
         {
            e.Cancel = true;
+            String netUrl = neturlview.Text.ToString();
+            webview.Navigate(netUrl);
         }
 
         private Boolean isMakeRule = false;
@@ -356,8 +358,7 @@ namespace NewsCollection
         //选择WebView节点时
         private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
         {
-            String netUrl = neturlview.Text.ToString();
-            webview.Navigate(netUrl);
+           
             if (webview.Document != null)
             {
                 //获取点击的结点
@@ -413,13 +414,15 @@ namespace NewsCollection
                         this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
                         //扒取： 获取节点特征
                         String className = elem.GetAttribute("className");
-                        ClassNodeFilter filter = new ClassNodeFilter(className);
+                        ClassNodeFilter filter = new ClassNodeFilter(elem.TagName,className);
                         task.addInfoNodeFilter(filter);
                         task.addKeyWord("标题");
                         task.addKeyWord("");
                     }               
                 }
             }
+            String netUrl = neturlview.Text.ToString();
+            webview.Navigate(netUrl);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

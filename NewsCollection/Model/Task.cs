@@ -183,6 +183,7 @@ namespace NewsCollection.Model
                             for (int j = 0; j < nodeCount; j++)
                             {
                                 textinfo.Add(nodeList.ElementAt(j).FirstChild.GetText());
+                                Console.WriteLine(nodeList.ElementAt(j).FirstChild.GetText());
                             }
                             table.Add(textinfo);
                         }
@@ -197,7 +198,7 @@ namespace NewsCollection.Model
                     {
                         columnsCounts.Add(column.Count);
                     }
-                    int maxPoint = columnsCounts.Max();  //最短列
+                    int maxPoint = columnsCounts.Min();  //最短列
                     for(int i = 0; i < maxPoint; i++)
                     {
                         List<String> row = new List<string>();
