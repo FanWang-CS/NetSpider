@@ -1,4 +1,5 @@
-﻿using NewsCollection.Dao;
+﻿using Microsoft.VisualBasic;
+using NewsCollection.Dao;
 using NewsCollection.Helper;
 using NewsCollection.Model;
 using NewsCollection.Operation;
@@ -40,9 +41,9 @@ namespace NewsCollection
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            this.Hide();
-            loginForm loginForm = new loginForm(this);
-            loginForm.Show();
+            //this.Hide();
+            //loginForm loginForm = new loginForm(this);
+            //loginForm.Show();
         }
 
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
@@ -338,53 +339,85 @@ namespace NewsCollection
             }
         }
 
+        //防止弹出弹窗
         private void webview_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
             WebBrowserHelper.InjectAlertBlocker(webview);
         }
 
+        //防止弹出新窗口
+        private void webview_NewWindow(object sender, CancelEventArgs e)
+        {
+           e.Cancel = true;
+        }
+
+        private Boolean isMakeRule = false;
+        private String firstHrefStr = "";
+        //选择WebView节点时
         private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
         {
-           
-           String netUrl = neturlview.Text.ToString();
-            //webview.Url = new Uri(netUrl);
-            //webview.Refresh();
+            String netUrl = neturlview.Text.ToString();
             webview.Navigate(netUrl);
             if (webview.Document != null)
             {
+                //获取点击的结点
                 HtmlElement elem = webview.Document.GetElementFromPoint(e.ClientMousePosition);
-
                 if (isSelectingNextPage)
                 {
-                    //选择结点
+                    //生成下一个过滤器
                     task.NextPagerFilter = new ClassInnerTextNodeFilter(elem.TagName, elem.InnerText);
                     next_input1.Text = "识别标签：" + elem.TagName;
                     next_input2.Text = "识别文本：" + elem.InnerText;
                     isSelectingNextPage = false;
                 }
                 else
-                {
-                    while (String.IsNullOrEmpty(elem.GetAttribute("className")))
+                {   //  生成数据扒取过滤器
+                    //  如果是选择<A>
+                    if (elem.TagName.Equals("A"))
                     {
-                        elem = elem.Parent;
-                        if (elem == null)
+                        if (isMakeRule)
                         {
-                            return;
+                            String nextHrefStr = elem.GetAttribute("href");
+                            String regexStr = StringHelper.getIdentical_Prefix(firstHrefStr,nextHrefStr);
+                            if (String.IsNullOrEmpty(regexStr))
+                            {
+                                isMakeRule = false;
+                                MessageBox.Show("不能生成识别规则，请重新尝试！","提示");
+                                return;
+                            }
+                            //弹出修改框 允许修改
+                            String regexChangeStr = regexStr;
+                            regexChangeStr = Interaction.InputBox("提示", "自动生成的规则前缀", regexStr, -1,-1);
+                            //展示： 添加一行数据
+                            int t = this.dataGridView1.Rows.Add();
+                            this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
+                            //扒取： 获取节点特征
+                            ANodeFilter aNodeFilter = new ANodeFilter(regexChangeStr);
+                            task.addInfoNodeFilter(aNodeFilter);
+                            task.addKeyWord("标题");
+                            task.addKeyWord("url");
+                            isMakeRule = false;
                         }
+                        else
+                        {
+                            firstHrefStr = elem.GetAttribute("href");
+                            MessageBox.Show("请再选择一个链接标签，来生成识别规则！", "提示");
+                            isMakeRule = true;
+                        }  
                     }
-                    elem.ScrollIntoView(true);
-                    //展示： 添加一行数据
-                    int t = this.dataGridView1.Rows.Add();
-                    this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
-
-                    //扒取： 获取节点特征
-                    String className = elem.GetAttribute("className");
-                    ClassNodeFilter filter = new ClassNodeFilter(className);
-
-                    Console.WriteLine("节点属性" + className);
-
-                    task.addInfoNodeFilter(filter);
-                    task.addKeyWord("标题");
+                    //非A标签
+                    else
+                    {
+                        //展示： 添加一行数据
+                        int t = this.dataGridView1.Rows.Add();
+                        this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
+                        //扒取： 获取节点特征
+                        String className = elem.GetAttribute("className");
+                        ClassNodeFilter filter = new ClassNodeFilter(className);
+                        task.addInfoNodeFilter(filter);
+                        task.addKeyWord("标题");
+                        task.addKeyWord("");
+                    }               
                 }
             }
         }
@@ -397,7 +430,8 @@ namespace NewsCollection
                 if (column is DataGridViewButtonColumn)
                 {
                     task.removeInfoNodeFilter(e.RowIndex);
-                    task.removeKeyWord(e.RowIndex);
+                    task.removeKeyWord(e.RowIndex * 2);
+                    task.removeKeyWord(e.RowIndex * 2 + 1);
                     this.dataGridView1.Rows.RemoveAt(e.RowIndex);//删除当前行
                 }
             }
@@ -448,7 +482,7 @@ namespace NewsCollection
         /// <param name="e"></param>
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            task.changeKeyWord(this.dataGridView1.CurrentRow.Index, ((ComboBox)sender).Text);
+            task.changeKeyWord(this.dataGridView1.CurrentRow.Index * 2, ((ComboBox)sender).Text);
         }
 
         private Boolean isSelectingNextPage = false;
@@ -456,7 +490,7 @@ namespace NewsCollection
         {
             if (neednextpageview.Checked)
             {
-                MessageBox.Show("请点击选择下一页标识");
+                MessageBox.Show("请点击选择下一页标识","提示");
                 isSelectingNextPage = true;
             }
             else
@@ -746,8 +780,7 @@ namespace NewsCollection
                 {
                     //TODO
                 }
-            }
-            
+            }     
         }
     }
 }

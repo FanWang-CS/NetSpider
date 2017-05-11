@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.新建任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -311,6 +311,7 @@
             this.webview.Visible = false;
             this.webview.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webview_DocumentCompleted);
             this.webview.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webview_Navigated);
+            this.webview.NewWindow += new System.ComponentModel.CancelEventHandler(this.webview_NewWindow);
             // 
             // tabControl2
             // 
@@ -471,8 +472,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle5.NullValue = "InnerText";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.NullValue = "InnerText";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column4.HeaderText = "提取数据类型";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -481,9 +482,9 @@
             // 
             // Column
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column.HeaderText = "删除";
             this.Column.Name = "Column";
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
