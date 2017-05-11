@@ -34,13 +34,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.新建任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.新建任务分组ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createTask1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.createTaskGroup1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.操作向导ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripSplitButton();
-            this.用户设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userManager = new System.Windows.Forms.ToolStripSplitButton();
+            this.userSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.exit = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -122,6 +123,7 @@
             this.deleteTaskGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.taskGroupRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.taskRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.startTask = new System.Windows.Forms.ToolStripMenuItem();
             this.editTask = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteTask = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteGroupClick = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -183,7 +185,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSplitButton1,
             this.toolStripButton1,
-            this.toolStripButton2});
+            this.userManager});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1010, 25);
@@ -194,8 +196,8 @@
             // 
             this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新建任务ToolStripMenuItem,
-            this.新建任务分组ToolStripMenuItem});
+            this.createTask1,
+            this.createTaskGroup1});
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
@@ -203,17 +205,18 @@
             this.toolStripSplitButton1.Text = "新建";
             this.toolStripSplitButton1.ButtonClick += new System.EventHandler(this.toolStripSplitButton1_ButtonClick);
             // 
-            // 新建任务ToolStripMenuItem
+            // createTask1
             // 
-            this.新建任务ToolStripMenuItem.Name = "新建任务ToolStripMenuItem";
-            this.新建任务ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.新建任务ToolStripMenuItem.Text = "新建任务";
+            this.createTask1.Name = "createTask1";
+            this.createTask1.Size = new System.Drawing.Size(148, 22);
+            this.createTask1.Text = "新建任务";
             // 
-            // 新建任务分组ToolStripMenuItem
+            // createTaskGroup1
             // 
-            this.新建任务分组ToolStripMenuItem.Name = "新建任务分组ToolStripMenuItem";
-            this.新建任务分组ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.新建任务分组ToolStripMenuItem.Text = "新建任务分组";
+            this.createTaskGroup1.Name = "createTaskGroup1";
+            this.createTaskGroup1.Size = new System.Drawing.Size(148, 22);
+            this.createTaskGroup1.Text = "新建任务分组";
+            this.createTaskGroup1.Click += new System.EventHandler(this.createTaskGroup1_Click);
             // 
             // toolStripButton1
             // 
@@ -240,23 +243,34 @@
             this.操作向导ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.操作向导ToolStripMenuItem.Text = "操作向导";
             // 
-            // toolStripButton2
+            // userManager
             // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.用户设置ToolStripMenuItem});
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(60, 22);
-            this.toolStripButton2.Text = "用户名";
+            this.userManager.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.userManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.userManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userSetting,
+            this.exit});
+            this.userManager.Image = ((System.Drawing.Image)(resources.GetObject("userManager.Image")));
+            this.userManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.userManager.Name = "userManager";
+            this.userManager.Size = new System.Drawing.Size(60, 22);
+            this.userManager.Text = "用户名";
+            this.userManager.ToolTipText = "用户名";
+            this.userManager.ButtonClick += new System.EventHandler(this.userManager_ButtonClick);
             // 
-            // 用户设置ToolStripMenuItem
+            // userSetting
             // 
-            this.用户设置ToolStripMenuItem.Name = "用户设置ToolStripMenuItem";
-            this.用户设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.用户设置ToolStripMenuItem.Text = "用户设置";
+            this.userSetting.Name = "userSetting";
+            this.userSetting.Size = new System.Drawing.Size(124, 22);
+            this.userSetting.Text = "用户设置";
+            this.userSetting.Click += new System.EventHandler(this.userSetting_Click);
+            // 
+            // exit
+            // 
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(124, 22);
+            this.exit.Text = "退出登录";
+            this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // tabControl1
             // 
@@ -268,7 +282,7 @@
             this.tabControl1.Location = new System.Drawing.Point(193, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(835, 683);
+            this.tabControl1.Size = new System.Drawing.Size(835, 663);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -276,7 +290,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(827, 657);
+            this.tabPage1.Size = new System.Drawing.Size(827, 637);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "主页";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -296,7 +310,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(827, 657);
+            this.tabPage2.Size = new System.Drawing.Size(827, 637);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -361,6 +375,7 @@
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "新建一个任务分组";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3
             // 
@@ -708,6 +723,7 @@
             this.button12.Text = "导出到TXT";
             this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // groupBox15
             // 
@@ -732,6 +748,7 @@
             this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // groupBox16
             // 
@@ -816,7 +833,7 @@
             this.toolStripStatusLabel1,
             this.toolStripProgressBar1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 714);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 694);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1010, 22);
             this.statusStrip1.TabIndex = 3;
@@ -850,7 +867,7 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Location = new System.Drawing.Point(0, 291);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(190, 394);
+            this.groupBox1.Size = new System.Drawing.Size(190, 374);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
@@ -1154,11 +1171,18 @@
             // taskRightClick
             // 
             this.taskRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startTask,
             this.editTask,
             this.deleteTask});
             this.taskRightClick.Name = "contextMenuStrip3";
-            this.taskRightClick.Size = new System.Drawing.Size(125, 48);
+            this.taskRightClick.Size = new System.Drawing.Size(125, 70);
             this.taskRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.taskRightClick_Opening);
+            // 
+            // startTask
+            // 
+            this.startTask.Name = "startTask";
+            this.startTask.Size = new System.Drawing.Size(124, 22);
+            this.startTask.Text = "启动任务";
             // 
             // editTask
             // 
@@ -1279,7 +1303,7 @@
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(909, 717);
+            this.checkBox1.Location = new System.Drawing.Point(909, 697);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(72, 16);
             this.checkBox1.TabIndex = 7;
@@ -1291,7 +1315,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 736);
+            this.ClientSize = new System.Drawing.Size(1010, 716);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);
@@ -1301,7 +1325,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "计量资讯采集器";
-            this.Shown += new System.EventHandler(this.MainForm_Shown);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Resize += new System.EventHandler(this.mainForm_Resize);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -1356,13 +1380,13 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
-        private System.Windows.Forms.ToolStripMenuItem 新建任务ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 新建任务分组ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createTask1;
+        private System.Windows.Forms.ToolStripMenuItem createTaskGroup1;
         private System.Windows.Forms.ToolStripSplitButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 操作向导ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSplitButton toolStripButton2;
-        private System.Windows.Forms.ToolStripMenuItem 用户设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSplitButton userManager;
+        private System.Windows.Forms.ToolStripMenuItem userSetting;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -1461,5 +1485,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewButtonColumn Column;
         private System.Windows.Forms.ToolStripMenuItem creatWebsite;
+        private System.Windows.Forms.ToolStripMenuItem exit;
+        private System.Windows.Forms.ToolStripMenuItem startTask;
     }
 }

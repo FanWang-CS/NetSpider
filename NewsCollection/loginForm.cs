@@ -17,9 +17,9 @@ namespace NewsCollection
         private Form mainForm;
         private Boolean isLoginSuccess = false;
 
-        public loginForm(Form rForm)
+        public loginForm()
         {
-            mainForm = rForm;
+            
             InitializeComponent();
         }
 
@@ -33,7 +33,6 @@ namespace NewsCollection
         private void button1_Click(object sender, EventArgs e)
         {
             DataBaseManager dataBaseManager = DataBaseManager.getInstance();
-            //LoginDao loginDao = new LoginDao();
             String usertype = (String)comboBox1.SelectedItem;
             String username = textBox1.Text;
             String password = textBox2.Text;
@@ -45,7 +44,7 @@ namespace NewsCollection
                 // 将得到的字符串使用十六进制类型格式。格式后的字符是小写的字母，如果使用大写（X）则格式后的字符是大写字符   
                 password = password + s[i].ToString("x");
             }
-            DataTable dt = dataBaseManager.login(username, password);
+            DataTable dt = dataBaseManager.login(username, password, usertype);
             if (dt.Rows.Count < 1)
             {
                 MessageBox.Show("用户名或密码错误，请检查输入内容","提示");
@@ -57,9 +56,19 @@ namespace NewsCollection
                 if (checkstatus == 1)
                 {
                     isLoginSuccess = true;
-                    this.Close();
+                    //this.Close();
                     dataBaseManager.CurrentUserName = username; //绑定当前用户，保证全局可获取
-                    mainForm.Show();
+                    if (usertype == "管理员")
+                    {
+                        adminForm adminForm = new adminForm(this);
+                        adminForm.Show();
+                    }
+                    else
+                    {
+                        MainForm mainForm = new MainForm(this);
+                        mainForm.Show();
+                    }
+                    
                 }
                 else
                 {

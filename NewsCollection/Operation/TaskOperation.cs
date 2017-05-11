@@ -20,10 +20,10 @@ namespace NewsCollection.Operation
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 TreeNode tn = treeView1.Nodes.Add(dt1.Rows[i]["title"] as String);
-                DataTable dt2 = dataManager.getTaskInGroup(dt1.Rows[i]["title"] as String);
+                DataTable dt2 = dataManager.getTaskInGroup(dt1.Rows[i].ItemArray[0] as String);
                 for (int j = 0; j < dt2.Rows.Count; j++)
                 {
-                    TreeNode ntn = new TreeNode(dt2.Rows[j]["title"] as String);
+                    TreeNode ntn = new TreeNode(dt2.Rows[j]["name"] as String);
                     tn.Nodes.Add(ntn);
                 }
             }

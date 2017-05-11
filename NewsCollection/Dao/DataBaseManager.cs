@@ -14,6 +14,7 @@ namespace NewsCollection.Dao
     /// </summary>
     class DataBaseManager
     {
+        #region 单例模式实例化对象
         private MySqlConnection connection;
         //单例 保证内存唯一
         private DataBaseManager()
@@ -36,11 +37,12 @@ namespace NewsCollection.Dao
             }
             return mInstance;
         }
+#endregion
 
         //绑定当前的用户名
         private String currentUserName;
         public string CurrentUserName { get => currentUserName; set => currentUserName = value; }
-
+        #region 通用数据库操作（增删改查）
         /// <summary>
         /// 查询数据
         /// </summary>
@@ -63,7 +65,7 @@ namespace NewsCollection.Dao
                 return dataTable;
             }
         }
-        //更新数据：插入和更新（更新有待考证）
+        //更新数据：插入和更新
         internal Boolean changeDataWithoutReturn(String sql)
         {
             try
@@ -81,17 +83,19 @@ namespace NewsCollection.Dao
                 return false;
             }
         }
-
+        #endregion
+        #region 用户登录
         /// <summary>
         /// 用户登录
         /// </summary>
         /// <returns></returns>
-        public DataTable login(String username, String password)
+        public DataTable login(String username, String password, String usertype)
         {
-            String sql = "SELECT checkstatus FROM `user`  WHERE username='" + username + "' AND `password`='" + password + "'";
+            String sql = "SELECT checkstatus FROM `user`  WHERE username='" + username + "' AND `password`='" + password + "' AND `usertype`='" + usertype+ "'";
             return getData(sql);
         }
-
+#endregion
+        #region 注册
         /// <summary>
         /// 判断是否允许注册
         /// </summary>
@@ -115,13 +119,14 @@ namespace NewsCollection.Dao
             int num = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
             return num == 0;
         }
-
+        //注册
         public Boolean regeistUser(String Username, String Usertype, String Email, String pwd)
         {
             String InsertSql = "INSERT INTO USER(id,username,usertype,email,`password`,checkstatus) VALUES(REPLACE(UUID(),'-',''),'" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "',0)";
             return changeDataWithoutReturn(InsertSql);
         }
-
+        #endregion
+        #region 导入到数据库
         /// <summary>
         /// 获取某用户的所有数据库配置信息
         /// </summary>
@@ -130,7 +135,8 @@ namespace NewsCollection.Dao
             String sql = "select configname,ip, port,dbname from OuterConfig where username = " + currentUserName;
             return getData(sql);
         }
-
+#endregion
+        #region 网站及任务分组数据库操作
         /// <summary>
         /// 保存配置
         /// </summary>
@@ -217,7 +223,8 @@ namespace NewsCollection.Dao
             else
                 return false;
         }
-
+        #endregion
+        #region 任务分组组数据库操作
         /// <summary>
         /// 任务组数据库操作
         /// </summary>
@@ -225,14 +232,15 @@ namespace NewsCollection.Dao
         //获取任务分组
         public DataTable getTaskGroup()
         {
-            String sql = "SELECT title FROM `taskgroup`";
+            String sql = "SELECT * FROM taskgroup AS a LEFT JOIN  USER AS b  ON a.owner=b.id WHERE username='"+currentUserName+"'";
             DataTable dt = getData(sql);
             return dt;
         }
         //获取任务组里面网站
-        public DataTable getTaskInGroup(String group)
+        public DataTable getTaskInGroup(String groupid)
         {
-            String sql = "SELECT a.title AS title FROM task AS a,taskgroup AS b WHERE a.groupid=b.id AND b.title = '" + group + "'";
+            String sql = "SELECT * FROM task AS c LEFT JOIN taskgroup AS a ON c.groupid = a.id " +
+                          "WHERE groupid = '"+ groupid + "'";
             DataTable dt = getData(sql);
             return dt;
         }
@@ -260,6 +268,7 @@ namespace NewsCollection.Dao
             String sql = "DELETE form taskgroup WHERE id='" + groupID + "'";
             return changeDataWithoutReturn(sql);
         }
+#endregion
 
         /// <summary>
         /// 存入任务
@@ -295,6 +304,55 @@ namespace NewsCollection.Dao
             String sql = "SELECT groupid,b.title AS groupname ,a.title AS website " +
                 "FROM website AS a LEFT JOIN webgroup AS b ON a.groupid=b.id " +
                 "WHERE a.title LIKE '%"+keyword+"%' OR b.title LIKE '%"+keyword+"%' ORDER BY groupid";
+            return getData(sql);
+        }
+        /// <summary>
+        /// adminForm 界面操作
+        /// </summary>
+        /// 
+        //获取总的条目数
+        public int getTotalNum(String tableame)
+        {
+            int totalNum = 0;
+            String sql = "select count(*) as number from " + tableame;
+            DataTable dt = getData(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                //totalNum = Convert.ToInt32(getData(sql).Rows[0]["number"] as String);
+                totalNum = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
+            }
+            return totalNum;
+        }
+        //获取当前需要的记录,总记录处
+        public DataTable getDataResult(String tableName,int pageIndex,int pageSize)
+        {
+            int start = (pageIndex - 1) * pageSize;
+            String sql = "SELECT * FROM " + tableName + " LIMIT " + start + "," + pageSize;
+            return getData(sql);
+        }
+        //获取分类显示处有几个类
+        public DataTable getClassifyType(String tableName,String ClassifyField)
+        {
+            String sql = "SELECT DISTINCT IFNULL("+ ClassifyField + ",'null') AS "+ ClassifyField + " FROM " + tableName;
+            return getData(sql);
+        }
+        //获取分类显示处的数据
+        public DataTable getClassifyResult(String tableName,String condition,String conditionValue)
+        {
+            String sql = "SELECT * FROM " + tableName;
+            String where = "";
+            if (condition!=null&&(!condition.Trim().Equals(""))&& conditionValue != null && (!conditionValue.Trim().Equals("")))
+            {
+                where = " WHERE " + condition + " ='" + conditionValue + "'";
+            }
+            sql += where;
+            return getData(sql);
+        }
+        //获取状态
+        public DataTable getStatus(String tableName)
+        {
+            String sql = "SELECT DISTINCT checkstatus, CASE WHEN checkstatus ='-1' THEN '审核未通过' " +
+                         "WHEN checkstatus = '1' THEN '审核通过' ELSE '未审核' END `Status` FROM " + tableName;
             return getData(sql);
         }
 
