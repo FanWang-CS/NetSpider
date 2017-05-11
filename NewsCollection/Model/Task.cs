@@ -141,8 +141,6 @@ namespace NewsCollection.Model
                     }
                 }
             }
-            // webLoader.Url = new Uri(neturl);
-            //webLoader.Refresh();
             webLoader.Navigate(neturl);
         }
 
@@ -154,13 +152,15 @@ namespace NewsCollection.Model
             if (!String.IsNullOrEmpty(webLoader.DocumentText))
             {
                 int filterCount = infoNodeFilters.Count;
+                Console.WriteLine("开始扒取内容,fliter = " + filterCount);
                 List<List<String>> table = new List<List<string>>();
                 for(int i = 0; i < filterCount; i++)
                 {
                     NodeFilter filter = infoNodeFilters.ElementAt(i);
                     htmlParser.InputHTML = webLoader.DocumentText;
                     NodeList nodeList = htmlParser.Parse(filter);
-                    if(nodeList != null && nodeList.Count > 0)
+                    Console.WriteLine("符合要求的节点数：" + nodeList.Count);
+                    if (nodeList != null && nodeList.Count > 0)
                     {
                         int nodeCount = nodeList.Count;
                         if(filter is ANodeFilter)
@@ -169,9 +169,10 @@ namespace NewsCollection.Model
                             List<String> linkinfo = new List<String>();
                             for(int j = 0; j < nodeCount; j++)
                             {
-                                LinkTag linkTag = nodeList.ElementAt(j) as LinkTag;
+                                ITag linkTag = nodeList.ElementAt(j) as ITag;
                                 textinfo.Add(linkTag.FirstChild.GetText());
-                                linkinfo.Add(linkTag.Link);
+                                linkinfo.Add(linkTag.GetAttribute("href"));
+                                Console.WriteLine(linkTag.FirstChild.GetText() + "--->" + linkTag.GetAttribute("href"));
                             }
                             table.Add(textinfo);
                             table.Add(linkinfo);
@@ -185,7 +186,6 @@ namespace NewsCollection.Model
                             }
                             table.Add(textinfo);
                         }
-
                     }
                 }
                 int tableCount = table.Count;
@@ -208,25 +208,6 @@ namespace NewsCollection.Model
                         showDataGridView.Rows.Add(row.ToArray());
                     }
                 }
-
-                //int keywordCount = showDataGridView.Columns.Count;
-                //htmlParser.InputHTML = webLoader.DocumentText;
-                //NodeList nodes = htmlParser.Parse(orFilter);
-                //if (nodes != null && nodes.Size() > 0)
-                //{
-
-                //    int pairs = nodes.Size() / keywordCount;
-                //    for (int i = 0; i < pairs; i++)
-                //    {
-                //        List<String> values = new List<string>();
-                //        for (int j = 0; j < keywordCount; j++)
-                //        {
-                //            values.Add(nodes[i * keywordCount + j].FirstChild.GetText());
-                //            Console.WriteLine("获取到的内容：" + nodes[i * keywordCount + j].FirstChild.GetText());
-                //        }
-                //        showDataGridView.Rows.Add(values.ToArray());
-                //    }
-                //}
                 //获取下一页的网址
                 if(nextPagerFilter != null){
                     htmlParser.InputHTML = webLoader.DocumentText;

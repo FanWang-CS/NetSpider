@@ -18,10 +18,10 @@ namespace NewsCollection.Model
 
         public bool Accept(INode node)
         {
-            if(node != null && node is LinkTag)
+            if(node != null && node is ITag)
             {
-               LinkTag linkTag = node as LinkTag;
-                if (linkTag.Link != null && linkTag.Link.StartsWith(hrefPrefix))
+                ITag linkTag = node as ITag;
+                if(linkTag.TagName.Equals("A") && linkTag.GetAttribute("href") != null && linkTag.GetAttribute("href").StartsWith(hrefPrefix))
                 {
                     return true;
                 }

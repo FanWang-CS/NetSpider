@@ -385,13 +385,13 @@ namespace NewsCollection
                                 MessageBox.Show("不能生成识别规则，请重新尝试！","提示");
                                 return;
                             }
-                            //弹出修改框 允许修改
-                            String regexChangeStr = regexStr;
-                            regexChangeStr = Interaction.InputBox("提示", "自动生成的规则前缀", regexStr, -1,-1);
+                           
                             //展示： 添加一行数据
                             int t = this.dataGridView1.Rows.Add();
                             this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
                             //扒取： 获取节点特征
+                            String regexChangeStr = regexStr;   //弹出修改框 允许修改
+                            regexChangeStr = Interaction.InputBox("自动生成的规则前缀", "提示", regexStr, -1, -1);
                             ANodeFilter aNodeFilter = new ANodeFilter(regexChangeStr);
                             task.addInfoNodeFilter(aNodeFilter);
                             task.addKeyWord("标题");
