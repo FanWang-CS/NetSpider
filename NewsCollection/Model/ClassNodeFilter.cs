@@ -12,21 +12,24 @@ namespace NewsCollection.Model
     /// </summary>
     class ClassNodeFilter : NodeFilter
     {
+        private String tagName;
         private String className;
-        public ClassNodeFilter(String classname)
+        public ClassNodeFilter(String tagname , String classname)
         {
+            this.TagName = tagname;
             this.ClassName = classname;
         }
 
         public string ClassName { get => className; set => className = value; }
+        public string TagName { get => tagName; set => tagName = value; }
 
         public bool Accept(INode node)
         {
-            if (node is ITag)
+            if (node != null && node is ITag)
             {
                 ITag tag = node as ITag;
                 String getClassName = tag.GetAttribute("class");
-                if (getClassName != null && getClassName.Equals(ClassName))
+                if (tag.TagName.Equals(TagName) && getClassName != null && getClassName.Equals(ClassName))
                 {
                     return true;
                 }

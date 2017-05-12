@@ -30,7 +30,7 @@ namespace NewsCollection
 
         private void ClearText()
         {
-            comboBox1.SelectedIndex = -1;
+            
             textBox2.Text = "";
             textBox3.Text = "";
             textBox4.Text = "";
@@ -44,7 +44,7 @@ namespace NewsCollection
         {
             DataBaseManager dataManager = DataBaseManager.getInstance();
             //RegisterDao registerDao = new RegisterDao();
-            String Usertype = (String)comboBox1.SelectedItem;
+            String Usertype = textBox1.Text;
             String Username = textBox2.Text;
             String Email = textBox5.Text;
             String Password = textBox3.Text;

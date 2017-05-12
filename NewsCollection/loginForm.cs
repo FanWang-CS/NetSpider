@@ -13,8 +13,7 @@ using System.Windows.Forms;
 namespace NewsCollection
 {
     public partial class loginForm : Form
-    {
-        private Form mainForm;
+    {        
         private Boolean isLoginSuccess = false;
 
         public loginForm()
@@ -61,11 +60,14 @@ namespace NewsCollection
                     dataBaseManager.CurrentUserType = usertype; //绑定当前用户，保证全局可获取
                     if (usertype == "管理员")
                     {
+                        this.Hide();
                         adminForm adminForm = new adminForm(this);
                         adminForm.Show();
+                        
                     }
                     else
                     {
+                        this.Hide();
                         MainForm mainForm = new MainForm(this);
                         mainForm.Show();
                     }
@@ -86,12 +88,6 @@ namespace NewsCollection
             textBox2.Text = "";
         }
 
-        private void loginForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (!isLoginSuccess)
-            {
-                mainForm.Close();
-            }
-        }
+       
     }
 }

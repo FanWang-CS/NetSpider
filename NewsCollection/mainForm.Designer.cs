@@ -29,10 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.createTask1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.createTaskGroup1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.操作向导ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userManager = new System.Windows.Forms.ToolStripSplitButton();
+            this.userSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.exit = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -61,16 +70,25 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.button11 = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.button12 = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.button13 = new System.Windows.Forms.Button();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.button14 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.tasknameview = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -79,15 +97,22 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.websiteRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.createwebsite1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editWebsite = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteWebsite = new System.Windows.Forms.ToolStripMenuItem();
             this.taskGroupClick = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -115,31 +140,6 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.createTask1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.createTaskGroup1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.操作向导ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userManager = new System.Windows.Forms.ToolStripSplitButton();
-            this.userSetting = new System.Windows.Forms.ToolStripMenuItem();
-            this.exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.createwebsite1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -161,6 +161,7 @@
             this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -176,7 +177,6 @@
             this.websiteGroupClick.SuspendLayout();
             this.websiteBlank.SuspendLayout();
             this.taskBlank.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -190,6 +190,86 @@
             this.toolStrip1.Size = new System.Drawing.Size(1010, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createTask1,
+            this.createTaskGroup1});
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(48, 22);
+            this.toolStripSplitButton1.Text = "新建";
+            this.toolStripSplitButton1.ButtonClick += new System.EventHandler(this.toolStripSplitButton1_ButtonClick);
+            // 
+            // createTask1
+            // 
+            this.createTask1.Name = "createTask1";
+            this.createTask1.Size = new System.Drawing.Size(148, 22);
+            this.createTask1.Text = "新建任务";
+            // 
+            // createTaskGroup1
+            // 
+            this.createTaskGroup1.Name = "createTaskGroup1";
+            this.createTaskGroup1.Size = new System.Drawing.Size(148, 22);
+            this.createTaskGroup1.Text = "新建任务分组";
+            this.createTaskGroup1.Click += new System.EventHandler(this.createTaskGroup1_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.关于ToolStripMenuItem,
+            this.操作向导ToolStripMenuItem});
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(48, 22);
+            this.toolStripButton1.Text = "帮助";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // 关于ToolStripMenuItem
+            // 
+            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.关于ToolStripMenuItem.Text = "关于";
+            // 
+            // 操作向导ToolStripMenuItem
+            // 
+            this.操作向导ToolStripMenuItem.Name = "操作向导ToolStripMenuItem";
+            this.操作向导ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.操作向导ToolStripMenuItem.Text = "操作向导";
+            // 
+            // userManager
+            // 
+            this.userManager.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.userManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.userManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userSetting,
+            this.exit});
+            this.userManager.Image = ((System.Drawing.Image)(resources.GetObject("userManager.Image")));
+            this.userManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.userManager.Name = "userManager";
+            this.userManager.Size = new System.Drawing.Size(60, 22);
+            this.userManager.Text = "用户名";
+            this.userManager.ToolTipText = "用户名";
+            this.userManager.ButtonClick += new System.EventHandler(this.userManager_ButtonClick);
+            // 
+            // userSetting
+            // 
+            this.userSetting.Name = "userSetting";
+            this.userSetting.Size = new System.Drawing.Size(124, 22);
+            this.userSetting.Text = "用户设置";
+            this.userSetting.Click += new System.EventHandler(this.userSetting_Click);
+            // 
+            // exit
+            // 
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(124, 22);
+            this.exit.Text = "退出登录";
+            this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // tabControl1
             // 
@@ -244,6 +324,7 @@
             this.webview.Visible = false;
             this.webview.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webview_DocumentCompleted);
             this.webview.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webview_Navigated);
+            this.webview.NewWindow += new System.ComponentModel.CancelEventHandler(this.webview_NewWindow);
             // 
             // tabControl2
             // 
@@ -405,8 +486,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle7.NullValue = "InnerText";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.NullValue = "InnerText";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column4.HeaderText = "提取数据类型";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -415,9 +496,9 @@
             // 
             // Column
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column.HeaderText = "删除";
             this.Column.Name = "Column";
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -500,6 +581,21 @@
             this.groupBox12.TabIndex = 2;
             this.groupBox12.TabStop = false;
             // 
+            // button11
+            // 
+            this.button11.FlatAppearance.BorderSize = 0;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Image = global::NewsCollection.Properties.Resources.图标1;
+            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button11.Location = new System.Drawing.Point(12, 17);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(563, 28);
+            this.button11.TabIndex = 0;
+            this.button11.Text = "启动云采集（定时执行）";
+            this.button11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.button10);
@@ -509,6 +605,22 @@
             this.groupBox11.TabIndex = 1;
             this.groupBox11.TabStop = false;
             // 
+            // button10
+            // 
+            this.button10.FlatAppearance.BorderSize = 0;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Image = global::NewsCollection.Properties.Resources.图标1;
+            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button10.Location = new System.Drawing.Point(12, 17);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(563, 28);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "启动云采集（立即执行一次）";
+            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.button9);
@@ -517,6 +629,22 @@
             this.groupBox10.Size = new System.Drawing.Size(581, 51);
             this.groupBox10.TabIndex = 0;
             this.groupBox10.TabStop = false;
+            // 
+            // button9
+            // 
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Image = global::NewsCollection.Properties.Resources.图标1;
+            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button9.Location = new System.Drawing.Point(12, 17);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(563, 28);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "启动单机采集";
+            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // tabPage7
             // 
@@ -581,6 +709,21 @@
             this.groupBox14.TabIndex = 2;
             this.groupBox14.TabStop = false;
             // 
+            // button12
+            // 
+            this.button12.FlatAppearance.BorderSize = 0;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Image = global::NewsCollection.Properties.Resources.图标1;
+            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button12.Location = new System.Drawing.Point(12, 17);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(563, 28);
+            this.button12.TabIndex = 0;
+            this.button12.Text = "导出到TXT";
+            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.button13);
@@ -590,6 +733,22 @@
             this.groupBox15.TabIndex = 1;
             this.groupBox15.TabStop = false;
             // 
+            // button13
+            // 
+            this.button13.FlatAppearance.BorderSize = 0;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Image = global::NewsCollection.Properties.Resources.图标1;
+            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button13.Location = new System.Drawing.Point(12, 17);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(563, 28);
+            this.button13.TabIndex = 0;
+            this.button13.Text = "导出到EXCEL";
+            this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // groupBox16
             // 
             this.groupBox16.Controls.Add(this.button14);
@@ -598,6 +757,57 @@
             this.groupBox16.Size = new System.Drawing.Size(581, 51);
             this.groupBox16.TabIndex = 0;
             this.groupBox16.TabStop = false;
+            // 
+            // button14
+            // 
+            this.button14.FlatAppearance.BorderSize = 0;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button14.Image = global::NewsCollection.Properties.Resources.图标1;
+            this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button14.Location = new System.Drawing.Point(12, 17);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(563, 28);
+            this.button14.TabIndex = 0;
+            this.button14.Text = "导出到数据库";
+            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(14, 71);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(798, 35);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button8
+            // 
+            this.button8.Image = global::NewsCollection.Properties.Resources.down;
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button8.Location = new System.Drawing.Point(667, 223);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(96, 35);
+            this.button8.TabIndex = 8;
+            this.button8.Text = "下一步";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.Image = global::NewsCollection.Properties.Resources.up;
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button7.Location = new System.Drawing.Point(667, 147);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(96, 35);
+            this.button7.TabIndex = 7;
+            this.button7.Text = "上一步";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // tasknameview
             // 
@@ -671,6 +881,24 @@
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Control;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(10, 12);
+            this.button2.Name = "button2";
+            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button2.Size = new System.Drawing.Size(168, 32);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "任务状态";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -681,6 +909,24 @@
             this.groupBox3.Size = new System.Drawing.Size(184, 50);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.Control;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(8, 11);
+            this.button3.Name = "button3";
+            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button3.Size = new System.Drawing.Size(172, 33);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "我的任务";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // groupBox2
             // 
@@ -693,6 +939,24 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.button1_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(8, 14);
+            this.button1.Name = "button1";
+            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button1.Size = new System.Drawing.Size(170, 30);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "网址管理";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox5
             // 
@@ -741,6 +1005,23 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Visible = false;
             // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.SystemColors.Control;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.Location = new System.Drawing.Point(2, 18);
+            this.button6.Name = "button6";
+            this.button6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button6.Size = new System.Drawing.Size(128, 26);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "已经完成";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
             // groupBox7
             // 
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -752,6 +1033,23 @@
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Visible = false;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.SystemColors.Control;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.Location = new System.Drawing.Point(2, 18);
+            this.button5.Name = "button5";
+            this.button5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button5.Size = new System.Drawing.Size(128, 26);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "可以启动";
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // groupBox6
             // 
@@ -765,6 +1063,23 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Visible = false;
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(2, 18);
+            this.button4.Name = "button4";
+            this.button4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button4.Size = new System.Drawing.Size(128, 26);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "草稿";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // websiteRightClick
             // 
             this.websiteRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -776,17 +1091,24 @@
             this.websiteRightClick.Text = "网站右键";
             this.websiteRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.websiteRightClick_Opening);
             // 
+            // createwebsite1
+            // 
+            this.createwebsite1.Name = "createwebsite1";
+            this.createwebsite1.Size = new System.Drawing.Size(124, 22);
+            this.createwebsite1.Text = "新建网站";
+            this.createwebsite1.Click += new System.EventHandler(this.createwebsite1_Click);
+            // 
             // editWebsite
             // 
             this.editWebsite.Name = "editWebsite";
-            this.editWebsite.Size = new System.Drawing.Size(152, 22);
+            this.editWebsite.Size = new System.Drawing.Size(124, 22);
             this.editWebsite.Text = "编辑网站";
             this.editWebsite.Click += new System.EventHandler(this.editWebsite_Click);
             // 
             // deleteWebsite
             // 
             this.deleteWebsite.Name = "deleteWebsite";
-            this.deleteWebsite.Size = new System.Drawing.Size(152, 22);
+            this.deleteWebsite.Size = new System.Drawing.Size(124, 22);
             this.deleteWebsite.Text = "删除网站";
             this.deleteWebsite.Click += new System.EventHandler(this.deleteWebsite_Click);
             // 
@@ -980,327 +1302,6 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.Control;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(2, 18);
-            this.button6.Name = "button6";
-            this.button6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button6.Size = new System.Drawing.Size(128, 26);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "已经完成";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.SystemColors.Control;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(2, 18);
-            this.button5.Name = "button5";
-            this.button5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button5.Size = new System.Drawing.Size(128, 26);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "可以启动";
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.Control;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(2, 18);
-            this.button4.Name = "button4";
-            this.button4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button4.Size = new System.Drawing.Size(128, 26);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "草稿";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.Control;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(10, 12);
-            this.button2.Name = "button2";
-            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(168, 32);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "任务状态";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.Control;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(8, 11);
-            this.button3.Name = "button3";
-            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button3.Size = new System.Drawing.Size(172, 33);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "我的任务";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(8, 14);
-            this.button1.Name = "button1";
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(170, 30);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "网址管理";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button11
-            // 
-            this.button11.FlatAppearance.BorderSize = 0;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Image = global::NewsCollection.Properties.Resources.图标1;
-            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button11.Location = new System.Drawing.Point(12, 17);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(563, 28);
-            this.button11.TabIndex = 0;
-            this.button11.Text = "启动云采集（定时执行）";
-            this.button11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button10
-            // 
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Image = global::NewsCollection.Properties.Resources.图标1;
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(12, 17);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(563, 28);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "启动云采集（立即执行一次）";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Image = global::NewsCollection.Properties.Resources.图标1;
-            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(12, 17);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(563, 28);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "启动单机采集";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button12
-            // 
-            this.button12.FlatAppearance.BorderSize = 0;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Image = global::NewsCollection.Properties.Resources.图标1;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(12, 17);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(563, 28);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "导出到TXT";
-            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // button13
-            // 
-            this.button13.FlatAppearance.BorderSize = 0;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Image = global::NewsCollection.Properties.Resources.图标1;
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.Location = new System.Drawing.Point(12, 17);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(563, 28);
-            this.button13.TabIndex = 0;
-            this.button13.Text = "导出到EXCEL";
-            this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // button14
-            // 
-            this.button14.FlatAppearance.BorderSize = 0;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Image = global::NewsCollection.Properties.Resources.图标1;
-            this.button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.Location = new System.Drawing.Point(12, 17);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(563, 28);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "导出到数据库";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(14, 71);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(798, 35);
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            // 
-            // button8
-            // 
-            this.button8.Image = global::NewsCollection.Properties.Resources.down;
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button8.Location = new System.Drawing.Point(667, 223);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(96, 35);
-            this.button8.TabIndex = 8;
-            this.button8.Text = "下一步";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.Image = global::NewsCollection.Properties.Resources.up;
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button7.Location = new System.Drawing.Point(667, 147);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(96, 35);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "上一步";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createTask1,
-            this.createTaskGroup1});
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(48, 22);
-            this.toolStripSplitButton1.Text = "新建";
-            this.toolStripSplitButton1.ButtonClick += new System.EventHandler(this.toolStripSplitButton1_ButtonClick);
-            // 
-            // createTask1
-            // 
-            this.createTask1.Name = "createTask1";
-            this.createTask1.Size = new System.Drawing.Size(148, 22);
-            this.createTask1.Text = "新建任务";
-            // 
-            // createTaskGroup1
-            // 
-            this.createTaskGroup1.Name = "createTaskGroup1";
-            this.createTaskGroup1.Size = new System.Drawing.Size(148, 22);
-            this.createTaskGroup1.Text = "新建任务分组";
-            this.createTaskGroup1.Click += new System.EventHandler(this.createTaskGroup1_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.关于ToolStripMenuItem,
-            this.操作向导ToolStripMenuItem});
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(48, 22);
-            this.toolStripButton1.Text = "帮助";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // 关于ToolStripMenuItem
-            // 
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.关于ToolStripMenuItem.Text = "关于";
-            // 
-            // 操作向导ToolStripMenuItem
-            // 
-            this.操作向导ToolStripMenuItem.Name = "操作向导ToolStripMenuItem";
-            this.操作向导ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.操作向导ToolStripMenuItem.Text = "操作向导";
-            // 
-            // userManager
-            // 
-            this.userManager.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.userManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.userManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userSetting,
-            this.exit});
-            this.userManager.Image = ((System.Drawing.Image)(resources.GetObject("userManager.Image")));
-            this.userManager.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.userManager.Name = "userManager";
-            this.userManager.Size = new System.Drawing.Size(60, 22);
-            this.userManager.Text = "用户名";
-            this.userManager.ToolTipText = "用户名";
-            this.userManager.ButtonClick += new System.EventHandler(this.userManager_ButtonClick);
-            // 
-            // userSetting
-            // 
-            this.userSetting.Name = "userSetting";
-            this.userSetting.Size = new System.Drawing.Size(124, 22);
-            this.userSetting.Text = "用户设置";
-            this.userSetting.Click += new System.EventHandler(this.userSetting_Click);
-            // 
-            // exit
-            // 
-            this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(124, 22);
-            this.exit.Text = "退出登录";
-            this.exit.Click += new System.EventHandler(this.exit_Click);
-            // 
-            // createwebsite1
-            // 
-            this.createwebsite1.Name = "createwebsite1";
-            this.createwebsite1.Size = new System.Drawing.Size(152, 22);
-            this.createwebsite1.Text = "新建网站";
-            this.createwebsite1.Click += new System.EventHandler(this.createwebsite1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1343,6 +1344,7 @@
             this.groupBox14.ResumeLayout(false);
             this.groupBox15.ResumeLayout(false);
             this.groupBox16.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1360,7 +1362,6 @@
             this.websiteGroupClick.ResumeLayout(false);
             this.websiteBlank.ResumeLayout(false);
             this.taskBlank.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Winista.Text.HtmlParser;
 using Winista.Text.HtmlParser.Nodes;
+using Winista.Text.HtmlParser.Tags;
 using Winista.Text.HtmlParser.Util;
 
 namespace NewsCollection.Model
@@ -32,8 +33,8 @@ namespace NewsCollection.Model
         private String neturl;
 
         //提取过滤器
-        private List<ClassNodeFilter> infoNodeFilters = new List<ClassNodeFilter>();
-        private OrNodeFilter orFilter;
+        private List<NodeFilter> infoNodeFilters = new List<NodeFilter>();
+        //private OrNodeFilter orFilter;
         //字段类型
         private List<String> keyWords = new List<string>();
         //深度迭代过滤器
@@ -63,7 +64,7 @@ namespace NewsCollection.Model
             WebBrowserHelper.InjectAlertBlocker(webLoader);
         }
 
-        public void addInfoNodeFilter(ClassNodeFilter nodefilter)
+        public void addInfoNodeFilter(NodeFilter nodefilter)
         {
             infoNodeFilters.Add(nodefilter);
         }
@@ -123,19 +124,23 @@ namespace NewsCollection.Model
             showDataGridView = datagridview;
             nextBtn = button;
             nextBtn.Visible = false;
-            orFilter = new OrNodeFilter(infoNodeFilters.ToArray()); 
+           // orFilter = new OrNodeFilter(infoNodeFilters.ToArray()); 
             showDataGridView.Columns.Clear();  //清空DataGridView数据
             if (keyWords != null && keyWords.Count() > 0)
             {
                 int size = keyWords.Count();
                 for (int i = 0; i < size; i++)
                 {
-                    
-                    showDataGridView.Columns.Add(keyWords.ElementAt(i) + i, keyWords.ElementAt(i) + i); //初始化展示控件
+                    if (!String.IsNullOrEmpty(keyWords.ElementAt(i)))
+                    {
+                        DataGridViewTextBoxColumn Column = new DataGridViewTextBoxColumn();
+                        Column.Name = i + "";
+                        Column.DataPropertyName = i + "";
+                        Column.HeaderText = keyWords.ElementAt(i);
+                        showDataGridView.Columns.Add(Column); //初始化展示控件
+                    }
                 }
             }
-            // webLoader.Url = new Uri(neturl);
-            //webLoader.Refresh();
             webLoader.Navigate(neturl);
         }
 
@@ -146,20 +151,62 @@ namespace NewsCollection.Model
         {
             if (!String.IsNullOrEmpty(webLoader.DocumentText))
             {
-                int keywordCount = keyWords.Count;
-                htmlParser.InputHTML = webLoader.DocumentText;
-                NodeList nodes = htmlParser.Parse(orFilter);
-                if (nodes != null && nodes.Size() > 0)
+                int filterCount = infoNodeFilters.Count;
+                List<List<String>> table = new List<List<string>>();
+                for(int i = 0; i < filterCount; i++)
                 {
-                    int pairs = nodes.Size() / keywordCount;
-                    for (int i = 0; i < pairs; i++)
+                    Console.WriteLine("开始扒取内容,当前执行 fliter" + i);
+                    NodeFilter filter = infoNodeFilters.ElementAt(i);
+                    htmlParser.InputHTML = webLoader.DocumentText;
+                    NodeList nodeList = htmlParser.Parse(filter);
+                    Console.WriteLine("符合要求的节点数：" + nodeList.Count);
+                    if (nodeList != null && nodeList.Count > 0)
                     {
-                        List<String> values = new List<string>();
-                        for (int j = 0; j < keywordCount; j++)
+                        int nodeCount = nodeList.Count;
+                        if(filter is ANodeFilter)
                         {
-                            values.Add(nodes[i * keywordCount + j].FirstChild.GetText());
+                            List<String> textinfo = new List<String>();
+                            List<String> linkinfo = new List<String>();
+                            for(int j = 0; j < nodeCount; j++)
+                            {
+                                ITag linkTag = nodeList.ElementAt(j) as ITag;
+                                textinfo.Add(linkTag.FirstChild.GetText());
+                                linkinfo.Add(linkTag.GetAttribute("href"));
+                                Console.WriteLine(linkTag.FirstChild.GetText() + "  --->  " + linkTag.GetAttribute("href"));
+                            }
+                            table.Add(textinfo);
+                            table.Add(linkinfo);
                         }
-                        showDataGridView.Rows.Add(values.ToArray());
+                        else
+                        {
+                            List<String> textinfo = new List<string>();
+                            for (int j = 0; j < nodeCount; j++)
+                            {
+                                textinfo.Add(nodeList.ElementAt(j).FirstChild.GetText());
+                                Console.WriteLine(nodeList.ElementAt(j).FirstChild.GetText());
+                            }
+                            table.Add(textinfo);
+                        }
+                    }
+                }
+                int tableCount = table.Count;
+                //刷新显示
+                if (tableCount > 0)
+                {
+                    List<int> columnsCounts = new List<int>();
+                    foreach(List<String> column in table)
+                    {
+                        columnsCounts.Add(column.Count);
+                    }
+                    int maxPoint = columnsCounts.Min();  //最短列,保证表格对齐
+                    for(int i = 0; i < maxPoint; i++)
+                    {
+                        List<String> row = new List<string>();
+                        for(int j = 0; j < tableCount; j++)
+                        {
+                            row.Add(table.ElementAt(j).ElementAt(i));
+                        }
+                        showDataGridView.Rows.Add(row.ToArray());
                     }
                 }
                 //获取下一页的网址
@@ -175,9 +222,6 @@ namespace NewsCollection.Model
                         {
                             newUrl = neturl + newUrl.Substring(newUrl.IndexOf("?"));
                         }
-                        Console.WriteLine("新网址为：" + newUrl);
-                        //webLoader.Url = new Uri(newUrl);
-                        //webLoader.Refresh();
                         webLoader.Navigate(newUrl);
                     }
                     else
@@ -193,27 +237,27 @@ namespace NewsCollection.Model
         }
 
         //保存到数据库
-        public void save2DB()
-        {
-            StringBuilder filterStr = new StringBuilder();
-            StringBuilder keywordStr = new StringBuilder();
-            int len = keyWords.Count;
-            if(len > 0)
-            {
-                for(int i = 0; i < len; i++)
-                {
-                    filterStr.Append(infoNodeFilters.ElementAt(i).ClassName + "|");
-                    keywordStr.Append(keyWords.ElementAt(i) + "|");
-                }
-                filterStr.Remove(filterStr.Length - 1, 1);
-                keywordStr.Remove(keywordStr.Length - 1, 1);
-            }
+        //public void save2DB()
+        //{
+        //    StringBuilder filterStr = new StringBuilder();
+        //    StringBuilder keywordStr = new StringBuilder();
+        //    int len = keyWords.Count;
+        //    if(len > 0)
+        //    {
+        //        for(int i = 0; i < len; i++)
+        //        {
+        //            filterStr.Append(infoNodeFilters.ElementAt(i).ClassName + "|");
+        //            keywordStr.Append(keyWords.ElementAt(i) + "|");
+        //        }
+        //        filterStr.Remove(filterStr.Length - 1, 1);
+        //        keywordStr.Remove(keywordStr.Length - 1, 1);
+        //    }
             
-            DataBaseManager.getInstance().saveTask(taskname,taskdesc, groupname, neturl,
-                                                    nextPagerFilter == null ? "": nextPagerFilter.TagName + "|" + nextPagerFilter.InnerText,
-                                                    filterStr.ToString(),
-                                                    keywordStr.ToString());
-        }
+        //    DataBaseManager.getInstance().saveTask(taskname,taskdesc, groupname, neturl,
+        //                                            nextPagerFilter == null ? "": nextPagerFilter.TagName + "|" + nextPagerFilter.InnerText,
+        //                                            filterStr.ToString(),
+        //                                            keywordStr.ToString());
+        //}
 
         /// <summary>
         /// </summary>

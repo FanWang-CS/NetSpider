@@ -143,8 +143,17 @@ namespace NewsCollection
             column.DataSource = dataBaseManager.getStatus(tableName);      //这里需要设置一下combox的itemsource,以便combox根据数据库中对应的值自动显示信息
             column.DisplayMember = "Status";
             column.ValueMember = "checkstatus";
-           
+            //dataGridView1.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(dgView_EditingControlShowing);
+
         }
+        //private void dgView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        //{
+        //    if (dgvReportParms.CurrentCell.GetType().Name == "DataGridViewComboBoxCell")
+        //    {
+        //        ((ComboBox)e.Control).SelectedIndexChanged -= new EventHandler(ComboBox_SelectedIndexChanged);
+        //        ((ComboBox)e.Control).SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
+        //    }
+        //}
 
 
         //在当前页输入页码并点击回车
@@ -207,7 +216,7 @@ namespace NewsCollection
             pageSize = Convert.ToInt32(pageSizeBox.Text.Trim());
             pageIndex = Convert.ToInt32(pageIndexBox.Text.Trim());
         }
-
+        //页码改变时
         private void pageIndexBox_TextChanged(object sender, EventArgs e)
         {
             pageIndex = Convert.ToInt32(pageIndexBox.Text.Trim());
@@ -346,6 +355,18 @@ namespace NewsCollection
         private void adminForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             loginForm.Close();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox1.Checked)
+            {
+                statusStrip1.Items[2].Text = "日期:" + DateTime.Now.ToString();  //在控件statusStrip1中显示系统当前日期
+            }
+            else
+            {
+                statusStrip1.Items[2].Text = "";  //控件statusStrip1的内容设置为空
+            }
         }
     }
 }

@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("人员审核");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("新增用户");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("人员管理", new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("资讯审核");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("资讯管理", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("人员审核");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("新增用户");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("人员管理", new System.Windows.Forms.TreeNode[] {
+            treeNode16,
+            treeNode17});
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("资讯审核");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("资讯管理", new System.Windows.Forms.TreeNode[] {
+            treeNode19});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminForm));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -62,7 +62,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.totalPageBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -75,19 +80,19 @@
             this.treeView1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeView1.Location = new System.Drawing.Point(0, 28);
             this.treeView1.Name = "treeView1";
-            treeNode6.Name = "Node2";
-            treeNode6.Text = "人员审核";
-            treeNode7.Name = "Node3";
-            treeNode7.Text = "新增用户";
-            treeNode8.Name = "Node0";
-            treeNode8.Text = "人员管理";
-            treeNode9.Name = "Node4";
-            treeNode9.Text = "资讯审核";
-            treeNode10.Name = "Node1";
-            treeNode10.Text = "资讯管理";
+            treeNode16.Name = "Node2";
+            treeNode16.Text = "人员审核";
+            treeNode17.Name = "Node3";
+            treeNode17.Text = "新增用户";
+            treeNode18.Name = "Node0";
+            treeNode18.Text = "人员管理";
+            treeNode19.Name = "Node4";
+            treeNode19.Text = "资讯审核";
+            treeNode20.Name = "Node1";
+            treeNode20.Text = "资讯管理";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode10});
+            treeNode18,
+            treeNode20});
             this.treeView1.Size = new System.Drawing.Size(220, 305);
             this.treeView1.TabIndex = 0;
             this.treeView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseClick);
@@ -119,14 +124,14 @@
             // setting
             // 
             this.setting.Name = "setting";
-            this.setting.Size = new System.Drawing.Size(152, 22);
+            this.setting.Size = new System.Drawing.Size(124, 22);
             this.setting.Text = "用户设置";
             this.setting.Click += new System.EventHandler(this.setting_Click);
             // 
             // exit
             // 
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(152, 22);
+            this.exit.Size = new System.Drawing.Size(124, 22);
             this.exit.Text = "退出登录";
             this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
@@ -152,9 +157,13 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 519);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 518);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(920, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(920, 23);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -348,11 +357,41 @@
             this.panel1.Size = new System.Drawing.Size(220, 16);
             this.panel1.TabIndex = 20;
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(308, 17);
+            this.toolStripStatusLabel1.Text = "您的用户权限是管理员，可以对人员和资讯信息进行管理";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(809, 525);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(72, 16);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "显示时间";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(131, 17);
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(131, 18);
+            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
+            // 
             // adminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 541);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.totalPageBox);
             this.Controls.Add(this.label5);
@@ -378,6 +417,8 @@
             this.Load += new System.EventHandler(this.adminForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -416,5 +457,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem setting;
         private System.Windows.Forms.ToolStripMenuItem exit;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
     }
 }
