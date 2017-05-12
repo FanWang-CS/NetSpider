@@ -405,7 +405,7 @@ namespace NewsCollection
                         {
                             firstHrefStr = elem.GetAttribute("href");
                             firstClassName = elem.GetAttribute("className");
-                            MessageBox.Show("请再选择一个链接标签，来生成识别规则！", "提示");
+                            MessageBox.Show("请再选择一个链接标签，来生成识别规则！", "提示"); //前后顺序，否则认证失败
                             isMakeRule = true;
                         }  
                     }
@@ -436,9 +436,14 @@ namespace NewsCollection
                 if (column is DataGridViewButtonColumn)
                 {
                     task.removeInfoNodeFilter(e.RowIndex);
-                    task.removeKeyWord(e.RowIndex * 2);
                     task.removeKeyWord(e.RowIndex * 2 + 1);
+                    task.removeKeyWord(e.RowIndex * 2);  //移除顺序很重要
                     this.dataGridView1.Rows.RemoveAt(e.RowIndex);//删除当前行
+
+                    for(int i=0; i < task.getKeyWord().Count; i++)
+                    {
+                        Console.WriteLine("当前关键字： " + task.getKeyWord().ElementAt(i));
+                    }
                 }
             }
         }
