@@ -152,10 +152,10 @@ namespace NewsCollection.Model
             if (!String.IsNullOrEmpty(webLoader.DocumentText))
             {
                 int filterCount = infoNodeFilters.Count;
-                Console.WriteLine("开始扒取内容,fliter = " + filterCount);
                 List<List<String>> table = new List<List<string>>();
                 for(int i = 0; i < filterCount; i++)
                 {
+                    Console.WriteLine("开始扒取内容,当前执行 fliter" + i);
                     NodeFilter filter = infoNodeFilters.ElementAt(i);
                     htmlParser.InputHTML = webLoader.DocumentText;
                     NodeList nodeList = htmlParser.Parse(filter);
@@ -172,7 +172,7 @@ namespace NewsCollection.Model
                                 ITag linkTag = nodeList.ElementAt(j) as ITag;
                                 textinfo.Add(linkTag.FirstChild.GetText());
                                 linkinfo.Add(linkTag.GetAttribute("href"));
-                                Console.WriteLine(linkTag.FirstChild.GetText() + "--->" + linkTag.GetAttribute("href"));
+                                Console.WriteLine(linkTag.FirstChild.GetText() + "  --->  " + linkTag.GetAttribute("href"));
                             }
                             table.Add(textinfo);
                             table.Add(linkinfo);
@@ -222,7 +222,6 @@ namespace NewsCollection.Model
                         {
                             newUrl = neturl + newUrl.Substring(newUrl.IndexOf("?"));
                         }
-                        Console.WriteLine("新网址为：" + newUrl);
                         webLoader.Navigate(newUrl);
                     }
                     else

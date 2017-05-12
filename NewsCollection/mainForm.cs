@@ -348,6 +348,7 @@ namespace NewsCollection
 
         private Boolean isMakeRule = false;
         private String firstHrefStr = "";
+        private String firstClassName = "";
         //选择WebView节点时
         private void onWebViewNodeClicked(object sender, HtmlElementEventArgs e)
         {
@@ -372,8 +373,9 @@ namespace NewsCollection
                         if (isMakeRule)
                         {
                             String nextHrefStr = elem.GetAttribute("href");
-                            String regexStr = StringHelper.getIdentical_Prefix(firstHrefStr,nextHrefStr);
-                            if (String.IsNullOrEmpty(regexStr))
+                            String nextClassName = elem.GetAttribute("className");
+                            String originPrefix = StringHelper.getIdentical_Prefix(firstHrefStr,nextHrefStr);
+                            if (String.IsNullOrEmpty(originPrefix))
                             {
                                 isMakeRule = false;
                                 MessageBox.Show("不能生成识别规则，请重新尝试！","提示");
@@ -384,9 +386,16 @@ namespace NewsCollection
                             int t = this.dataGridView1.Rows.Add();
                             this.dataGridView1.Rows[t].Cells["getdata"].Value = elem.InnerText;
                             //扒取： 获取节点特征
-                            String regexChangeStr = regexStr;   //弹出修改框 允许修改
-                            regexChangeStr = Interaction.InputBox("自动生成的规则前缀", "提示", regexStr, -1, -1);
-                            ANodeFilter aNodeFilter = new ANodeFilter(regexChangeStr);
+                            String preFix = originPrefix;   //弹出修改框 允许修改
+                            preFix = Interaction.InputBox("自动生成的规则前缀", "提示", originPrefix, -1, -1);
+
+                            String classNameStr = null;
+                            if(!String.IsNullOrEmpty(nextClassName) && !String.IsNullOrEmpty(firstClassName)
+                                && firstClassName.Equals(nextClassName))
+                            {
+                                classNameStr = firstClassName;
+                            }
+                            ANodeFilter aNodeFilter = new ANodeFilter(classNameStr,preFix);
                             task.addInfoNodeFilter(aNodeFilter);
                             task.addKeyWord("标题");
                             task.addKeyWord("url");
@@ -395,6 +404,7 @@ namespace NewsCollection
                         else
                         {
                             firstHrefStr = elem.GetAttribute("href");
+                            firstClassName = elem.GetAttribute("className");
                             MessageBox.Show("请再选择一个链接标签，来生成识别规则！", "提示");
                             isMakeRule = true;
                         }  

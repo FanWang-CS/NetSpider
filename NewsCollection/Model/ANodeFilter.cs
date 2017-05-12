@@ -10,9 +10,11 @@ namespace NewsCollection.Model
 {
     class ANodeFilter : NodeFilter
     {
+        private String className;
         private String hrefPrefix; 
-        public ANodeFilter(String hrefPrefix)
+        public ANodeFilter(String className , String hrefPrefix)
         {
+            this.className = className;
             this.hrefPrefix = hrefPrefix;
         }
 
@@ -21,10 +23,16 @@ namespace NewsCollection.Model
             if(node != null && node is ITag)
             {
                 ITag linkTag = node as ITag;
-                if(linkTag.TagName.Equals("A") && linkTag.GetAttribute("href") != null)
+                if (linkTag.TagName.Equals("A"))
                 {
-                    String linkStr = linkTag.GetAttribute("href");
-                    if(!linkStr.Contains("?") && linkStr.StartsWith(hrefPrefix))
+                    if(className != null)
+                    {
+                        if(linkTag.GetAttribute("class") == null || !linkTag.GetAttribute("class").Equals(className))
+                        {
+                            return false;
+                        }
+                    }
+                    if(linkTag.GetAttribute("href") != null && linkTag.GetAttribute("href").StartsWith(hrefPrefix) && !linkTag.GetAttribute("href").Contains("?"))
                     {
                         return true;
                     }
