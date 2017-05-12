@@ -31,6 +31,8 @@ namespace NewsCollection.Model
 
         //任务执行目标
         private String neturl;
+        //网络地址的主机名
+        private String hostName = "";
 
         //提取过滤器
         private List<NodeFilter> infoNodeFilters = new List<NodeFilter>();
@@ -124,6 +126,15 @@ namespace NewsCollection.Model
             showDataGridView = datagridview;
             nextBtn = button;
             nextBtn.Visible = false;
+            try
+            {
+                Uri currentUri = new Uri(neturl);
+                hostName = currentUri.Scheme + "://" + currentUri.Host;  //获取网络地址的主机名
+            }catch(Exception e)
+            {
+                Console.WriteLine("传入的网络地址异常！");
+            }
+           
            // orFilter = new OrNodeFilter(infoNodeFilters.ToArray()); 
             showDataGridView.Columns.Clear();  //清空DataGridView数据
             if (keyWords != null && keyWords.Count() > 0)
@@ -171,8 +182,13 @@ namespace NewsCollection.Model
                             {
                                 ITag linkTag = nodeList.ElementAt(j) as ITag;
                                 textinfo.Add(linkTag.FirstChild.GetText());
-                                linkinfo.Add(linkTag.GetAttribute("href"));
-                                Console.WriteLine(linkTag.FirstChild.GetText() + "  --->  " + linkTag.GetAttribute("href"));
+                                String href = linkTag.GetAttribute("href");
+                                if (href.StartsWith("/"))
+                                {
+                                    href = hostName + href;
+                                }
+                                linkinfo.Add(href);
+                                Console.WriteLine(linkTag.FirstChild.GetText() + "  --->  " + href);
                             }
                             table.Add(textinfo);
                             table.Add(linkinfo);
@@ -236,28 +252,34 @@ namespace NewsCollection.Model
             }
         }
 
-        //保存到数据库
-        //public void save2DB()
-        //{
-        //    StringBuilder filterStr = new StringBuilder();
-        //    StringBuilder keywordStr = new StringBuilder();
-        //    int len = keyWords.Count;
-        //    if(len > 0)
-        //    {
-        //        for(int i = 0; i < len; i++)
-        //        {
-        //            filterStr.Append(infoNodeFilters.ElementAt(i).ClassName + "|");
-        //            keywordStr.Append(keyWords.ElementAt(i) + "|");
-        //        }
-        //        filterStr.Remove(filterStr.Length - 1, 1);
-        //        keywordStr.Remove(keywordStr.Length - 1, 1);
-        //    }
-            
-        //    DataBaseManager.getInstance().saveTask(taskname,taskdesc, groupname, neturl,
-        //                                            nextPagerFilter == null ? "": nextPagerFilter.TagName + "|" + nextPagerFilter.InnerText,
-        //                                            filterStr.ToString(),
-        //                                            keywordStr.ToString());
-        //}
+        保存到数据库
+        public void save2DB()
+        {
+            int len = infoNodeFilters.Count; //过滤器数目
+
+            StringBuilder filterStr = new StringBuilder();
+            StringBuilder keywordStr = new StringBuilder();
+            if (len > 0)
+            {
+                //拼接过滤器
+                for(int i =0; i < len; i++)
+                {
+                    filterStr.Append(infoNodeFilters.ElementAt(i))
+                }
+
+                //拼接关键字
+                for (int i = 0; i < len * 2; i++)
+                {
+                    keywordStr.Append(keyWords.ElementAt(i) + "|");
+                }
+                keywordStr.Remove(keywordStr.Length - 1, 1);
+            }
+
+            DataBaseManager.getInstance().saveTask(taskname, taskdesc, groupname, neturl,
+                                                    nextPagerFilter == null ? "" : nextPagerFilter.TagName + "|" + nextPagerFilter.InnerText,
+                                                    filterStr.ToString(),
+                                                    keywordStr.ToString());
+        }
 
         /// <summary>
         /// </summary>

@@ -274,22 +274,10 @@ namespace NewsCollection
                             MessageBox.Show("请选择网址");
                             return;
                         }
-                        try  //输入网址不合法，健壮性判断
-                        {
-                            // webview.Url = new Uri(netUrl);
-                            // webview.Refresh();
-                            webview.Navigate(netUrl);
-                            task.NetUrl = netUrl;
-                            Console.WriteLine("加载页面：" + netUrl);
-                            webview.Visible = true;
-                        }
-                        catch(Exception e1)
-                        {
-                            Console.WriteLine(e1.ToString());
-                            MessageBox.Show("输入网址不合法：" + netUrl);
-                            Console.WriteLine("输入网址不合法:" + netUrl);
-                            return;
-                        }
+                        webview.Navigate(netUrl);
+                        task.NetUrl = netUrl;
+                        Console.WriteLine("加载页面：" + netUrl);
+                        webview.Visible = true;
                         break;
                     case 2://规则
                         break;

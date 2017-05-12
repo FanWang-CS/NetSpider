@@ -36,5 +36,11 @@ namespace NewsCollection.Model
             }
             return false;
         }
+
+        //转字符串
+        public override string ToString()
+        {
+            return tagName + "|" + className;
+        }
     }
 }
