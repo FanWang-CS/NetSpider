@@ -40,5 +40,10 @@ namespace NewsCollection.Model
             }
             return false;
         }
+
+        public override string ToString()
+        {
+            return "0|" +  (className == null? "undefine":className) + "|" + hrefPrefix;
+        }
     }
 }
