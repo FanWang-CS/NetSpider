@@ -43,9 +43,7 @@ namespace NewsCollection.Model
 
         public override string ToString()
         {
-            return base.ToString();
+            return "0|" +  (className == null? "undefine":className) + "|" + hrefPrefix;
         }
-
-
     }
 }

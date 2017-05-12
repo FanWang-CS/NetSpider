@@ -40,7 +40,7 @@ namespace NewsCollection.Model
         //转字符串
         public override string ToString()
         {
-            return tagName + "|" + className;
+            return "1|" + tagName + "|" + className;
         }
     }
 }

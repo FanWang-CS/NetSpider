@@ -49,6 +49,7 @@ namespace NewsCollection.Model
         private WebBrowser webLoader;
         private Parser htmlParser;
 
+        public Task() { }
 
         public Task(String taskname, String taskdesc, String groupname)
         {
@@ -252,7 +253,7 @@ namespace NewsCollection.Model
             }
         }
 
-        保存到数据库
+        //保存到数据库
         public void save2DB()
         {
             int len = infoNodeFilters.Count; //过滤器数目
@@ -264,7 +265,7 @@ namespace NewsCollection.Model
                 //拼接过滤器
                 for(int i =0; i < len; i++)
                 {
-                    filterStr.Append(infoNodeFilters.ElementAt(i))
+                    filterStr.Append(infoNodeFilters.ElementAt(i).ToString()).Append(",");
                 }
 
                 //拼接关键字
@@ -284,10 +285,44 @@ namespace NewsCollection.Model
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        public static Task loadTask()
+        public static Task loadTask(String taskname, String taskdesc, String groupname, String neturl
+            ,String nextfilter,String filter,String keyword)
         {
-
-            return null;
+            Task task = new Task();
+            task.TaskName = taskname;
+            task.TaskDesc = taskdesc;
+            task.GroupName = groupname;
+            task.NetUrl = neturl;
+            if (!String.IsNullOrEmpty(nextfilter))
+            {
+                String[] nextfilterinfo = nextfilter.Split(new char[] { '|' });
+                task.NextPagerFilter = new ClassInnerTextNodeFilter(nextfilterinfo[0], nextfilterinfo[1]);
+            }
+            if (!String.IsNullOrEmpty(filter))
+            {
+                String[] allfilter = filter.Split(new char[] { ',' });
+                for(int i = 0; i < allfilter.Length; i++)
+                {
+                    String currentFilter = allfilter[i];
+                    String[] filterinfo = currentFilter.Substring(1).Split(new char[] { '|' });
+                    if (currentFilter.StartsWith("0"))  //ANodeFilter
+                    {
+                        ANodeFilter aNodeFilter = new ANodeFilter(filterinfo[0].Equals("undefine") ? null : filterinfo[0], filterinfo[1]);
+                        task.addInfoNodeFilter(aNodeFilter);
+                    }
+                    else   //ClassNodeFilter
+                    {
+                        ClassNodeFilter classFilter = new ClassNodeFilter(filterinfo[0], filterinfo[1]);
+                        task.addInfoNodeFilter(classFilter);
+                    }
+                }
+            }
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                String[] keywordinfo = keyword.Split(new char[] { '|'});
+                task.getKeyWord().AddRange(keywordinfo);
+            }
+            return task;
         }
     }
 }
