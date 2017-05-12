@@ -128,7 +128,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "WebsiteForm";
-            this.Text = "网址添加";
+            this.Text = "新建网站";
             this.Load += new System.EventHandler(this.websiteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

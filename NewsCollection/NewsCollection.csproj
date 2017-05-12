@@ -94,6 +94,12 @@
     <Compile Include="TaskGroup.Designer.cs">
       <DependentUpon>TaskGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="userSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="userSetting.Designer.cs">
+      <DependentUpon>userSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="WebsiteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TaskGroup.resx">
       <DependentUpon>TaskGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userSetting.resx">
+      <DependentUpon>userSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WebsiteForm.resx">
       <DependentUpon>WebsiteForm.cs</DependentUpon>

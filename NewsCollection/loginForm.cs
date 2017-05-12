@@ -58,6 +58,7 @@ namespace NewsCollection
                     isLoginSuccess = true;
                     //this.Close();
                     dataBaseManager.CurrentUserName = username; //绑定当前用户，保证全局可获取
+                    dataBaseManager.CurrentUserType = usertype; //绑定当前用户，保证全局可获取
                     if (usertype == "管理员")
                     {
                         adminForm adminForm = new adminForm(this);

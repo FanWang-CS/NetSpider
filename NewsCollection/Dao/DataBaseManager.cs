@@ -41,7 +41,9 @@ namespace NewsCollection.Dao
 
         //绑定当前的用户名
         private String currentUserName;
+        private String currentUserType;
         public string CurrentUserName { get => currentUserName; set => currentUserName = value; }
+        public string CurrentUserType { get => currentUserType; set => currentUserType = value; }
         #region 通用数据库操作（增删改查）
         /// <summary>
         /// 查询数据

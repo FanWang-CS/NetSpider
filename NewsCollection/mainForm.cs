@@ -45,6 +45,10 @@ namespace NewsCollection
             if (dataManager.CurrentUserName != null){
                 userManager.Text = dataManager.CurrentUserName;
                 userManager.ToolTipText = dataManager.CurrentUserName+"已登录";
+                if(dataManager.CurrentUserType == "数据采集员")
+                {
+                    toolStripStatusLabel1.Text = "您当前用户类型为数据采集员，可进行数据采集相关操作";
+                }
             }
             else
             {
@@ -532,6 +536,7 @@ namespace NewsCollection
                 //DataBaseManager dataManager = DataBaseManager.getInstance();
                 DataTable dt = dataManager.getCurtainWebsite(CurtainNodeText, ParentNodeText);
                 WebsiteForm websiteForm = new WebsiteForm(dt);
+                websiteForm.Text = "编辑网站";
                 websiteForm.Show();
             }
             else
@@ -592,6 +597,7 @@ namespace NewsCollection
                 //DataBaseManager dataManager = DataBaseManager.getInstance();
                 DataTable dt = dataManager.getCurtainWebGroup(CurtainNodeText);
                 WebsiteGroup websiteGroup = new WebsiteGroup(dt);
+                websiteGroup.Text = "编辑网站分组";
                 websiteGroup.Show();
             }
             else
@@ -700,6 +706,7 @@ namespace NewsCollection
             {
                 DataTable dt = dataManager.getCurtainWebGroup(CurtainNodeText);
                 TaskGroup taskGroup = new TaskGroup(dt);
+                taskGroup.Text = "编辑任务组";
                 taskGroup.Show();
             }
             else
@@ -794,6 +801,11 @@ namespace NewsCollection
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             loginForm.Close();
+        }
+
+        private void createwebsite1_Click(object sender, EventArgs e)
+        {
+            creatWebsite_Click(sender, e);
         }
     }
 }
