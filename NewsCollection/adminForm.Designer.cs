@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("人员审核");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("新增用户");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("人员管理", new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17});
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("资讯审核");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("资讯管理", new System.Windows.Forms.TreeNode[] {
-            treeNode19});
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("人员审核");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("新增用户");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("人员管理", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("资讯审核");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("资讯管理", new System.Windows.Forms.TreeNode[] {
+            treeNode9});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminForm));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -44,7 +45,13 @@
             this.exit = new System.Windows.Forms.ToolStripMenuItem();
             this.label = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.logRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cleanLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveLog = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -62,11 +69,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.totalPageBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStrip1.SuspendLayout();
+            this.logRightClick.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -80,19 +86,19 @@
             this.treeView1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeView1.Location = new System.Drawing.Point(0, 28);
             this.treeView1.Name = "treeView1";
-            treeNode16.Name = "Node2";
-            treeNode16.Text = "人员审核";
-            treeNode17.Name = "Node3";
-            treeNode17.Text = "新增用户";
-            treeNode18.Name = "Node0";
-            treeNode18.Text = "人员管理";
-            treeNode19.Name = "Node4";
-            treeNode19.Text = "资讯审核";
-            treeNode20.Name = "Node1";
-            treeNode20.Text = "资讯管理";
+            treeNode6.Name = "Node2";
+            treeNode6.Text = "人员审核";
+            treeNode7.Name = "Node3";
+            treeNode7.Text = "新增用户";
+            treeNode8.Name = "Node0";
+            treeNode8.Text = "人员管理";
+            treeNode9.Name = "Node4";
+            treeNode9.Text = "资讯审核";
+            treeNode10.Name = "Node1";
+            treeNode10.Text = "资讯管理";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode18,
-            treeNode20});
+            treeNode8,
+            treeNode10});
             this.treeView1.Size = new System.Drawing.Size(220, 305);
             this.treeView1.TabIndex = 0;
             this.treeView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseClick);
@@ -149,11 +155,34 @@
             // 
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBox1.ContextMenuStrip = this.logRightClick;
             this.richTextBox1.Location = new System.Drawing.Point(0, 359);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(220, 162);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
+            // 
+            // logRightClick
+            // 
+            this.logRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cleanLog,
+            this.saveLog});
+            this.logRightClick.Name = "logRightClick";
+            this.logRightClick.Size = new System.Drawing.Size(153, 70);
+            // 
+            // cleanLog
+            // 
+            this.cleanLog.Name = "cleanLog";
+            this.cleanLog.Size = new System.Drawing.Size(124, 22);
+            this.cleanLog.Text = "清空日志";
+            this.cleanLog.Click += new System.EventHandler(this.cleanLog_Click);
+            // 
+            // saveLog
+            // 
+            this.saveLog.Name = "saveLog";
+            this.saveLog.Size = new System.Drawing.Size(152, 22);
+            this.saveLog.Text = "保存日志";
+            this.saveLog.Click += new System.EventHandler(this.saveLog_Click);
             // 
             // statusStrip1
             // 
@@ -166,6 +195,22 @@
             this.statusStrip1.Size = new System.Drawing.Size(920, 23);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(308, 18);
+            this.toolStripStatusLabel1.Text = "您的用户权限是管理员，可以对人员和资讯信息进行管理";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(131, 17);
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(0, 18);
             // 
             // dataGridView1
             // 
@@ -357,12 +402,6 @@
             this.panel1.Size = new System.Drawing.Size(220, 16);
             this.panel1.TabIndex = 20;
             // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(308, 17);
-            this.toolStripStatusLabel1.Text = "您的用户权限是管理员，可以对人员和资讯信息进行管理";
-            // 
             // checkBox1
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -375,16 +414,10 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // toolStripStatusLabel2
+            // contextMenuStrip1
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(131, 17);
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(131, 18);
-            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // adminForm
             // 
@@ -417,6 +450,7 @@
             this.Load += new System.EventHandler(this.adminForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.logRightClick.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -461,5 +495,9 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolStripProgressBar toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ContextMenuStrip logRightClick;
+        private System.Windows.Forms.ToolStripMenuItem cleanLog;
+        private System.Windows.Forms.ToolStripMenuItem saveLog;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

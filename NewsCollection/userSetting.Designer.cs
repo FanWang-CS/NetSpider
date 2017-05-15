@@ -32,14 +32,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.userTypeBox = new System.Windows.Forms.TextBox();
+            this.passwordBox = new System.Windows.Forms.TextBox();
+            this.userNameBox = new System.Windows.Forms.TextBox();
+            this.emailBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.nickNameBox = new System.Windows.Forms.TextBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
@@ -85,42 +85,38 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "密码";
             // 
-            // textBox1
+            // userTypeBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(124, 55);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(158, 21);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Text = "数据采集员";
+            this.userTypeBox.Location = new System.Drawing.Point(124, 55);
+            this.userTypeBox.Name = "userTypeBox";
+            this.userTypeBox.ReadOnly = true;
+            this.userTypeBox.Size = new System.Drawing.Size(158, 21);
+            this.userTypeBox.TabIndex = 6;
             // 
-            // textBox2
+            // passwordBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(123, 155);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(159, 21);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "1234";
+            this.passwordBox.Location = new System.Drawing.Point(123, 155);
+            this.passwordBox.Name = "passwordBox";
+            this.passwordBox.PasswordChar = '*';
+            this.passwordBox.ReadOnly = true;
+            this.passwordBox.Size = new System.Drawing.Size(159, 21);
+            this.passwordBox.TabIndex = 7;
             // 
-            // textBox3
+            // userNameBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(124, 88);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(158, 21);
-            this.textBox3.TabIndex = 8;
-            this.textBox3.Text = "user";
+            this.userNameBox.Location = new System.Drawing.Point(124, 88);
+            this.userNameBox.Name = "userNameBox";
+            this.userNameBox.ReadOnly = true;
+            this.userNameBox.Size = new System.Drawing.Size(158, 21);
+            this.userNameBox.TabIndex = 8;
             // 
-            // textBox4
+            // emailBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(122, 119);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(160, 21);
-            this.textBox4.TabIndex = 9;
-            this.textBox4.Text = "1669361392@qq.com";
+            this.emailBox.Location = new System.Drawing.Point(122, 119);
+            this.emailBox.Name = "emailBox";
+            this.emailBox.ReadOnly = true;
+            this.emailBox.Size = new System.Drawing.Size(160, 21);
+            this.emailBox.TabIndex = 9;
             // 
             // button1
             // 
@@ -130,6 +126,7 @@
             this.button1.TabIndex = 10;
             this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -139,6 +136,7 @@
             this.button2.TabIndex = 11;
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -150,14 +148,13 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "显示用户名";
             // 
-            // textBox5
+            // nickNameBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(124, 188);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(159, 21);
-            this.textBox5.TabIndex = 13;
-            this.textBox5.Text = "user";
+            this.nickNameBox.Location = new System.Drawing.Point(124, 188);
+            this.nickNameBox.Name = "nickNameBox";
+            this.nickNameBox.ReadOnly = true;
+            this.nickNameBox.Size = new System.Drawing.Size(159, 21);
+            this.nickNameBox.TabIndex = 13;
             // 
             // linkLabel2
             // 
@@ -168,6 +165,7 @@
             this.linkLabel2.TabIndex = 15;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "修改";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // linkLabel3
             // 
@@ -178,6 +176,7 @@
             this.linkLabel3.TabIndex = 16;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "修改";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
             // linkLabel4
             // 
@@ -188,6 +187,7 @@
             this.linkLabel4.TabIndex = 17;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "修改";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // userSetting
             // 
@@ -197,20 +197,21 @@
             this.Controls.Add(this.linkLabel4);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.nickNameBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.emailBox);
+            this.Controls.Add(this.userNameBox);
+            this.Controls.Add(this.passwordBox);
+            this.Controls.Add(this.userTypeBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "userSetting";
             this.Text = "用户设置";
+            this.Load += new System.EventHandler(this.userSetting_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,14 +223,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox userTypeBox;
+        private System.Windows.Forms.TextBox passwordBox;
+        private System.Windows.Forms.TextBox userNameBox;
+        private System.Windows.Forms.TextBox emailBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox nickNameBox;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel4;

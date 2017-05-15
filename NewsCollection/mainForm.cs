@@ -58,13 +58,6 @@ namespace NewsCollection
             }
         }
 
-        //private void MainForm_Shown(object sender, EventArgs e)
-        //{
-        //    this.Hide();
-        //    loginForm loginForm = new loginForm(this);
-        //    loginForm.Show();
-        //}
-
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
         {
 
@@ -146,16 +139,6 @@ namespace NewsCollection
                 //四种新闻类型
                 TaskOperation taskOperation = new TaskOperation();
                 taskOperation.refresh(treeView1);
-
-                //TreeNode tn1 = treeView1.Nodes.Add("通知公告");
-                //TreeNode tn2 = treeView1.Nodes.Add("新闻资讯");
-                //TreeNode tn3 = treeView1.Nodes.Add("行业动态");
-                //TreeNode tn4 = treeView1.Nodes.Add("法规政策");
-                ////
-                //TreeNode Ntn1 = new TreeNode("湖南计量院");
-                //TreeNode Ntn2 = new TreeNode("湖南质监局");
-                //tn1.Nodes.Add(Ntn1);
-                //tn1.Nodes.Add(Ntn2);
 
             }
         }

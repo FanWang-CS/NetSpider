@@ -51,8 +51,8 @@ namespace NewsCollection
             }
             else
             {
-                int checkstatus = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-                if (checkstatus == 1)
+                String checkstatus = Convert.ToString(dt.Rows[0].ItemArray[0]);
+                if (checkstatus == "001001")
                 {
                     isLoginSuccess = true;
                     //this.Close();

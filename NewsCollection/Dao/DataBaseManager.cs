@@ -116,7 +116,7 @@ namespace NewsCollection.Dao
         /// <param name="username"></param>
         public Boolean isAvailableofEmail(String Email)
         {
-            String sql = "SELECT COUNT(*) As number FROM USER WHERE email ='" + Email + "'";
+            String sql = "SELECT COUNT(*) As number FROM USER WHERE email ='" + Email + "' and username != '"+currentUserName+"'" ;
             DataTable dt = getData(sql);
             int num = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
             return num == 0;
@@ -124,8 +124,20 @@ namespace NewsCollection.Dao
         //注册
         public Boolean regeistUser(String Username, String Usertype, String Email, String pwd)
         {
-            String InsertSql = "INSERT INTO USER(id,username,usertype,email,`password`,checkstatus) VALUES(REPLACE(UUID(),'-',''),'" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "',0)";
+            String InsertSql = "INSERT INTO USER(id,username,usertype,email,`password`,checkstatus) VALUES(REPLACE(UUID(),'-',''),'" + Username + "','" + Usertype + "','" + Email + "','" + pwd + "','001003')";
             return changeDataWithoutReturn(InsertSql);
+        }
+        //获取当前用户信息
+        public DataTable getuserInfo()
+        {
+            String sql = "SELECT username,email,PASSWORD,usertype,IFNULL(nickname,username) FROM USER where username='" + currentUserName + "'";
+            return getData(sql);
+        }
+        //更新用户信息
+        public Boolean updataUserInfo(String [] newuserInfo)
+        {
+            String sql = "update user set email='" + newuserInfo[0] + "',password='" + newuserInfo[1] + "',nickname='" + newuserInfo[2] + "' where username='"+currentUserName+"'";
+            return changeDataWithoutReturn(sql);
         }
         #endregion
         #region 导入到数据库
@@ -308,6 +320,7 @@ namespace NewsCollection.Dao
                 "WHERE a.title LIKE '%"+keyword+"%' OR b.title LIKE '%"+keyword+"%' ORDER BY groupid";
             return getData(sql);
         }
+        #region adminForm 界面操作
         /// <summary>
         /// adminForm 界面操作
         /// </summary>
@@ -350,14 +363,42 @@ namespace NewsCollection.Dao
             sql += where;
             return getData(sql);
         }
-        //获取状态
-        public DataTable getStatus(String tableName)
+        //更新审核状态
+        public Boolean updataCheckStatus(string tableName,string id,string newStatus)
         {
-            String sql = "SELECT DISTINCT checkstatus, CASE WHEN checkstatus ='-1' THEN '审核未通过' " +
-                         "WHEN checkstatus = '1' THEN '审核通过' ELSE '未审核' END `Status` FROM " + tableName;
+            String sql = "UPDATE " + tableName + " SET checkstatus = '" + newStatus + "' WHERE id ='" + id + "'";
+            return changeDataWithoutReturn(sql);
+        }
+        //插入日志信息
+        public Boolean insertLogInfo(String [] logInfo)
+        {
+            string sql = "select id from code where title='" + logInfo[2] + "'";
+            logInfo[2] = (string)getData(sql).Rows[0].ItemArray[0];
+            sql = "INSERT INTO `log` VALUES(REPLACE(UUID(),'-',''),'"+ logInfo [0]+ "','"+ logInfo[1] + "','" + logInfo[2] + "','" + logInfo[3] + "','" + logInfo[4] + "')";
+            return changeDataWithoutReturn(sql);
+        }
+        
+        ////获取日志相关信息
+        //public DataTable getlogRelateInfo()
+        //{
+        //    String sql = "SELECT DATABASE()";
+        //    DataTable dt1 = getData(sql);
+        //    return dt1;
+        //}
+        ////获取状态
+        //public DataTable getStatus(String tableName)
+        //{
+        //    String sql = "SELECT DISTINCT checkstatus, CASE WHEN checkstatus ='-1' THEN '审核未通过' " +
+        //                 "WHEN checkstatus = '1' THEN '审核通过' ELSE '未审核' END `Status` FROM " + tableName;
+        //    return getData(sql);
+        //}
+        //获取所有的审核状态类型
+        public DataTable getAllStatus()
+        {
+            String sql = "SELECT * FROM CODE WHERE id LIKE '%001___'";
             return getData(sql);
         }
-
+        #endregion
         public void close()
         {
             if(mInstance != null){

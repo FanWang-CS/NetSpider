@@ -6,13 +6,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Winista.Text.HtmlParser.Tags;
 
 namespace NewsCollection
 {
     public partial class adminForm : Form
     {
+        int checktimes = 0;//审核次数
         Form loginForm;
         DataBaseManager dataBaseManager = DataBaseManager.getInstance();
         public adminForm(Form rForm)
@@ -20,6 +23,7 @@ namespace NewsCollection
             loginForm = rForm;
             InitializeComponent();
             InitUserManager();
+            //richTextBox1.ContextMenuStrip = logRightClick;
         }
 
         int pageSize;
@@ -44,8 +48,9 @@ namespace NewsCollection
             selectNode = treeView1.GetNodeAt(e.X, e.Y);
             if (selectNode.Text == "人员审核")
             {
-                
+                dataGridView1.DataSource = null;
                 dataGridView1.Columns.Clear();
+                
 
                 lastpage.Text = "";
                 tableName = "user";
@@ -56,10 +61,12 @@ namespace NewsCollection
                 totalPage = (int)Math.Ceiling(totalNum / (double)pageSize);
                 totalPageBox.Text = Convert.ToString(totalPage);
                 DataTable dt1 = dataBaseManager.getDataResult(tableName, pageIndex, pageSize);
+               
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns["checkstatus"]).DataSource = dataBaseManager.getAllStatus();
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns["checkstatus"]).DisplayMember = "title";
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns["checkstatus"]).ValueMember = "id";
+
                 dataGridView1.DataSource = dt1;
-
-                
-
                 if (radioButtonStatus.Checked == true)
                 {
                     radioButtonStatus_CheckedChanged(sender, e);
@@ -99,23 +106,25 @@ namespace NewsCollection
             }
             else if (selectNode.Text == "资讯审核")
             {
+                dataGridView1.DataSource = null;
                 dataGridView1.Columns.Clear();
-                //dataGridView1.ColumnCount = 1;
-                //dataGridView1.ColumnHeadersVisible = true;
-                //dataGridView1.Columns[0].Name = "审核状态";
-                //dataGridView1.Columns[0].CellType
 
-
+                lastpage.Text = "";
                 tableName = "news";
                 classifyField = "newstype";
                 addStatusCol(dataGridView1);
+
                 int totalNum = dataBaseManager.getTotalNum(tableName);
                 totalPage = (int)Math.Ceiling(totalNum / (double)pageSize);
                 totalPageBox.Text = Convert.ToString(totalPage);
                 DataTable dt1 = dataBaseManager.getDataResult(tableName, pageIndex, pageSize);
-                dataGridView1.DataSource = dt1;
                 
-               
+
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns["checkstatus"]).DataSource = dataBaseManager.getAllStatus();
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns["checkstatus"]).DisplayMember = "title";
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns["checkstatus"]).ValueMember = "id";
+
+                dataGridView1.DataSource = dt1;
                 //dataGridView1.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(dgView_EditingControlShowing);
                 if (radioButtonStatus.Checked == true)
                 {
@@ -132,7 +141,7 @@ namespace NewsCollection
                 }
             }
         }
-        //在最后添加一列
+        //在开始添加一列
         private void addStatusCol(DataGridView dataGridView)
         {
             DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn();
@@ -140,20 +149,52 @@ namespace NewsCollection
             column.DataPropertyName = "checkstatus";
             column.HeaderText = "审核状态";
             this.dataGridView1.Columns.Add(column);
-            column.DataSource = dataBaseManager.getStatus(tableName);      //这里需要设置一下combox的itemsource,以便combox根据数据库中对应的值自动显示信息
-            column.DisplayMember = "Status";
-            column.ValueMember = "checkstatus";
-            //dataGridView1.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(dgView_EditingControlShowing);
+            dataGridView1.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(dgView_EditingControlShowing);
 
         }
-        //private void dgView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        //{
-        //    if (dgvReportParms.CurrentCell.GetType().Name == "DataGridViewComboBoxCell")
-        //    {
-        //        ((ComboBox)e.Control).SelectedIndexChanged -= new EventHandler(ComboBox_SelectedIndexChanged);
-        //        ((ComboBox)e.Control).SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
-        //    }
-        //}
+        #region DataGridViewComboBoxColumn选择改变事件
+        void dgView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dataGridView1.CurrentCell.GetType().Name == "DataGridViewComboBoxCell")
+            {
+                //((ComboBox)e.Control).SelectedIndexChanged -= new EventHandler(DataGridViewComboBox_SelectedIndexChanged);
+                ((ComboBox)e.Control).SelectedIndexChanged += new EventHandler(DataGridViewComboBox_SelectedIndexChanged);
+            }
+        }
+        //审核
+        private void DataGridViewComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            string id = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
+            string newStatus = (string )comboBox.SelectedValue;
+            string newStatusName = (string)comboBox.Text;
+            Boolean result = dataBaseManager.updataCheckStatus(tableName, id, newStatus);
+            checktimes++;
+            string title = "审核" + checktimes;
+            string time = DateTime.Now.ToString();
+            string changeresult;
+            
+            if (result)
+            {
+                MessageBox.Show("数据更新成功", "提示");
+                changeresult = "审核成功";
+            }
+            else
+            {
+                MessageBox.Show("数据更新失败", "提示");
+                changeresult = "审核失败";
+            }
+            string[] logtext = new string[] { title, id, newStatusName, changeresult, time };
+            showlog(logtext);
+            comboBox.SelectedIndexChanged -= new EventHandler(DataGridViewComboBox_SelectedIndexChanged);
+
+        }
+        #endregion
+        private void showlog(string[] logtext)
+        {
+            string newLine = logtext[0] +" "+ logtext[1] + " " + logtext[2] + " " + logtext[3] + " " + logtext[4] + Environment.NewLine;
+            richTextBox1.Text = richTextBox1.Text.Insert(0, newLine);
+        }
 
 
         //在当前页输入页码并点击回车
@@ -261,7 +302,7 @@ namespace NewsCollection
         //选择审核状态分类
         private void radioButtonStatus_CheckedChanged(object sender, EventArgs e)
         {
-            String[] checkType = {"1","0","-1"};
+            String[] checkType = {"001001","001002","001003"};
             String[] checkTypeName = { "审核通过", "未审核", "审核不通过" };
             removeAllTabPages(tabControl1);
             for (int i = 0; i < checkType.Length; i++)
@@ -338,7 +379,8 @@ namespace NewsCollection
 
         private void setting_Click(object sender, EventArgs e)
         {
-
+            userSetting userSetting = new userSetting();
+            userSetting.Show();
         }
 
         private void userManager_Click(object sender, EventArgs e)
@@ -367,6 +409,37 @@ namespace NewsCollection
             {
                 statusStrip1.Items[2].Text = "";  //控件statusStrip1的内容设置为空
             }
+        }
+        //实现点击一次就出现下拉框，否则要点击三次
+        //private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn && e.RowIndex != -1)
+        //    {
+        //        SendKeys.Send("{F4}");
+        //    }
+        //}
+
+        private void cleanLog_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+        }
+
+        private void saveLog_Click(object sender, EventArgs e)
+        {
+            for(int i=0;i< richTextBox1.Lines.Length-1; i++)
+            {
+                string line = richTextBox1.Lines[i];
+                string[] loginfo = Regex.Split(line, " ");
+                Boolean insetresult = dataBaseManager.insertLogInfo(loginfo);
+                if (!insetresult)
+                {
+                    MessageBox.Show("日志存储失败","提示");
+                    return;
+                }
+            }
+
+            MessageBox.Show("日志存储成功","提示");
+            richTextBox1.Clear();
         }
     }
 }
