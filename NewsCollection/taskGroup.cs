@@ -1,4 +1,5 @@
 ﻿using NewsCollection.Dao;
+using NewsCollection.Operation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace NewsCollection
     public partial class TaskGroup : Form
     {
         DataBaseManager dataBaseManager = DataBaseManager.getInstance();
+        public TreeView mainFormTreeview = null;
+        public ComboBox  groupSelection = null;
         public TaskGroup()
         {
             InitializeComponent();
@@ -52,56 +55,52 @@ namespace NewsCollection
             String title = textBox1.Text;
             String note = textBox2.Text;
             String[] taskInfo = new String[2] { title, note };
-            if (button1.Text == "确定")
+            if (String.IsNullOrEmpty(title))
             {
-
-                if (title == oldTitle && note == oldNote)
-                {
-                    this.Close();
-                }
-                else if (title.Equals("") || title == null)
-                {
-                    MessageBox.Show("请输入任务分组名称", "提示");
-                    return;
-                }
-                else
-                {
-                    if (dataBaseManager.editTaskGroup(id, taskInfo))
-                    {
-                        DialogResult dr = MessageBox.Show("修改成功", "提示", MessageBoxButtons.OKCancel);
-                        if (dr == DialogResult.OK)
-                        {
-                            this.Close();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("修改失败", "提示");
-                        return;
-                    }
-                }
+                MessageBox.Show("请输入任务分组名称！", "提示");
+                return;
+            }
+            DataTable dt = dataBaseManager.getCurtainTaskGroup(title, id);
+            if (dt.Rows.Count>0)
+            {
+                MessageBox.Show("该分组名称已经存在！", "提示");
+                return;
             }
             else
             {
-                if (title.Equals("") || title == null)
+                Boolean result;
+                String successStr;
+                String failStr;
+                if(button1.Text == "确定")
                 {
-                    MessageBox.Show("请输入任务名称", "提示");
+                    result =dataBaseManager.editTaskGroup(id, taskInfo);
+                    successStr = "修改成功";
+                    failStr = "修改失败";
                 }
                 else
                 {
-                    if (dataBaseManager.creatTaskGroup(taskInfo))
+                    result = dataBaseManager.creatTaskGroup(taskInfo);
+                    successStr = "修改成功";
+                    failStr = "修改失败";
+                }
+                if (result)
+                {
+                    DialogResult dr = MessageBox.Show(successStr, "提示", MessageBoxButtons.OKCancel);
+                    if (dr == DialogResult.OK)
                     {
-                        DialogResult dr = MessageBox.Show("添加成功", "提示", MessageBoxButtons.OKCancel);
-                        if (dr == DialogResult.OK)
+                        if (mainFormTreeview != null)
                         {
-                            this.Close();
+                            new TaskOperation().refresh(mainFormTreeview);
+                            DataTable groupdt = dataBaseManager.getTaskGroup();
+                            new BindOperation().bindGroupSelection(groupSelection, groupdt);
                         }
+                        this.Close();
                     }
-                    else
-                    {
-                        MessageBox.Show("添加失败", "提示");
-                        return;
-                    }
+                }
+                else
+                {
+                    MessageBox.Show(failStr, "提示");
+                    return;
                 }
             }
         }

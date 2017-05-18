@@ -49,6 +49,13 @@ namespace NewsCollection
             String Email = textBox5.Text;
             String Password = textBox3.Text;
             String CertainPassword = textBox4.Text;
+            if (Usertype==null|| Usertype.Equals("")|| Username == null || Username.Equals("") 
+                || Email == null || Email.Equals("") || Password == null || Password.Equals("")
+                || CertainPassword == null || CertainPassword.Equals(""))
+            {
+                MessageBox.Show("请填写完整信息", "提示");
+                return;
+            }
             if (!Password.Equals(CertainPassword))
             {
                 MessageBox.Show("密码和确认密码不一致，请重新输入", "提示");

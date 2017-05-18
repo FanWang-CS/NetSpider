@@ -35,6 +35,21 @@ namespace NewsCollection
             String usertype = (String)comboBox1.SelectedItem;
             String username = textBox1.Text;
             String password = textBox2.Text;
+            if(usertype==null|| usertype.Equals(""))
+            {
+                MessageBox.Show("请选择用户类型", "提示");
+                return;
+            }
+            if (username == null || username.Equals(""))
+            {
+                MessageBox.Show("请输入用户名", "提示");
+                return;
+            }
+            if (password == null || password.Equals(""))
+            {
+                MessageBox.Show("请输入密码", "提示");
+                return;
+            }
             MD5 md5 = MD5.Create();
             byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
             password = "";

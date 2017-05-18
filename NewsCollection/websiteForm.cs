@@ -16,6 +16,9 @@ namespace NewsCollection
     {
         DataBaseManager dataBaseManager = DataBaseManager.getInstance();
         public String GroupNodeText = null;
+        public TreeView mainFormTreeView = null;
+        public ComboBox webGroupCombobox = null;
+        public ComboBox websiteCombobox = null;
         public WebsiteForm()
         {
             InitializeComponent();
@@ -53,65 +56,123 @@ namespace NewsCollection
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             String title = textBox1.Text;
             String Url = textBox2.Text;
             String note = textBox3.Text;
             String[] websiteInfo = new String[4] { title, Url, note, GroupNodeText };
-            if (button1.Text == "确定")
+            if (title.Equals("") || title == null)
             {
-                
-                if (title == oldTitle && Url == oldUrl && note == oldNote)
-                {
-                    this.Close();
-                }
-                else if (title.Equals("") || title == null)
-                {
-                    MessageBox.Show("请输入网站名称", "提示");
-                }
-                else if (Url.Equals("") || Url == null)
-                {
-                    MessageBox.Show("请输入网址", "提示");
-                }
-                else
-                {
-                    if(dataBaseManager.updateCurtainWebsite(id, websiteInfo))
-                    {
-                        DialogResult dr = MessageBox.Show("修改成功", "提示", MessageBoxButtons.OKCancel);
-                        if(dr== DialogResult.OK)
-                        {
-                            this.Close();
-                        }
-                    }
-                }
+                MessageBox.Show("请输入网站名称", "提示");
+            }
+            else if (Url.Equals("") || Url == null)
+            {
+                MessageBox.Show("请输入网址", "提示");
             }
             else
             {
-                if (title.Equals("") || title == null)
+                DataTable dt = dataBaseManager.getCurtainWebsite(title, GroupNodeText,id);
+                if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("请输入网站名称", "提示");
-                }
-                else if (Url.Equals("") || Url == null)
-                {
-                    MessageBox.Show("请输入网址", "提示");
+                    DialogResult dr = MessageBox.Show("当前分组已存在该网站名称,清重新输入","提示");
+                    if (dr == DialogResult.OK)
+                    {
+                        textBox1.Text = "";
+                    }
                 }
                 else
                 {
-                    if (dataBaseManager.insertWebsite(websiteInfo))
+                    Boolean result;
+                    string successMessage = "";
+                    string failedMessage = "";
+                    if (button1.Text == "确定")
                     {
-                        DialogResult dr = MessageBox.Show("添加成功", "提示", MessageBoxButtons.OKCancel);
+                        result = dataBaseManager.updateCurtainWebsite(id, websiteInfo);
+                        successMessage = "修改成功";
+                        failedMessage = "修改失败";
+                    }
+                    else
+                    {
+                        result = dataBaseManager.insertWebsite(websiteInfo);
+                        successMessage = "添加成功";
+                        failedMessage = "添加失败";
+                    }
+                    if (result)
+                    {
+                        DialogResult dr = MessageBox.Show(successMessage, "提示");
                         if (dr == DialogResult.OK)
                         {
+                            new WebsiteOpeartion().refresh(mainFormTreeView);
+                            String TaskCurrentWebGroupId = webGroupCombobox.Text;
+                            DataTable weblist = dataBaseManager.getWebsiteInGroup(TaskCurrentWebGroupId);
+                            new BindOperation().bindwebsiteSelection(websiteCombobox, weblist);
                             this.Close();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("添加失败", "提示");
+                        MessageBox.Show(failedMessage, "提示");
+                        return;
                     }
                 }
             }
+
         }
+        
+        //    if (button1.Text == "确定")
+        //    {
+                
+        //        if (title == oldTitle && Url == oldUrl && note == oldNote)
+        //        {
+        //            this.Close();
+        //        }
+        //        else if (title.Equals("") || title == null)
+        //        {
+        //            MessageBox.Show("请输入网站名称", "提示");
+        //        }
+        //        else if (Url.Equals("") || Url == null)
+        //        {
+        //            MessageBox.Show("请输入网址", "提示");
+        //        }
+        //        else
+        //        {
+        //            if(dataBaseManager.updateCurtainWebsite(id, websiteInfo))
+        //            {
+        //                DialogResult dr = MessageBox.Show("修改成功", "提示", MessageBoxButtons.OKCancel);
+        //                if(dr== DialogResult.OK)
+        //                {
+        //                    this.Close();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (title.Equals("") || title == null)
+        //        {
+        //            MessageBox.Show("请输入网站名称", "提示");
+        //        }
+        //        else if (Url.Equals("") || Url == null)
+        //        {
+        //            MessageBox.Show("请输入网址", "提示");
+        //        }
+        //        else
+        //        {
+        //            if (dataBaseManager.insertWebsite(websiteInfo))
+        //            {
+        //                DialogResult dr = MessageBox.Show("添加成功", "提示", MessageBoxButtons.OKCancel);
+        //                if (dr == DialogResult.OK)
+        //                {
+        //                    this.Close();
+        //                }
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("添加失败", "提示");
+        //            }
+        //        }
+        //    }
+        //}
 
         private void button2_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using NewsCollection.Dao;
+using NewsCollection.Operation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace NewsCollection
     {
         DataBaseManager dataBaseManager = DataBaseManager.getInstance();
         //public String GroupNodeText = null;
+        public TreeView mainFormTreeView = null;
+        public ComboBox webGroupCombox = null;
         public WebsiteGroup()
         {
             InitializeComponent();
@@ -52,61 +55,59 @@ namespace NewsCollection
         {
             String title = textBox1.Text;
             String note = textBox2.Text;
-            String[] websiteInfo = new String[2] { title, note };
-            if (button1.Text == "确定")
+            String[] webgroupInfo = new String[2] { title, note };
+            if (title.Equals("") || title == null)
             {
-
-                if (title == oldTitle && note == oldNote)
-                {
-                    this.Close();
-                }
-                else if (title.Equals("") || title == null)
-                {
-                    MessageBox.Show("请输入网站分组名称", "提示");
-                    return;
-                }
-                else
-                {
-                    if (dataBaseManager.editWebGroup(id, websiteInfo))
-                    {
-                        DialogResult dr = MessageBox.Show("修改成功", "提示", MessageBoxButtons.OKCancel);
-                        if (dr == DialogResult.OK)
-                        {
-                            this.Close();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("修改失败", "提示");
-                        return;
-                    }
-                }
+                MessageBox.Show("请输入网站名称", "提示");
             }
             else
             {
-                if (title.Equals("") || title == null)
+                DataTable dt = dataBaseManager.getWebGroupInfo(title, id);
+                if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("请输入网站名称", "提示");
+                    DialogResult dr = MessageBox.Show("该分组名称已经存在,请重新输入分组名称", "提示");
+                    if (dr == DialogResult.OK)
+                    {
+                        textBox1.Text = "";
+                    }
                 }
                 else
                 {
-                    if (dataBaseManager.creatWebGroup(websiteInfo))
+                    Boolean result;
+                    string successMessage = "";
+                    string failedMessage = "";
+                    if (button1.Text == "确定")
                     {
-                        DialogResult dr = MessageBox.Show("添加成功", "提示", MessageBoxButtons.OKCancel);
+                        result = dataBaseManager.editWebGroup(id, webgroupInfo);
+                        successMessage = "修改成功";
+                        failedMessage = "修改失败";
+                    }
+                    else
+                    {
+                        result=dataBaseManager.creatWebGroup(webgroupInfo);
+                        successMessage = "添加成功";
+                        failedMessage = "添加失败";
+                    }
+                    if (result)
+                    {
+                        DialogResult dr = MessageBox.Show(successMessage, "提示");
                         if (dr == DialogResult.OK)
                         {
+                            new WebsiteOpeartion().refresh(mainFormTreeView);
+                            DataTable webGroupDt = dataBaseManager.getWebsiteGroup();
+                            new BindOperation().bindGroupSelection(webGroupCombox, webGroupDt);
                             this.Close();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("添加失败", "提示");
+                        MessageBox.Show(failedMessage, "提示");
                         return;
                     }
                 }
             }
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();

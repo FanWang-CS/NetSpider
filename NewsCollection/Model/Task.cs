@@ -175,7 +175,7 @@ namespace NewsCollection.Model
                     if (nodeList != null && nodeList.Count > 0)
                     {
                         int nodeCount = nodeList.Count;
-                        if(filter is ANodeFilter)
+                        if(filter is ANodeFilter)//
                         {
                             List<String> textinfo = new List<String>();
                             List<String> linkinfo = new List<String>();
@@ -267,7 +267,7 @@ namespace NewsCollection.Model
                 {
                     filterStr.Append(infoNodeFilters.ElementAt(i).ToString()).Append(",");
                 }
-
+                filterStr.Remove(filterStr.Length - 1, 1);
                 //拼接关键字
                 for (int i = 0; i < len * 2; i++)
                 {

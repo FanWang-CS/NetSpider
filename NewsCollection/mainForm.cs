@@ -36,6 +36,8 @@ namespace NewsCollection
         public MainForm(Form rForm)
         {
 
+
+
             loginForm = rForm;
             InitializeComponent();
             InitUserManager();
@@ -194,7 +196,11 @@ namespace NewsCollection
 
                 TreeNode selectNode = treeView1.GetNodeAt(e.X, e.Y);
 
-                if (selectNode.Level == 0)
+                if (selectNode == null)
+                {
+                    return;
+                }
+                else if(selectNode.Level == 0)
 
                 {
                     selectNode.ContextMenuStrip = taskGroupClick;
@@ -255,7 +261,16 @@ namespace NewsCollection
                         task = new Task(taskname, taskdesc, groupname);
                         break;
                     case 1:
-                        String netUrl = neturlview.Text.ToString();
+                        String netUrl;
+                        if (neturlview.SelectedValue != null)
+                        {
+                            netUrl = neturlview.SelectedValue as String;
+                        }
+                        else
+                        {
+                            netUrl = neturlview.Text.ToString();
+                        }
+                            
                         if (String.IsNullOrEmpty(netUrl))
                         {
                             MessageBox.Show("请选择网址");
@@ -282,6 +297,7 @@ namespace NewsCollection
                 pictureBox1.Image = imageHelper.getImage(step);
             }
         }
+        //任务栏的显示日期选中
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
 
         {
@@ -317,7 +333,16 @@ namespace NewsCollection
         private void webview_NewWindow(object sender, CancelEventArgs e)
         {
            e.Cancel = true;
-            String netUrl = neturlview.Text.ToString();
+            // String netUrl = neturlview.Text.ToString();
+            String netUrl;
+            if (neturlview.SelectedValue != null)
+            {
+                netUrl = neturlview.SelectedValue as String;
+            }
+            else
+            {
+                netUrl = neturlview.Text.ToString();
+            }
             webview.Navigate(netUrl);
         }
 
@@ -399,7 +424,15 @@ namespace NewsCollection
                     }               
                 }
             }
-            String netUrl = neturlview.Text.ToString();
+            String netUrl;
+            if (neturlview.SelectedValue!=null)
+            {
+                netUrl = neturlview.SelectedValue.ToString();
+            }
+            else
+            {
+                netUrl = neturlview.Text.ToString();
+            }
             webview.Navigate(netUrl);
         }
 
@@ -411,8 +444,9 @@ namespace NewsCollection
                 if (column is DataGridViewButtonColumn)
                 {
                     task.removeInfoNodeFilter(e.RowIndex);
-                    task.removeKeyWord(e.RowIndex * 2 + 1);
+                    
                     task.removeKeyWord(e.RowIndex * 2);  //移除顺序很重要
+                    task.removeKeyWord(e.RowIndex * 2 + 1);
                     this.dataGridView1.Rows.RemoveAt(e.RowIndex);//删除当前行
 
                     for(int i=0; i < task.getKeyWord().Count; i++)
@@ -532,7 +566,7 @@ namespace NewsCollection
         //导出到Excel
         private void button13_Click(object sender, EventArgs e)
         {
-
+            exportOperation.ReportToExcel(dataGridView2, "新闻资讯");
         }
         #endregion
         //网站右击
@@ -552,14 +586,18 @@ namespace NewsCollection
         private String ParentNodeText;
         private void editWebsite_Click(object sender, EventArgs e)
         {
-            //获取当前任务的参数内容
+            //获取当前网站的参数内容
             if (CurtainNodeText != null&& ParentNodeText!=null)
             {
                 //String WebsiteName = _CurtainControl.Text;
                 //DataBaseManager dataManager = DataBaseManager.getInstance();
-                DataTable dt = dataManager.getCurtainWebsite(CurtainNodeText, ParentNodeText);
+                DataTable dt = dataManager.getCurtainWebsite(CurtainNodeText, ParentNodeText,"");
                 WebsiteForm websiteForm = new WebsiteForm(dt);
                 websiteForm.Text = "编辑网站";
+                websiteForm.GroupNodeText = ParentNodeText;
+                websiteForm.mainFormTreeView = treeView1;
+                websiteForm.webGroupCombobox = webgroupview;
+                websiteForm.websiteCombobox = neturlview;
                 websiteForm.Show();
             }
             else
@@ -569,20 +607,33 @@ namespace NewsCollection
             }
 
         }
-       
-       
+        //点击网站时的新增网站
+        private void createwebsite1_Click(object sender, EventArgs e)
+        {
+            WebsiteForm websiteForm = new WebsiteForm();
+            websiteForm.GroupNodeText = ParentNodeText;
+            websiteForm.mainFormTreeView = treeView1;
+            websiteForm.webGroupCombobox = webgroupview;
+            websiteForm.websiteCombobox = neturlview;
+            websiteForm.Show();
+            new WebsiteOpeartion().refresh(treeView1);
+        }
+
         //删除网站
         private void deleteWebsite_Click(object sender, EventArgs e)
         {
-            //获取当前任务的参数内容
+            //获取当前网站的参数内容
             if (CurtainNodeText != null)
             {
                 //DataBaseManager dataManager = DataBaseManager.getInstance();
-                DataTable dt = dataManager.getCurtainWebsite(CurtainNodeText, ParentNodeText);
+                DataTable dt = dataManager.getCurtainWebsite(CurtainNodeText, ParentNodeText,"");
                 Boolean result = dataManager.deleteWebsite(dt.Rows[0]["id"] as String);
                 if (result)
                 {
                     new WebsiteOpeartion().refresh(treeView1);
+                    String TaskCurrentWebGroupId = webgroupview.Text;
+                    DataTable weblist = dataManager.getWebsiteInGroup(TaskCurrentWebGroupId);
+                    new BindOperation().bindwebsiteSelection(neturlview, weblist);
                 }
                 else
                 {
@@ -609,6 +660,9 @@ namespace NewsCollection
         {
             WebsiteForm websiteForm = new WebsiteForm();
             websiteForm.GroupNodeText = CurtainNodeText;
+            websiteForm.mainFormTreeView = treeView1;
+            websiteForm.webGroupCombobox = webgroupview;
+            websiteForm.websiteCombobox = neturlview;
             websiteForm.Show();
             new WebsiteOpeartion().refresh(treeView1);
         }
@@ -617,10 +671,11 @@ namespace NewsCollection
         {
             if (CurtainNodeText != null)
             {
-                //DataBaseManager dataManager = DataBaseManager.getInstance();
-                DataTable dt = dataManager.getCurtainWebGroup(CurtainNodeText);
+                DataTable dt = dataManager.getWebGroupInfo(CurtainNodeText,"");
                 WebsiteGroup websiteGroup = new WebsiteGroup(dt);
                 websiteGroup.Text = "编辑网站分组";
+                websiteGroup.mainFormTreeView = treeView1;
+                websiteGroup.webGroupCombox = webgroupview;
                 websiteGroup.Show();
             }
             else
@@ -628,27 +683,30 @@ namespace NewsCollection
                 MessageBox.Show("请选中要编辑的分组", "提示");
                 return;
             }
-            
         }
-        //创建分组
+        //创建网站分组
         private void creatWebsiteGroup_Click(object sender, EventArgs e)
         {
             WebsiteGroup websiteGroup = new WebsiteGroup();
+            websiteGroup.mainFormTreeView = treeView1;
+            websiteGroup.webGroupCombox = webgroupview;
             websiteGroup.Show();
             new WebsiteOpeartion().refresh(treeView1);
         }
         //删除分组
         private void deleteWebsiteGroup_Click(object sender, EventArgs e)
         {
-            //获取当前任务的参数内容
+            //获取当前网站的参数内容
             if (CurtainNodeText != null)
             {
                 //DataBaseManager dataManager = DataBaseManager.getInstance();
-                DataTable dt = dataManager.getCurtainWebGroup(CurtainNodeText);
+                DataTable dt = dataManager.getWebGroupInfo(CurtainNodeText,"");
                 Boolean result = dataManager.deleteWebGroup(dt.Rows[0]["id"] as String);
                 if (result)
                 {
                     new WebsiteOpeartion().refresh(treeView1);
+                    DataTable webGroupDt = dataManager.getWebsiteGroup();
+                    new BindOperation().bindGroupSelection(webgroupview, webGroupDt);
                 }
                 else
                 {
@@ -656,7 +714,7 @@ namespace NewsCollection
                 }
             }
         }
-        //刷新
+        //网站分组的刷新
         private void websiteGroupRefresh_Click(object sender, EventArgs e)
         {
             new WebsiteOpeartion().refresh(treeView1);
@@ -683,38 +741,47 @@ namespace NewsCollection
            
             // _CurtainControl = taskGroup.SourceControl;
         }
+        //创建任务
         private void createtask_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 1;
-        }
+            BindOperation bindOperation = new BindOperation();
+            DataTable taskgroupdt = dataManager.getTaskGroup();
+            bindOperation.bindGroupSelection(taskgroupview, taskgroupdt);
+            DataTable webgroupdt = dataManager.getWebsiteGroup();
+            bindOperation.bindGroupSelection(webgroupview, webgroupdt);
+            String TaskCurrentWebGroup = webgroupview.SelectedText;
+            DataTable weblist = dataManager.getWebsiteInGroup(TaskCurrentWebGroup);
+            bindOperation.bindwebsiteSelection(neturlview,weblist);
 
+            taskPage.Parent = tabControl1;
+            tabControl1.SelectedIndex = 1;
+
+        }
+        //创建任务组
         private void creatTaskGroup1_Click(object sender, EventArgs e)
         {
             TaskGroup taskGroup = new TaskGroup();
+            taskGroup.mainFormTreeview = treeView1;
+            taskGroup.groupSelection = taskgroupview;
             taskGroup.Show();
-            new TaskOperation().refresh(treeView1);
+           
         }
+        
 
-        private void importTaskGroup_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void exportTaskGroup_Click(object sender, EventArgs e)
-        {
-
-        }
         //删除任务分组
         private void deleteTaskGroup_Click(object sender, EventArgs e)
         {
             //获取当前任务的参数内容
             if (CurtainNodeText != null)
             {
-                DataTable dt = dataManager.getCurtainTaskGroup(CurtainNodeText);
+                DataTable dt = dataManager.getCurtainTaskGroup(CurtainNodeText,"");
                 Boolean result = dataManager.deleteTaskGroup(dt.Rows[0]["id"] as String);
                 if (result)
                 {
                     new TaskOperation().refresh(treeView1);
+                    DataTable taskgroupdt = dataManager.getTaskGroup();
+                    new BindOperation().bindGroupSelection(taskgroupview, taskgroupdt);
+
                 }
                 else
                 {
@@ -727,9 +794,11 @@ namespace NewsCollection
         {
             if (CurtainNodeText != null)
             {
-                DataTable dt = dataManager.getCurtainWebGroup(CurtainNodeText);
+                DataTable dt = dataManager.getCurtainTaskGroup(CurtainNodeText,"");
                 TaskGroup taskGroup = new TaskGroup(dt);
                 taskGroup.Text = "编辑任务组";
+                taskGroup.mainFormTreeview = treeView1;
+                taskGroup.groupSelection = taskgroupview;
                 taskGroup.Show();
             }
             else
@@ -738,7 +807,24 @@ namespace NewsCollection
                 return;
             }
         }
-        //
+        //任务右键中的删除任务
+        private void deleteTask_Click(object sender, EventArgs e)
+        {
+            //获取当前任务的参数内容
+            if (CurtainNodeText != null)
+            {
+                //DataTable dt = dataManager.getCurtainTask(CurtainNodeText, "");
+                //Boolean result = dataManager.deleteTaskGroup(dt.Rows[0]["id"] as String);
+                //if (result)
+                //{
+                //    new TaskOperation().refresh(treeView1);
+                //}
+                //else
+                //{
+                //    MessageBox.Show("无法删除", "提示");
+                //}
+            }
+        }
         private void taskGroupRefresh_Click(object sender, EventArgs e)
         {
 
@@ -753,7 +839,7 @@ namespace NewsCollection
         {
             creatTaskGroup1_Click(sender, e);
         }
-
+        //任务右键开启
         private void taskRightClick_Opening(object sender, CancelEventArgs e)
         {
             CurtainNodeText = treeView1.SelectedNode.Text;
@@ -782,10 +868,16 @@ namespace NewsCollection
                 }
             }     
         }
-        //工具栏的创建人物分组
+        //工具栏的创建任务分组
         private void createTaskGroup1_Click(object sender, EventArgs e)
         {
+            button3_Click(sender, e);
             creatTaskGroup1_Click(sender, e);
+        }
+        //工具栏的新建任务
+        private void createTask1_Click(object sender, EventArgs e)
+        {
+            createtask_Click(sender, e);
         }
         #region 右上角的用户管理模块
         //点击下拉框的弹出
@@ -817,7 +909,8 @@ namespace NewsCollection
 
         private void userSetting_Click(object sender, EventArgs e)
         {
-
+            userSetting userSetting = new userSetting();
+            userSetting.Show();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -825,9 +918,23 @@ namespace NewsCollection
             loginForm.Close();
         }
 
-        private void createwebsite1_Click(object sender, EventArgs e)
+        //新建任务TabPage中任务分组选择发生改变时
+        private void taskgroupview_SelectedIndexChanged(object sender, EventArgs e)
         {
-            creatWebsite_Click(sender, e);
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //隐藏新建任务界面
+            taskPage.Parent = null;
+        }
+        //创建任务时网站分组选择改变
+        private void webgroupview_SelectedValueChanged(object sender, EventArgs e)
+        {
+            String TaskCurrentWebGroupId = webgroupview.Text;
+            DataTable weblist = dataManager.getWebsiteInGroup(TaskCurrentWebGroupId);
+            new BindOperation().bindwebsiteSelection(neturlview, weblist);
         }
     }
 }

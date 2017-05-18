@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("人员审核");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("新增用户");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("人员管理", new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("资讯审核");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("资讯管理", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("人员审核");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("新增用户");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("人员管理", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("资讯审核");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("资讯管理", new System.Windows.Forms.TreeNode[] {
+            treeNode4});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminForm));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -86,19 +86,19 @@
             this.treeView1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeView1.Location = new System.Drawing.Point(0, 28);
             this.treeView1.Name = "treeView1";
-            treeNode6.Name = "Node2";
-            treeNode6.Text = "人员审核";
-            treeNode7.Name = "Node3";
-            treeNode7.Text = "新增用户";
-            treeNode8.Name = "Node0";
-            treeNode8.Text = "人员管理";
-            treeNode9.Name = "Node4";
-            treeNode9.Text = "资讯审核";
-            treeNode10.Name = "Node1";
-            treeNode10.Text = "资讯管理";
+            treeNode1.Name = "Node2";
+            treeNode1.Text = "人员审核";
+            treeNode2.Name = "Node3";
+            treeNode2.Text = "新增用户";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "人员管理";
+            treeNode4.Name = "Node4";
+            treeNode4.Text = "资讯审核";
+            treeNode5.Name = "Node1";
+            treeNode5.Text = "资讯管理";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode10});
+            treeNode3,
+            treeNode5});
             this.treeView1.Size = new System.Drawing.Size(220, 305);
             this.treeView1.TabIndex = 0;
             this.treeView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseClick);
@@ -168,7 +168,7 @@
             this.cleanLog,
             this.saveLog});
             this.logRightClick.Name = "logRightClick";
-            this.logRightClick.Size = new System.Drawing.Size(153, 70);
+            this.logRightClick.Size = new System.Drawing.Size(125, 48);
             // 
             // cleanLog
             // 
@@ -180,7 +180,7 @@
             // saveLog
             // 
             this.saveLog.Name = "saveLog";
-            this.saveLog.Size = new System.Drawing.Size(152, 22);
+            this.saveLog.Size = new System.Drawing.Size(124, 22);
             this.saveLog.Text = "保存日志";
             this.saveLog.Click += new System.EventHandler(this.saveLog_Click);
             // 
@@ -254,6 +254,7 @@
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(2, 0);
             this.dataGridView2.Name = "dataGridView2";

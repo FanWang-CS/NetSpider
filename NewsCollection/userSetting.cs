@@ -31,10 +31,14 @@ namespace NewsCollection
                 if (result)
                 {
                     MessageBox.Show("修改成功","提示");
+                    userSetting_Load(sender, e);
+                    return;
                 }
                 else
                 {
                     MessageBox.Show("修改失败", "提示");
+                    userSetting_Load(sender, e);
+                    return;
                 }
             }
             else

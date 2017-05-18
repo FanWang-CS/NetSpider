@@ -31,7 +31,7 @@ namespace NewsCollection
         int totalPage=1;
         TreeNode selectNode;
         String tableName;
-        String classifyField; 
+        String classifyField; //分类字段
         private void adminForm_Load(object sender, EventArgs e)
         {
 
@@ -302,6 +302,10 @@ namespace NewsCollection
         //选择审核状态分类
         private void radioButtonStatus_CheckedChanged(object sender, EventArgs e)
         {
+            if (tableName == null)
+            {
+                MessageBox.Show("请选择审核数据类型","提示");
+            }
             String[] checkType = {"001001","001002","001003"};
             String[] checkTypeName = { "审核通过", "未审核", "审核不通过" };
             removeAllTabPages(tabControl1);
@@ -333,6 +337,10 @@ namespace NewsCollection
         //选择类型分类
         private void radioButtonType_CheckedChanged(object sender, EventArgs e)
         {
+            if (tableName == null)
+            {
+                MessageBox.Show("请选择审核数据类型", "提示");
+            }
             DataTable typeTable = dataBaseManager.getClassifyType(tableName, classifyField);
             if(typeTable!=null && typeTable.Rows.Count > 0)
             {

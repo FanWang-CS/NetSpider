@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.createTask1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,8 +43,8 @@
             this.userSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.exit = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.homePage = new System.Windows.Forms.TabPage();
+            this.taskPage = new System.Windows.Forms.TabPage();
             this.webview = new System.Windows.Forms.WebBrowser();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -54,6 +54,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.taskgroupview = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.webgroupview = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.neturlview = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -69,10 +71,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.button11 = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
+            this.saveTaskButton = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.button9 = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -142,7 +142,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.taskPage.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -150,7 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox12.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -209,6 +208,7 @@
             this.createTask1.Name = "createTask1";
             this.createTask1.Size = new System.Drawing.Size(148, 22);
             this.createTask1.Text = "新建任务";
+            this.createTask1.Click += new System.EventHandler(this.createTask1_Click);
             // 
             // createTaskGroup1
             // 
@@ -276,43 +276,43 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.homePage);
+            this.tabControl1.Controls.Add(this.taskPage);
             this.tabControl1.Location = new System.Drawing.Point(193, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(835, 663);
             this.tabControl1.TabIndex = 2;
             // 
-            // tabPage1
+            // homePage
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(827, 637);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "主页";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseClick);
+            this.homePage.Location = new System.Drawing.Point(4, 22);
+            this.homePage.Name = "homePage";
+            this.homePage.Padding = new System.Windows.Forms.Padding(3);
+            this.homePage.Size = new System.Drawing.Size(827, 637);
+            this.homePage.TabIndex = 0;
+            this.homePage.Text = "主页";
+            this.homePage.UseVisualStyleBackColor = true;
+            this.homePage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseClick);
             // 
-            // tabPage2
+            // taskPage
             // 
-            this.tabPage2.Controls.Add(this.webview);
-            this.tabPage2.Controls.Add(this.tabControl2);
-            this.tabPage2.Controls.Add(this.pictureBox1);
-            this.tabPage2.Controls.Add(this.button8);
-            this.tabPage2.Controls.Add(this.button7);
-            this.tabPage2.Controls.Add(this.tasknameview);
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabPage2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(827, 637);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "新建任务";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.taskPage.Controls.Add(this.webview);
+            this.taskPage.Controls.Add(this.tabControl2);
+            this.taskPage.Controls.Add(this.pictureBox1);
+            this.taskPage.Controls.Add(this.button8);
+            this.taskPage.Controls.Add(this.button7);
+            this.taskPage.Controls.Add(this.tasknameview);
+            this.taskPage.Controls.Add(this.label1);
+            this.taskPage.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.taskPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.taskPage.Location = new System.Drawing.Point(4, 22);
+            this.taskPage.Name = "taskPage";
+            this.taskPage.Padding = new System.Windows.Forms.Padding(3);
+            this.taskPage.Size = new System.Drawing.Size(827, 637);
+            this.taskPage.TabIndex = 1;
+            this.taskPage.Text = "新建任务";
+            this.taskPage.UseVisualStyleBackColor = true;
             // 
             // webview
             // 
@@ -334,7 +334,7 @@
             this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Controls.Add(this.tabPage8);
-            this.tabControl2.ItemSize = new System.Drawing.Size(11, 6);
+            this.tabControl2.ItemSize = new System.Drawing.Size(22, 6);
             this.tabControl2.Location = new System.Drawing.Point(33, 118);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -403,9 +403,12 @@
             this.taskgroupview.Name = "taskgroupview";
             this.taskgroupview.Size = new System.Drawing.Size(357, 28);
             this.taskgroupview.TabIndex = 3;
+            this.taskgroupview.SelectedIndexChanged += new System.EventHandler(this.taskgroupview_SelectedIndexChanged);
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.webgroupview);
+            this.tabPage4.Controls.Add(this.label7);
             this.tabPage4.Controls.Add(this.neturlview);
             this.tabPage4.Controls.Add(this.label4);
             this.tabPage4.Location = new System.Drawing.Point(4, 10);
@@ -415,18 +418,36 @@
             this.tabPage4.TabIndex = 1;
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // webgroupview
+            // 
+            this.webgroupview.FormattingEnabled = true;
+            this.webgroupview.Location = new System.Drawing.Point(91, 19);
+            this.webgroupview.Name = "webgroupview";
+            this.webgroupview.Size = new System.Drawing.Size(368, 28);
+            this.webgroupview.TabIndex = 4;
+            this.webgroupview.SelectedValueChanged += new System.EventHandler(this.webgroupview_SelectedValueChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(51, 20);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "网站组";
+            // 
             // neturlview
             // 
             this.neturlview.FormattingEnabled = true;
-            this.neturlview.Location = new System.Drawing.Point(91, 11);
+            this.neturlview.Location = new System.Drawing.Point(91, 67);
             this.neturlview.Name = "neturlview";
-            this.neturlview.Size = new System.Drawing.Size(406, 28);
+            this.neturlview.Size = new System.Drawing.Size(368, 28);
             this.neturlview.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 13);
+            this.label4.Location = new System.Drawing.Point(9, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 20);
             this.label4.TabIndex = 0;
@@ -486,8 +507,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle3.NullValue = "InnerText";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.NullValue = "InnerText";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column4.HeaderText = "提取数据类型";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -496,9 +517,9 @@
             // 
             // Column
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column.HeaderText = "删除";
             this.Column.Name = "Column";
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -561,65 +582,39 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.groupBox12);
             this.groupBox9.Controls.Add(this.groupBox11);
             this.groupBox9.Controls.Add(this.groupBox10);
             this.groupBox9.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox9.Location = new System.Drawing.Point(6, 4);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(594, 186);
+            this.groupBox9.Size = new System.Drawing.Size(594, 159);
             this.groupBox9.TabIndex = 0;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "运行采集任务";
             // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.button11);
-            this.groupBox12.Location = new System.Drawing.Point(0, 129);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(581, 51);
-            this.groupBox12.TabIndex = 2;
-            this.groupBox12.TabStop = false;
-            // 
-            // button11
-            // 
-            this.button11.FlatAppearance.BorderSize = 0;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Image = global::NewsCollection.Properties.Resources.图标1;
-            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button11.Location = new System.Drawing.Point(12, 17);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(563, 28);
-            this.button11.TabIndex = 0;
-            this.button11.Text = "启动云采集（定时执行）";
-            this.button11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.button10);
-            this.groupBox11.Location = new System.Drawing.Point(1, 77);
+            this.groupBox11.Controls.Add(this.saveTaskButton);
+            this.groupBox11.Location = new System.Drawing.Point(10, 91);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(581, 51);
             this.groupBox11.TabIndex = 1;
             this.groupBox11.TabStop = false;
             // 
-            // button10
+            // saveTaskButton
             // 
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Image = global::NewsCollection.Properties.Resources.图标1;
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(12, 17);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(563, 28);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "启动云采集（立即执行一次）";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.saveTaskButton.FlatAppearance.BorderSize = 0;
+            this.saveTaskButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveTaskButton.Image = global::NewsCollection.Properties.Resources.图标1;
+            this.saveTaskButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveTaskButton.Location = new System.Drawing.Point(12, 17);
+            this.saveTaskButton.Name = "saveTaskButton";
+            this.saveTaskButton.Size = new System.Drawing.Size(563, 28);
+            this.saveTaskButton.TabIndex = 0;
+            this.saveTaskButton.Text = "保存任务";
+            this.saveTaskButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveTaskButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.saveTaskButton.UseVisualStyleBackColor = true;
             // 
             // groupBox10
             // 
@@ -1186,6 +1181,7 @@
             this.deleteTask.Name = "deleteTask";
             this.deleteTask.Size = new System.Drawing.Size(124, 22);
             this.deleteTask.Text = "删除任务";
+            this.deleteTask.Click += new System.EventHandler(this.deleteTask_Click);
             // 
             // websiteGroupClick
             // 
@@ -1317,12 +1313,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "计量资讯采集器";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.mainForm_Resize);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.taskPage.ResumeLayout(false);
+            this.taskPage.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -1333,7 +1330,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
@@ -1379,8 +1375,8 @@
         private System.Windows.Forms.ToolStripSplitButton userManager;
         private System.Windows.Forms.ToolStripMenuItem userSetting;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage homePage;
+        private System.Windows.Forms.TabPage taskPage;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
@@ -1446,10 +1442,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TabPage tabPage7;
@@ -1458,10 +1450,6 @@
         private System.Windows.Forms.GroupBox groupBox17;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.GroupBox groupBox13;
-        private System.Windows.Forms.GroupBox groupBox14;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.GroupBox groupBox15;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.ComboBox neturlview;
@@ -1477,5 +1465,13 @@
         private System.Windows.Forms.ToolStripMenuItem exit;
         private System.Windows.Forms.ToolStripMenuItem startTask;
         private System.Windows.Forms.ToolStripMenuItem createwebsite1;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Button saveTaskButton;
+        private System.Windows.Forms.ComboBox webgroupview;
+        private System.Windows.Forms.Label label7;
     }
 }

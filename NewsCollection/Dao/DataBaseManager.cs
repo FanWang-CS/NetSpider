@@ -37,13 +37,14 @@ namespace NewsCollection.Dao
             }
             return mInstance;
         }
-#endregion
+        #endregion
 
         //绑定当前的用户名
         private String currentUserName;
         private String currentUserType;
         public string CurrentUserName { get => currentUserName; set => currentUserName = value; }
         public string CurrentUserType { get => currentUserType; set => currentUserType = value; }
+      
         #region 通用数据库操作（增删改查）
         /// <summary>
         /// 查询数据
@@ -84,6 +85,17 @@ namespace NewsCollection.Dao
                 Console.WriteLine(e.ToString());
                 return false;
             }
+        }
+        //获取当前用户的id
+        public  String getCurrentUserId()
+        {
+            String sql = "select id from user where username='" + currentUserName + "'";
+            DataTable dt = getData(sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].ItemArray[0] as string;
+            }
+            return null;
         }
         #endregion
         #region 用户登录
@@ -169,22 +181,22 @@ namespace NewsCollection.Dao
         //获取网站分组
         public DataTable getWebsiteGroup()
         {
-            String sql = "SELECT title FROM `webgroup`";
+            String sql = "SELECT a.id AS id,title FROM `webgroup` AS a LEFT JOIN USER  AS b ON a.owner = b.id  WHERE username = '"+currentUserName+"'";
             DataTable dt = getData(sql);
             return dt;
         }
         //获取网站组里面网站
         public DataTable getWebsiteInGroup(String group)
         {
-            String sql = "SELECT a.title AS title FROM website AS a,webgroup AS b WHERE a.groupid=b.id AND b.title = '"+ group + "'";
+            String sql = "SELECT a.title AS title,url FROM website AS a,webgroup AS b WHERE a.groupid=b.id AND b.title = '"+ group + "'";
             DataTable dt = getData(sql);
             return dt;
         }
         //获取当前编辑的网站
-        public DataTable getCurtainWebsite(String websiteName,String parentName)
+        public DataTable getCurtainWebsite(String websiteName,String parentName,String currentWebsiteId)
         {
             String sql = "SELECT * FROM website AS a LEFT JOIN webgroup AS b ON a.groupid = b.id " +
-                "WHERE a.title = '"+ websiteName + "' AND b.title = '"+ parentName + "' ";
+                "WHERE a.title = '"+ websiteName + "' AND b.title = '"+ parentName + "' and a.id!='"+currentWebsiteId+"'";
             DataTable dt = getData(sql);
             return dt;
         }
@@ -207,18 +219,21 @@ namespace NewsCollection.Dao
             String sql = "DELETE FROM website WHERE id ='"+websiteId+"'";
             return changeDataWithoutReturn(sql);
         }
-        //获取当前编辑网站分组
-        public DataTable getCurtainWebGroup(String CurtainNodeText)
+        //通过网站名称获取网站分组信息
+        public DataTable getWebGroupInfo(String GroupName,String currentgroupId)
         {
-            String sql = "SELECT * FROM webgroup WHERE title='" + CurtainNodeText + "'";
+            String sql = "SELECT a.id as id,title,note FROM webgroup AS a LEFT JOIN USER  AS b ON a.owner = b.id WHERE title='"+ GroupName + "' and username='"+currentUserName+ "' AND a.id !='"+ currentgroupId + "'";
             return getData(sql);
         }
         //创建网站分组
         public Boolean creatWebGroup(String [] groupInfo)
-        {
-            String sql = "INSERT INTO webgroup VALUES(REPLACE(UUID(),'-',''),'" + groupInfo[0] + "','" + groupInfo[1] + "')";
+        { 
+
+            String currentUserId = getCurrentUserId();
+            String sql = "INSERT INTO webgroup VALUES(REPLACE(UUID(),'-',''),'" + groupInfo[0] + "','" + groupInfo[1] + "','" + currentUserId + "')";
             return changeDataWithoutReturn(sql);
         }
+        
         //编辑网站分组
         public Boolean editWebGroup(String groupID,String[] groupInfo)
         {
@@ -243,7 +258,7 @@ namespace NewsCollection.Dao
         /// 任务组数据库操作
         /// </summary>
         /// 
-        //获取任务分组
+        //获取当前用户任务分组
         public DataTable getTaskGroup()
         {
             String sql = "SELECT * FROM taskgroup AS a LEFT JOIN  USER AS b  ON a.owner=b.id WHERE username='"+currentUserName+"'";
@@ -259,15 +274,15 @@ namespace NewsCollection.Dao
             return dt;
         }
         //获取当前编辑任务分组
-        public DataTable getCurtainTaskGroup(String CurtainNodeText)
+        public DataTable getCurtainTaskGroup(String CurtainNodeText,String CurrentGroupId)
         {
-            String sql = "SELECT * FROM taskgroup WHERE title='" + CurtainNodeText + "'";
+            String sql = "SELECT * FROM taskgroup WHERE title='" + CurtainNodeText + "' and owner = '"+getCurrentUserId()+"' and id != '"+ CurrentGroupId + "'";
             return getData(sql);
         }
         //创建任务分组
         public Boolean creatTaskGroup(String[] groupInfo)
         {
-            String sql = "INSERT INTO taskgroup VALUES(REPLACE(UUID(),'-',''),'" + groupInfo[0] + "','" + groupInfo[1] + "')";
+            String sql = "INSERT INTO taskgroup VALUES(REPLACE(UUID(),'-',''),'" + groupInfo[0] + "','" + groupInfo[1] + "','"+ getCurrentUserId()+ "')";
             return changeDataWithoutReturn(sql);
         }
         //编辑任务分组
@@ -279,8 +294,13 @@ namespace NewsCollection.Dao
         //删除任务分组
         public Boolean deleteTaskGroup(String groupID)
         {
-            String sql = "DELETE form taskgroup WHERE id='" + groupID + "'";
-            return changeDataWithoutReturn(sql);
+            String sql = "DELETE FROM task WHERE groupid = '" + groupID + "'";
+            if (changeDataWithoutReturn(sql))
+            {
+                 sql = "DELETE from taskgroup WHERE id='" + groupID + "'";
+                return changeDataWithoutReturn(sql);
+            }
+            return false;
         }
 #endregion
 
@@ -317,7 +337,7 @@ namespace NewsCollection.Dao
         {
             String sql = "SELECT groupid,b.title AS groupname ,a.title AS website " +
                 "FROM website AS a LEFT JOIN webgroup AS b ON a.groupid=b.id " +
-                "WHERE a.title LIKE '%"+keyword+"%' OR b.title LIKE '%"+keyword+"%' ORDER BY groupid";
+                "WHERE (a.title LIKE '%"+keyword+"%' OR b.title LIKE '%"+keyword+"%') and owner='"+getCurrentUserId()+"' ORDER BY groupid";
             return getData(sql);
         }
         #region adminForm 界面操作
@@ -348,7 +368,16 @@ namespace NewsCollection.Dao
         //获取分类显示处有几个类
         public DataTable getClassifyType(String tableName,String ClassifyField)
         {
-            String sql = "SELECT DISTINCT IFNULL("+ ClassifyField + ",'null') AS "+ ClassifyField + " FROM " + tableName;
+            //String sql;
+            //if (ClassifyField == "usertype")
+            //{
+            //    sql = "SELECT DISTINCT IFNULL(" + ClassifyField + ",'未知') AS " + ClassifyField + " FROM " + tableName;
+            //}
+            //else
+            //{
+            //    sql = "SELECT DISTINCT IFNULL(b.title,'未知') AS newstype FROM news AS a LEFT JOIN taskgroup AS b ON a.newstype = b.id";
+            //}
+            String sql = "SELECT DISTINCT IFNULL(" + ClassifyField + ",'未知') AS " + ClassifyField + " FROM " + tableName;
             return getData(sql);
         }
         //获取分类显示处的数据

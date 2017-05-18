@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>E:\文档\毕设\自己学习资料\导出excel\导出excel\bin\Debug\Aspose.Cells.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Microsoft.VisualBasic.dll</HintPath>
@@ -91,6 +94,7 @@
     <Compile Include="Model\ClassInnerTextNodeFilter.cs" />
     <Compile Include="Model\OrNodeFilter.cs" />
     <Compile Include="Operation\adminFormOperation.cs" />
+    <Compile Include="Operation\BindOperation.cs" />
     <Compile Include="Operation\ExportOperation.cs" />
     <Compile Include="Operation\TaskOperation.cs" />
     <Compile Include="Operation\WebsiteOpeartion.cs" />

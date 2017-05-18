@@ -11,10 +11,11 @@ namespace NewsCollection.Operation
 {
     public class WebsiteOpeartion
     {
+        DataBaseManager dataManager = DataBaseManager.getInstance();
         //刷新
         public void refresh(TreeView treeView1)
         {
-            DataBaseManager dataManager = DataBaseManager.getInstance();
+            
             treeView1.Nodes.Clear();
             DataTable dt1 = dataManager.getWebsiteGroup();
             for (int i = 0; i < dt1.Rows.Count; i++)
