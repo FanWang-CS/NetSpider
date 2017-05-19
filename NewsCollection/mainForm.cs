@@ -247,7 +247,8 @@ namespace NewsCollection
                     case 0:
                         String taskname = tasknameview.Text.ToString();
                         String taskdesc = taskdescview.Text.ToString();
-                        String groupname = taskgroupview.Text.ToString();
+                        //String groupname = taskgroupview.Text.ToString();
+                        String groupname = taskgroupview.SelectedValue.ToString();
                         if (String.IsNullOrEmpty(taskname))
                         {
                             MessageBox.Show("请选择任务分组");
@@ -781,7 +782,6 @@ namespace NewsCollection
                     new TaskOperation().refresh(treeView1);
                     DataTable taskgroupdt = dataManager.getTaskGroup();
                     new BindOperation().bindGroupSelection(taskgroupview, taskgroupdt);
-
                 }
                 else
                 {
@@ -813,18 +813,48 @@ namespace NewsCollection
             //获取当前任务的参数内容
             if (CurtainNodeText != null)
             {
-                //DataTable dt = dataManager.getCurtainTask(CurtainNodeText, "");
-                //Boolean result = dataManager.deleteTaskGroup(dt.Rows[0]["id"] as String);
-                //if (result)
-                //{
-                //    new TaskOperation().refresh(treeView1);
-                //}
-                //else
-                //{
-                //    MessageBox.Show("无法删除", "提示");
-                //}
+                DataTable dt = dataManager.getCurtainTask(CurtainNodeText,ParentNodeText, "");
+                Object task = dt.Rows[0].ItemArray[0];
+                String taskid = Convert.ToString(dt.Rows[0].ItemArray[0]);
+                Boolean result = dataManager.deleteTask(taskid);
+                if (result)
+                {
+                    new TaskOperation().refresh(treeView1);
+                }
+                else
+                {
+                    MessageBox.Show("无法删除", "提示");
+                }
             }
         }
+        //启动任务
+        private void startTask_Click(object sender, EventArgs e)
+        {
+            DataTable dt = dataManager.getCurtainTask(CurtainNodeText,ParentNodeText,"");
+            String taskname = dt.Rows[0].ItemArray[1] as string;
+            String taskdesc = dt.Rows[0].ItemArray[2] as string;
+            String groupid = dt.Rows[0].ItemArray[3] as string;
+            String neturl = dt.Rows[0].ItemArray[4] as string;
+            String nextfilter = dt.Rows[0].ItemArray[5] as string;
+            String filter = dt.Rows[0].ItemArray[6] as string;
+            String keyword = dt.Rows[0].ItemArray[7] as string;
+            Task task=Task.loadTask(taskname, taskdesc, groupid, neturl, nextfilter, filter, keyword);
+            taskPage.Parent = tabControl1;
+            taskPage.Text = "启动任务";
+            tabControl1.SelectedIndex = 1;
+            step = 4;
+            tabControl2.SelectedIndex = 4;
+            task.execute(dataGridView2, button8);
+
+            //step = 2;
+            //button8_Click(sender, e);
+        }
+        //编辑任务
+        private void editTask_Click(object sender, EventArgs e)
+        {
+
+        }
+        //任务组的刷新
         private void taskGroupRefresh_Click(object sender, EventArgs e)
         {
 
@@ -843,6 +873,7 @@ namespace NewsCollection
         private void taskRightClick_Opening(object sender, CancelEventArgs e)
         {
             CurtainNodeText = treeView1.SelectedNode.Text;
+            ParentNodeText = treeView1.SelectedNode.Parent.Text;
             // _CurtainControl = taskGroup.SourceControl;
         }
         //搜索框
@@ -936,5 +967,18 @@ namespace NewsCollection
             DataTable weblist = dataManager.getWebsiteInGroup(TaskCurrentWebGroupId);
             new BindOperation().bindwebsiteSelection(neturlview, weblist);
         }
+        //主界面的保存任务
+        private void saveTaskButton_Click(object sender, EventArgs e)
+        {
+            if (task.save2DB())
+            {
+                MessageBox.Show("任务保存成功", "提示");
+            }
+            else
+            {
+                MessageBox.Show("任务保存失败", "提示");
+            }
+        }
+
     }
 }

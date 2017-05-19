@@ -265,7 +265,7 @@ namespace NewsCollection.Dao
             DataTable dt = getData(sql);
             return dt;
         }
-        //获取任务组里面网站
+        //获取任务组里面任务
         public DataTable getTaskInGroup(String groupid)
         {
             String sql = "SELECT * FROM task AS c LEFT JOIN taskgroup AS a ON c.groupid = a.id " +
@@ -318,19 +318,29 @@ namespace NewsCollection.Dao
         public Boolean saveTask(String taskName, String taskDes, String  taskGroup, String taskUrl,
                                 String taskNextFilter, String taskFilter, String keyWord)
         {
-            String sql = "INSERT INTO Task(owner, tname, tdes,tgroup,turl,tnextfilter,tfilter,tkeyword) VALUES("
-                + currentUserName + ","
-                + taskName + ","
-                + taskDes + "," 
-                + taskGroup + ","
-                + taskUrl + ","
-                + taskNextFilter + ","
-                + taskFilter + ","
-                + keyWord + ")";
+            String sql = "INSERT INTO Task(id,name, tdes,groupid,url,nextfilter,filter,keyword) VALUES(REPLACE(UUID(),'-',''),'"
+
+                + taskName + "','"
+                + taskDes + "','" 
+                + taskGroup + "','"
+                + taskUrl + "','"
+                + taskNextFilter + "','"
+                + taskFilter + "','"
+                + keyWord + "')";
             return changeDataWithoutReturn(sql);
         }
-
-
+        //获取当前任务
+        public DataTable getCurtainTask(String taskName, String parentName,String taskid)
+        {
+            String sql = "SELECT a.id AS id,NAME,tdes,groupid,url,nextfilter,filter,keyword  FROM task AS a LEFT JOIN taskgroup AS b ON a.groupid=b.id WHERE NAME='" + taskName + "' AND title ='"+ parentName+ "' AND a.id!='" + taskid + "'";
+            return getData(sql);
+        }
+        //删除任务
+        public Boolean deleteTask(String taskid)
+        {
+            String sql = "delete from task where id='" + taskid + "'";
+            return (changeDataWithoutReturn(sql));
+        }
 
         //查找包含搜索关键字的分组和网站
         public DataTable searchwebsite(String keyword)

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.createTask1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -507,8 +507,8 @@
             // 
             // Column4
             // 
-            dataGridViewCellStyle5.NullValue = "InnerText";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.NullValue = "InnerText";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column4.HeaderText = "提取数据类型";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -517,9 +517,9 @@
             // 
             // Column
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.NullValue = "删除";
-            this.Column.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = "删除";
+            this.Column.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column.HeaderText = "删除";
             this.Column.Name = "Column";
             this.Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -615,6 +615,7 @@
             this.saveTaskButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.saveTaskButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.saveTaskButton.UseVisualStyleBackColor = true;
+            this.saveTaskButton.Click += new System.EventHandler(this.saveTaskButton_Click);
             // 
             // groupBox10
             // 
@@ -1161,25 +1162,27 @@
             this.editTask,
             this.deleteTask});
             this.taskRightClick.Name = "contextMenuStrip3";
-            this.taskRightClick.Size = new System.Drawing.Size(125, 70);
+            this.taskRightClick.Size = new System.Drawing.Size(153, 92);
             this.taskRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.taskRightClick_Opening);
             // 
             // startTask
             // 
             this.startTask.Name = "startTask";
-            this.startTask.Size = new System.Drawing.Size(124, 22);
+            this.startTask.Size = new System.Drawing.Size(152, 22);
             this.startTask.Text = "启动任务";
+            this.startTask.Click += new System.EventHandler(this.startTask_Click);
             // 
             // editTask
             // 
             this.editTask.Name = "editTask";
-            this.editTask.Size = new System.Drawing.Size(124, 22);
+            this.editTask.Size = new System.Drawing.Size(152, 22);
             this.editTask.Text = "编辑任务";
+            this.editTask.Click += new System.EventHandler(this.editTask_Click);
             // 
             // deleteTask
             // 
             this.deleteTask.Name = "deleteTask";
-            this.deleteTask.Size = new System.Drawing.Size(124, 22);
+            this.deleteTask.Size = new System.Drawing.Size(152, 22);
             this.deleteTask.Text = "删除任务";
             this.deleteTask.Click += new System.EventHandler(this.deleteTask_Click);
             // 

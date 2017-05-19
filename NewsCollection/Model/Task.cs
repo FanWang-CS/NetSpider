@@ -46,8 +46,8 @@ namespace NewsCollection.Model
 
         //页面加载器
 
-        private WebBrowser webLoader;
-        private Parser htmlParser;
+        private static WebBrowser webLoader;
+        private static Parser htmlParser;
 
         public Task() { }
 
@@ -254,7 +254,7 @@ namespace NewsCollection.Model
         }
 
         //保存到数据库
-        public void save2DB()
+        public Boolean save2DB()
         {
             int len = infoNodeFilters.Count; //过滤器数目
 
@@ -276,7 +276,7 @@ namespace NewsCollection.Model
                 keywordStr.Remove(keywordStr.Length - 1, 1);
             }
 
-            DataBaseManager.getInstance().saveTask(taskname, taskdesc, groupname, neturl,
+            return DataBaseManager.getInstance().saveTask(taskname, taskdesc, groupname, neturl,
                                                     nextPagerFilter == null ? "" : nextPagerFilter.TagName + "|" + nextPagerFilter.InnerText,
                                                     filterStr.ToString(),
                                                     keywordStr.ToString());
@@ -285,13 +285,14 @@ namespace NewsCollection.Model
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        public static Task loadTask(String taskname, String taskdesc, String groupname, String neturl
+        public static Task loadTask(String taskname, String taskdesc, String groupid, String neturl
             ,String nextfilter,String filter,String keyword)
         {
-            Task task = new Task();
-            task.TaskName = taskname;
-            task.TaskDesc = taskdesc;
-            task.GroupName = groupname;
+           // Task task = new Task();
+            //task.TaskName = taskname;
+            //task.TaskDesc = taskdesc;
+            //task.GroupName = groupid;
+            Task task = new Task(taskname, taskdesc, groupid);
             task.NetUrl = neturl;
             if (!String.IsNullOrEmpty(nextfilter))
             {
